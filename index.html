@@ -3,7 +3,6 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<!-- ====== EDITA: título e descrição que aparecem no separador e no Google ====== -->
 <title>Lloyd Costa — Programador Full-Stack</title>
 <meta name="description" content="Portefólio de Lloyd Costa, programador full-stack. Projetos, stack e contactos." />
 
@@ -73,10 +72,10 @@
   .bar { display: flex; align-items: center; justify-content: space-between; height: 64px; }
   .brand { font-family: "JetBrains Mono", monospace; font-weight: 600; font-size: .95rem; letter-spacing: -.01em; text-decoration: none; }
   .brand span { color: var(--accent); }
-  nav { display: flex; align-items: center; gap: 26px; }
+  nav { display: flex; align-items: center; gap: 12px; }
   nav a { font-size: .9rem; color: var(--muted); text-decoration: none; transition: color .2s; }
   nav a:hover { color: var(--ink); }
-  .nav-links { display: flex; gap: 26px; }
+  .nav-links { display: flex; gap: 26px; margin-right: 14px; }
   @media (max-width: 640px) { .nav-links { display: none; } }
 
   .toggle {
@@ -169,15 +168,15 @@
 <body>
 <header>
   <div class="wrap bar">
-    <!-- ====== EDITA: as iniciais ou o teu handle ====== -->
     <a class="brand" href="#top">~/<span>lloyd</span></a>
     <nav>
       <div class="nav-links">
-        <a href="#projetos">Projetos</a>
-        <a href="#sobre">Sobre</a>
-        <a href="#contacto">Contacto</a>
+        <a href="#projetos" data-i18n="nav.projects">Projetos</a>
+        <a href="#sobre" data-i18n="nav.about">Sobre</a>
+        <a href="#contacto" data-i18n="nav.contact">Contacto</a>
       </div>
-      <button class="toggle" id="themeToggle" aria-label="Mudar tema">claro</button>
+      <button class="toggle" id="langToggle" aria-label="Mudar idioma">EN</button>
+      <button class="toggle" id="themeToggle" aria-label="Mudar tema" data-i18n="theme.toLight">claro</button>
     </nav>
   </div>
 </header>
@@ -186,12 +185,12 @@
 
   <!-- ============ HERO ============ -->
   <section class="hero reveal">
-    <p class="eyebrow">// programador full-stack · Coimbra</p>
-    <h1>Lloyd Costa,<br>construo <span class="accent">software</span>.</h1>
-    <p class="lead">Programador full-stack focado em aplicações web completas — desde a API até à interface. Tenho especial interesse em arquiteturas limpas, segurança e experiência de utilizador.</p>
+    <p class="eyebrow" data-i18n="hero.eyebrow">// programador full-stack · Coimbra</p>
+    <h1 data-i18n-html="hero.h1">Lloyd Costa,<br>construo <span class="accent">software</span>.</h1>
+    <p class="lead" data-i18n="hero.lead">Programador full-stack focado em aplicações web completas — desde a API até à interface. Tenho especial interesse em arquiteturas limpas, segurança e experiência de utilizador.</p>
     <div class="cta-row">
-      <a class="btn btn-primary" href="cv.pdf" download>Descarregar CV</a>
-      <a class="btn btn-ghost" href="#contacto">Contactar</a>
+      <a class="btn btn-primary" href="cv.pdf" download data-i18n="hero.cv">Descarregar CV</a>
+      <a class="btn btn-ghost" href="#contacto" data-i18n="hero.contact">Contactar</a>
     </div>
   </section>
 
@@ -199,14 +198,14 @@
   <section id="projetos">
     <div class="sec-head reveal">
       <span class="idx mono">[ 01 ]</span>
-      <h2>Projetos</h2>
+      <h2 data-i18n="section.projects">Projetos</h2>
     </div>
 
     <article class="project reveal">
       <div class="ref">001</div>
       <div>
         <h3>MyNook</h3>
-        <p>Plataforma social em produção com feed, amizades, álbuns de fotos, notificações em tempo real (SignalR), 2FA TOTP, moderação de conteúdo e painel de administração. Suporta 4 idiomas (pt, en, es, fr) e foi desenhada com segurança como prioridade: refresh token rotation, rate limiting, audit logging e RBAC.</p>
+        <p data-i18n="projects.1.desc">Plataforma social em produção com feed, amizades, álbuns de fotos, notificações em tempo real (SignalR), 2FA TOTP, moderação de conteúdo e painel de administração. Suporta 4 idiomas (pt, en, es, fr) e foi desenhada com segurança como prioridade: refresh token rotation, rate limiting, audit logging e RBAC.</p>
         <div class="stack">
           <span class="tag">ASP.NET Core 10</span>
           <span class="tag">C# 13</span>
@@ -218,7 +217,7 @@
           <span class="tag">Docker</span>
         </div>
         <div class="links">
-          <a href="https://github.com/Geoffrey87/Longing" target="_blank" rel="noopener">Código →</a>
+          <a href="https://github.com/Geoffrey87/Longing" target="_blank" rel="noopener" data-i18n="link.code">Código →</a>
           <a href="https://mynook.social" target="_blank" rel="noopener">Demo →</a>
         </div>
       </div>
@@ -228,7 +227,7 @@
       <div class="ref">002</div>
       <div>
         <h3>BankingApp</h3>
-        <p>Aplicação bancária que simula gestão de contas, cartões, transferências por IBAN e empréstimos com aprovação por admin. Implementa Onion Architecture, Repository Pattern, SOLID e JWT. Containerizada com Docker e deployada em produção no Fly.io.</p>
+        <p data-i18n="projects.2.desc">Aplicação bancária que simula gestão de contas, cartões, transferências por IBAN e empréstimos com aprovação por admin. Implementa Onion Architecture, Repository Pattern, SOLID e JWT. Containerizada com Docker e deployada em produção no Fly.io.</p>
         <div class="stack">
           <span class="tag">.NET 10</span>
           <span class="tag">Angular 19</span>
@@ -238,7 +237,7 @@
           <span class="tag">Fly.io</span>
         </div>
         <div class="links">
-          <a href="https://github.com/Geoffrey87/MyProjects/tree/main/BankingApp" target="_blank" rel="noopener">Código →</a>
+          <a href="https://github.com/Geoffrey87/MyProjects/tree/main/BankingApp" target="_blank" rel="noopener" data-i18n="link.code">Código →</a>
           <a href="https://bankingapp-web.fly.dev" target="_blank" rel="noopener">Demo →</a>
         </div>
       </div>
@@ -248,7 +247,7 @@
       <div class="ref">003</div>
       <div>
         <h3>LegisTrack</h3>
-        <p>Simulador do processo legislativo português onde os utilizadores criam partidos políticos, propõem leis e geram votos com probabilidades inspiradas na realidade. Uma lei aprovada não pode ser editada — tal como na vida real. Deployado na AWS com RDS e Elastic Beanstalk.</p>
+        <p data-i18n="projects.3.desc">Simulador do processo legislativo português onde os utilizadores criam partidos políticos, propõem leis e geram votos com probabilidades inspiradas na realidade. Uma lei aprovada não pode ser editada — tal como na vida real. Deployado na AWS com RDS e Elastic Beanstalk.</p>
         <div class="stack">
           <span class="tag">Java 17</span>
           <span class="tag">Spring Boot</span>
@@ -259,7 +258,7 @@
           <span class="tag">AWS</span>
         </div>
         <div class="links">
-          <a href="https://github.com/Geoffrey87/MyProjects/tree/main/LegisTrack" target="_blank" rel="noopener">Código →</a>
+          <a href="https://github.com/Geoffrey87/MyProjects/tree/main/LegisTrack" target="_blank" rel="noopener" data-i18n="link.code">Código →</a>
         </div>
       </div>
     </article>
@@ -268,7 +267,7 @@
       <div class="ref">004</div>
       <div>
         <h3>paymentsAlert</h3>
-        <p>Gestão de pagamentos recorrentes com interface de calendário. Ao criar um pagamento, o backend gera automaticamente as entradas futuras com base na recorrência (mensal, trimestral, anual) e calcula os totais mensais e anuais. Autenticação com JWT e BCrypt.</p>
+        <p data-i18n="projects.4.desc">Gestão de pagamentos recorrentes com interface de calendário. Ao criar um pagamento, o backend gera automaticamente as entradas futuras com base na recorrência (mensal, trimestral, anual) e calcula os totais mensais e anuais. Autenticação com JWT e BCrypt.</p>
         <div class="stack">
           <span class="tag">Java 17</span>
           <span class="tag">Spring Boot</span>
@@ -278,7 +277,7 @@
           <span class="tag">Docker</span>
         </div>
         <div class="links">
-          <a href="https://github.com/Geoffrey87/MyProjects/tree/main/paymentsAlert" target="_blank" rel="noopener">Código →</a>
+          <a href="https://github.com/Geoffrey87/MyProjects/tree/main/paymentsAlert" target="_blank" rel="noopener" data-i18n="link.code">Código →</a>
         </div>
       </div>
     </article>
@@ -288,12 +287,12 @@
   <section id="sobre">
     <div class="sec-head reveal">
       <span class="idx mono">[ 02 ]</span>
-      <h2>Sobre</h2>
+      <h2 data-i18n="section.about">Sobre</h2>
     </div>
     <div class="about-grid">
       <div class="about reveal">
-        <p>Programador full-stack de Coimbra, com experiência em aplicações web completas — desde a modelação da base de dados até à interface final. Trabalho tanto com o ecossistema .NET/C# como com Java/Spring Boot no backend, e com Angular, Next.js e React no frontend.</p>
-        <p>O meu projeto principal é o MyNook, uma plataforma social real em produção que desenvolvo de forma independente. Foi onde mais aprendi sobre segurança, escalabilidade e as decisões difíceis que só aparecem quando algo é real e não académico.</p>
+        <p data-i18n="about.p1">Programador full-stack de Coimbra, com experiência em aplicações web completas — desde a modelação da base de dados até à interface final. Trabalho tanto com o ecossistema .NET/C# como com Java/Spring Boot no backend, e com Angular, Next.js e React no frontend.</p>
+        <p data-i18n="about.p2">O meu projeto principal é o MyNook, uma plataforma social real em produção que desenvolvo de forma independente. Foi onde mais aprendi sobre segurança, escalabilidade e as decisões difíceis que só aparecem quando algo é real e não académico.</p>
       </div>
       <div class="skills reveal">
         <h4>Stack</h4>
@@ -315,9 +314,9 @@
 
   <!-- ============ CONTACTO ============ -->
   <section id="contacto" class="contact reveal">
-    <p class="eyebrow" style="color:var(--accent)">// vamos falar</p>
-    <h2>Diz olá.</h2>
-    <p>Aberto a oportunidades, colaborações ou só uma boa conversa técnica.</p>
+    <p class="eyebrow" style="color:var(--accent)" data-i18n="contact.eyebrow">// vamos falar</p>
+    <h2 data-i18n="contact.title">Diz olá.</h2>
+    <p data-i18n="contact.desc">Aberto a oportunidades, colaborações ou só uma boa conversa técnica.</p>
     <div class="cta-row" style="justify-content:center">
       <a class="btn btn-primary" href="mailto:lloydcosta123@gmail.com">lloydcosta123@gmail.com</a>
       <a class="btn btn-ghost" href="https://github.com/Geoffrey87" target="_blank" rel="noopener">GitHub</a>
@@ -330,28 +329,108 @@
 <footer>
   <div class="wrap foot">
     <span>© <span id="year"></span> Lloyd Costa</span>
-    <a href="#top">voltar ao topo ↑</a>
+    <a href="#top" data-i18n="footer.top">voltar ao topo ↑</a>
   </div>
 </footer>
 
 <script>
-  // Ano automático no rodapé
-  document.getElementById("year").textContent = new Date().getFullYear();
+  const translations = {
+    pt: {
+      'nav.projects':      'Projetos',
+      'nav.about':         'Sobre',
+      'nav.contact':       'Contacto',
+      'hero.eyebrow':      '// programador full-stack · Coimbra',
+      'hero.h1':           'Lloyd Costa,<br>construo <span class="accent">software</span>.',
+      'hero.lead':         'Programador full-stack focado em aplicações web completas — desde a API até à interface. Tenho especial interesse em arquiteturas limpas, segurança e experiência de utilizador.',
+      'hero.cv':           'Descarregar CV',
+      'hero.contact':      'Contactar',
+      'section.projects':  'Projetos',
+      'section.about':     'Sobre',
+      'projects.1.desc':   'Plataforma social em produção com feed, amizades, álbuns de fotos, notificações em tempo real (SignalR), 2FA TOTP, moderação de conteúdo e painel de administração. Suporta 4 idiomas (pt, en, es, fr) e foi desenhada com segurança como prioridade: refresh token rotation, rate limiting, audit logging e RBAC.',
+      'projects.2.desc':   'Aplicação bancária que simula gestão de contas, cartões, transferências por IBAN e empréstimos com aprovação por admin. Implementa Onion Architecture, Repository Pattern, SOLID e JWT. Containerizada com Docker e deployada em produção no Fly.io.',
+      'projects.3.desc':   'Simulador do processo legislativo português onde os utilizadores criam partidos políticos, propõem leis e geram votos com probabilidades inspiradas na realidade. Uma lei aprovada não pode ser editada — tal como na vida real. Deployado na AWS com RDS e Elastic Beanstalk.',
+      'projects.4.desc':   'Gestão de pagamentos recorrentes com interface de calendário. Ao criar um pagamento, o backend gera automaticamente as entradas futuras com base na recorrência (mensal, trimestral, anual) e calcula os totais mensais e anuais. Autenticação com JWT e BCrypt.',
+      'link.code':         'Código →',
+      'about.p1':          'Programador full-stack de Coimbra, com experiência em aplicações web completas — desde a modelação da base de dados até à interface final. Trabalho tanto com o ecossistema .NET/C# como com Java/Spring Boot no backend, e com Angular, Next.js e React no frontend.',
+      'about.p2':          'O meu projeto principal é o MyNook, uma plataforma social real em produção que desenvolvo de forma independente. Foi onde mais aprendi sobre segurança, escalabilidade e as decisões difíceis que só aparecem quando algo é real e não académico.',
+      'contact.eyebrow':   '// vamos falar',
+      'contact.title':     'Diz olá.',
+      'contact.desc':      'Aberto a oportunidades, colaborações ou só uma boa conversa técnica.',
+      'footer.top':        'voltar ao topo ↑',
+      'theme.toLight':     'claro',
+      'theme.toDark':      'escuro',
+    },
+    en: {
+      'nav.projects':      'Projects',
+      'nav.about':         'About',
+      'nav.contact':       'Contact',
+      'hero.eyebrow':      '// full-stack developer · Coimbra',
+      'hero.h1':           'Lloyd Costa,<br>I build <span class="accent">software</span>.',
+      'hero.lead':         'Full-stack developer focused on complete web applications — from the API to the interface. I have a particular interest in clean architectures, security, and user experience.',
+      'hero.cv':           'Download CV',
+      'hero.contact':      'Contact',
+      'section.projects':  'Projects',
+      'section.about':     'About',
+      'projects.1.desc':   'A live social platform featuring a social feed, friendships, photo albums, real-time notifications (SignalR), 2FA TOTP, content moderation, and an admin panel. Supports 4 languages (pt, en, es, fr) and was built with security as a top priority: refresh token rotation, rate limiting, audit logging, and RBAC.',
+      'projects.2.desc':   'A banking application simulating account management, cards, IBAN transfers, and loans with admin approval. Implements Onion Architecture, Repository Pattern, SOLID, and JWT. Containerised with Docker and deployed to production on Fly.io.',
+      'projects.3.desc':   'A simulator of the Portuguese legislative process where users create political parties, propose laws, and generate votes with probabilities inspired by real politics. An approved law cannot be edited — just like in real life. Deployed on AWS with RDS and Elastic Beanstalk.',
+      'projects.4.desc':   'Recurring payment management with a calendar interface. When creating a payment, the backend automatically generates future entries based on recurrence (monthly, quarterly, yearly) and calculates monthly and yearly totals. JWT and BCrypt authentication.',
+      'link.code':         'Code →',
+      'about.p1':          'Full-stack developer from Coimbra, with experience building complete web applications — from database design to the final interface. I work with both the .NET/C# and Java/Spring Boot ecosystems on the backend, and Angular, Next.js, and React on the frontend.',
+      'about.p2':          'My main project is MyNook, a real social platform in production that I develop independently. It\'s where I\'ve learned the most about security, scalability, and the hard decisions that only surface when something is real and not academic.',
+      'contact.eyebrow':   '// let\'s talk',
+      'contact.title':     'Say hi.',
+      'contact.desc':      'Open to opportunities, collaborations, or just a good technical conversation.',
+      'footer.top':        'back to top ↑',
+      'theme.toLight':     'light',
+      'theme.toDark':      'dark',
+    }
+  };
 
-  // Toggle de tema (sem dependências)
+  let currentLang = 'pt';
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[lang][key] !== undefined) el.textContent = translations[lang][key];
+    });
+
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      const key = el.getAttribute('data-i18n-html');
+      if (translations[lang][key] !== undefined) el.innerHTML = translations[lang][key];
+    });
+
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    themeBtn.textContent = translations[lang][isDark ? 'theme.toLight' : 'theme.toDark'];
+
+    langBtn.textContent = lang === 'pt' ? 'EN' : 'PT';
+  }
+
+  // Ano automático no rodapé
+  document.getElementById('year').textContent = new Date().getFullYear();
+
   const root = document.documentElement;
-  const btn = document.getElementById("themeToggle");
-  btn.addEventListener("click", () => {
-    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-    root.setAttribute("data-theme", next);
-    btn.textContent = next === "dark" ? "claro" : "escuro";
+  const themeBtn = document.getElementById('themeToggle');
+  const langBtn  = document.getElementById('langToggle');
+
+  themeBtn.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    themeBtn.textContent = translations[currentLang][next === 'dark' ? 'theme.toLight' : 'theme.toDark'];
+  });
+
+  langBtn.addEventListener('click', () => {
+    setLang(currentLang === 'pt' ? 'en' : 'pt');
   });
 
   // Reveal-on-scroll
   const io = new IntersectionObserver((entries) => {
-    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: 0.12 });
-  document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 </script>
 </body>
 </html>
