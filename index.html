@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="pt" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- ====== EDITA: título e descrição que aparecem no separador e no Google ====== -->
+<title>[O TEU NOME] — Programador</title>
+<meta name="description" content="Portefólio e CV de [O TEU NOME], programador. Projetos, stack e contactos." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg: #15171c;
+    --surface: #1c1f26;
+    --surface-2: #21252e;
+    --border: #2a2e38;
+    --ink: #ecebe4;
+    --muted: #828a96;
+    --accent: #f4b23e;
+    --accent-ink: #15171c;
+    --max: 980px;
+    --r: 14px;
+  }
+  [data-theme="light"] {
+    --bg: #f3f3ee;
+    --surface: #ffffff;
+    --surface-2: #faf9f5;
+    --border: #e0e0d8;
+    --ink: #1a1c20;
+    --muted: #6a6f78;
+    --accent: #b5790e;
+    --accent-ink: #ffffff;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Inter", system-ui, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    transition: background .3s ease, color .3s ease;
+  }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+  .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+  .eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: .78rem;
+    letter-spacing: .04em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin: 0 0 14px;
+  }
+
+  a { color: inherit; }
+
+  /* ---------- Top bar ---------- */
+  header {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .bar { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .brand { font-family: "JetBrains Mono", monospace; font-weight: 600; font-size: .95rem; letter-spacing: -.01em; text-decoration: none; }
+  .brand span { color: var(--accent); }
+  nav { display: flex; align-items: center; gap: 26px; }
+  nav a { font-size: .9rem; color: var(--muted); text-decoration: none; transition: color .2s; }
+  nav a:hover { color: var(--ink); }
+  .nav-links { display: flex; gap: 26px; }
+  @media (max-width: 640px) { .nav-links { display: none; } }
+
+  .toggle {
+    font-family: "JetBrains Mono", monospace; font-size: .8rem;
+    background: var(--surface); color: var(--ink);
+    border: 1px solid var(--border); border-radius: 999px;
+    padding: 7px 13px; cursor: pointer; transition: border-color .2s, transform .1s;
+  }
+  .toggle:hover { border-color: var(--accent); }
+  .toggle:active { transform: scale(.96); }
+
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 96px 0 64px; }
+  .hero h1 {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-weight: 800; font-size: clamp(2.6rem, 8vw, 5rem);
+    line-height: 1.02; letter-spacing: -.02em; margin: 0 0 22px;
+  }
+  .hero h1 .accent { color: var(--accent); }
+  .hero .lead { font-size: clamp(1.05rem, 2.4vw, 1.3rem); color: var(--muted); max-width: 560px; margin: 0 0 34px; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: .92rem; font-weight: 500; text-decoration: none;
+    padding: 12px 20px; border-radius: 999px; transition: transform .12s, opacity .2s, border-color .2s;
+  }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+  .btn-ghost { border: 1px solid var(--border); color: var(--ink); }
+  .btn-ghost:hover { border-color: var(--accent); }
+  .btn:active { transform: translateY(1px); }
+
+  /* ---------- Section scaffolding ---------- */
+  section { padding: 64px 0; }
+  .sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 40px; }
+  .sec-head h2 {
+    font-family: "Bricolage Grotesque", sans-serif; font-weight: 700;
+    font-size: clamp(1.6rem, 4vw, 2.3rem); letter-spacing: -.02em; margin: 0;
+  }
+  .sec-head .idx { font-family: "JetBrains Mono", monospace; color: var(--muted); font-size: .85rem; }
+
+  /* ---------- Projects ---------- */
+  .project {
+    display: grid; grid-template-columns: 64px 1fr; gap: 24px;
+    padding: 30px 0; border-top: 1px solid var(--border);
+  }
+  .project:last-child { border-bottom: 1px solid var(--border); }
+  .project .ref { font-family: "JetBrains Mono", monospace; color: var(--accent); font-size: .9rem; padding-top: 4px; }
+  .project h3 { font-family: "Bricolage Grotesque", sans-serif; font-weight: 700; font-size: 1.45rem; margin: 0 0 8px; letter-spacing: -.01em; }
+  .project p { color: var(--muted); margin: 0 0 16px; max-width: 620px; }
+  .stack { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .tag {
+    font-family: "JetBrains Mono", monospace; font-size: .76rem;
+    color: var(--ink); background: var(--surface-2);
+    border: 1px solid var(--border); border-radius: 6px; padding: 4px 9px;
+  }
+  .links { display: flex; gap: 18px; }
+  .links a { font-family: "JetBrains Mono", monospace; font-size: .85rem; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 1px; transition: color .2s; }
+  .links a:hover { color: var(--accent); }
+  @media (max-width: 560px) {
+    .project { grid-template-columns: 1fr; gap: 12px; }
+    .project .ref { padding-top: 0; }
+  }
+
+  /* ---------- About + skills ---------- */
+  .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 44px; }
+  @media (max-width: 720px) { .about-grid { grid-template-columns: 1fr; gap: 28px; } }
+  .about p { color: var(--ink); margin: 0 0 16px; }
+  .skills h4 { font-family: "JetBrains Mono", monospace; font-size: .8rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 0 0 14px; }
+  .skill-list { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  /* ---------- Contact ---------- */
+  .contact { text-align: center; padding: 88px 0; }
+  .contact h2 { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: clamp(2rem, 6vw, 3.4rem); letter-spacing: -.02em; margin: 0 0 14px; }
+  .contact p { color: var(--muted); margin: 0 0 30px; }
+
+  footer { border-top: 1px solid var(--border); padding: 28px 0; }
+  .foot { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; }
+  .foot, .foot a { font-family: "JetBrains Mono", monospace; font-size: .8rem; color: var(--muted); text-decoration: none; }
+  .foot a:hover { color: var(--ink); }
+
+  /* ---------- Reveal-on-scroll ---------- */
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+
+<body>
+<header>
+  <div class="wrap bar">
+    <!-- ====== EDITA: as iniciais ou o teu handle ====== -->
+    <a class="brand" href="#top">~/<span>nome</span></a>
+    <nav>
+      <div class="nav-links">
+        <a href="#projetos">Projetos</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+      <button class="toggle" id="themeToggle" aria-label="Mudar tema">claro</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero reveal">
+    <p class="eyebrow">// programador · [a tua cidade]</p>
+    <!-- ====== EDITA: o teu nome e uma palavra-chave em destaque ====== -->
+    <h1>[O Teu Nome],<br>construo <span class="accent">software</span>.</h1>
+    <p class="lead">Uma frase curta sobre o que fazes, em que te focas e o que te interessa resolver. Mantém-na concreta — duas linhas chegam.</p>
+    <div class="cta-row">
+      <!-- ====== EDITA: substitui pelo nome do teu PDF ====== -->
+      <a class="btn btn-primary" href="cv.pdf" download>Descarregar CV</a>
+      <a class="btn btn-ghost" href="#contacto">Contactar</a>
+    </div>
+  </section>
+
+  <!-- ============ PROJETOS ============ -->
+  <section id="projetos">
+    <div class="sec-head reveal">
+      <span class="idx mono">[ 01 ]</span>
+      <h2>Projetos</h2>
+    </div>
+
+    <!-- ====== EDITA: duplica este bloco .project por cada projeto ====== -->
+    <article class="project reveal">
+      <div class="ref">001</div>
+      <div>
+        <h3>Nome do Projeto</h3>
+        <p>O que é, que problema resolve e qual foi o teu papel. Uma a três frases — destaca a decisão técnica de que mais te orgulhas.</p>
+        <div class="stack">
+          <span class="tag">React</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Node.js</span>
+        </div>
+        <div class="links">
+          <a href="#" target="_blank" rel="noopener">Código →</a>
+          <a href="#" target="_blank" rel="noopener">Demo →</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="project reveal">
+      <div class="ref">002</div>
+      <div>
+        <h3>Nome do Projeto</h3>
+        <p>Descrição curta do segundo projeto. Foca-te no resultado e na stack, não em listar tudo o que tocaste.</p>
+        <div class="stack">
+          <span class="tag">Python</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">PostgreSQL</span>
+        </div>
+        <div class="links">
+          <a href="#" target="_blank" rel="noopener">Código →</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="project reveal">
+      <div class="ref">003</div>
+      <div>
+        <h3>Nome do Projeto</h3>
+        <p>Descrição curta do terceiro projeto.</p>
+        <div class="stack">
+          <span class="tag">Go</span>
+          <span class="tag">Docker</span>
+        </div>
+        <div class="links">
+          <a href="#" target="_blank" rel="noopener">Código →</a>
+          <a href="#" target="_blank" rel="noopener">Demo →</a>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============ SOBRE ============ -->
+  <section id="sobre">
+    <div class="sec-head reveal">
+      <span class="idx mono">[ 02 ]</span>
+      <h2>Sobre</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about reveal">
+        <p>Dois ou três parágrafos sobre o teu percurso: o que estudaste, onde trabalhas/estudas agora e o tipo de problemas que gostas de resolver.</p>
+        <p>Acrescenta algo pessoal e genuíno — o que te levou a programar, ou o que andas a aprender agora. Faz-te parecer humano, não um currículo.</p>
+      </div>
+      <div class="skills reveal">
+        <h4>Stack</h4>
+        <div class="skill-list">
+          <span class="tag">JavaScript</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">React</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">Python</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Git</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACTO ============ -->
+  <section id="contacto" class="contact reveal">
+    <p class="eyebrow" style="color:var(--accent)">// vamos falar</p>
+    <h2>Diz olá.</h2>
+    <p>Aberto a oportunidades, colaborações ou só uma boa conversa técnica.</p>
+    <div class="cta-row" style="justify-content:center">
+      <!-- ====== EDITA: o teu email e perfis ====== -->
+      <a class="btn btn-primary" href="mailto:o.teu@email.com">o.teu@email.com</a>
+      <a class="btn btn-ghost" href="https://github.com/oteuuser" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-ghost" href="https://linkedin.com/in/oteuuser" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© <span id="year"></span> [O Teu Nome]</span>
+    <a href="#top">voltar ao topo ↑</a>
+  </div>
+</footer>
+
+<script>
+  // Ano automático no rodapé
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Toggle de tema (sem dependências)
+  const root = document.documentElement;
+  const btn = document.getElementById("themeToggle");
+  btn.addEventListener("click", () => {
+    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    btn.textContent = next === "dark" ? "claro" : "escuro";
+  });
+
+  // Reveal-on-scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+</script>
+</body>
+</html>
