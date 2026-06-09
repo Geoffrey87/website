@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="pt" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lloyd Costa — Programador Full-Stack</title>
+<meta name="description" content="Portefólio de Lloyd Costa, programador full-stack. Projetos, experiência e contactos." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --ink: #ecebe4;
+    --muted: #828a96;
+    --accent: #f4b23e;
+    --accent-ink: #15171c;
+    --border: #2a2e38;
+    --planet: #39414f;
+    --planet-edge: #525b6b;
+    --earth: #3a78c2;  --earth-hi: #7cb6ec;
+    --mars:  #c0512f;  --mars-hi:  #e8825a;
+    --jup:   #c89255;  --jup-hi:   #edc792;
+    --nep:   #3a55c0;  --nep-hi:   #7186ef;
+    --ven:   #d3a23f;  --ven-hi:   #f0d491;
+    --orbit-line: rgba(236, 235, 228, .10);
+    --star: rgba(255, 255, 255, .85);
+    --star-op: 1;
+    --sky-1: #0c0e13;
+    --sky-2: #14171f;
+    --sky-3: #1a1410;
+  }
+  [data-theme="light"] {
+    --ink: #1a1c20;
+    --muted: #6a6f78;
+    --accent: #b5790e;
+    --accent-ink: #ffffff;
+    --border: #d7d8d0;
+    --planet: #d9dde4;
+    --planet-edge: #b7bdc8;
+    --orbit-line: rgba(26, 28, 32, .12);
+    --star: rgba(120, 130, 150, .5);
+    --star-op: .35;
+    --sky-1: #eef2f7;
+    --sky-2: #f3f3ee;
+    --sky-3: #f7f1e6;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    color: var(--ink);
+    font-family: "Inter", system-ui, sans-serif;
+    background:
+      radial-gradient(120% 80% at 70% 12%, var(--sky-3) 0%, transparent 55%),
+      linear-gradient(160deg, var(--sky-1), var(--sky-2));
+    background-attachment: fixed;
+    overflow-x: hidden;
+    transition: color .3s ease;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 6px; }
+
+  /* ---------- Estrelas ---------- */
+  .stars { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: var(--star-op); transition: opacity .3s ease; }
+  .star { position: absolute; border-radius: 50%; background: var(--star); }
+  @keyframes twinkle { 0%,100% { opacity: .25; } 50% { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .star { animation: none !important; } }
+
+  /* ---------- Top bar ---------- */
+  header {
+    position: relative; z-index: 10;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 26px;
+  }
+  .brand { font-family: "JetBrains Mono", monospace; font-weight: 600; font-size: .95rem; text-decoration: none; }
+  .brand span { color: var(--accent); }
+  .controls { display: flex; gap: 10px; }
+  .toggle {
+    font-family: "JetBrains Mono", monospace; font-size: .8rem;
+    background: color-mix(in srgb, var(--ink) 7%, transparent); color: var(--ink);
+    border: 1px solid var(--border); border-radius: 999px;
+    padding: 7px 13px; cursor: pointer; transition: border-color .2s, transform .1s;
+  }
+  .toggle:hover { border-color: var(--accent); }
+  .toggle:active { transform: scale(.96); }
+
+  /* ---------- Intro ---------- */
+  .intro { position: relative; z-index: 5; text-align: center; padding: 6px 24px 0; }
+  .intro .eyebrow { font-family: "JetBrains Mono", monospace; font-size: .76rem; letter-spacing: .05em; color: var(--accent); text-transform: uppercase; margin: 0 0 8px; }
+  .intro h1 { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: clamp(1.7rem, 5vw, 2.6rem); letter-spacing: -.02em; margin: 0 0 6px; }
+  .intro p { color: var(--muted); margin: 0; font-size: .95rem; }
+
+  /* ---------- Solar system ---------- */
+  .solar {
+    position: relative; z-index: 5;
+    width: min(86vw, 66vh, 680px);
+    aspect-ratio: 1 / 1;
+    margin: 8px auto 0;
+  }
+  .orbit {
+    position: absolute; top: 50%; left: 50%;
+    border: 1px solid var(--orbit-line); border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: spin linear infinite;
+    pointer-events: none;
+  }
+  .orbit.paused, .orbit.paused .planet { animation-play-state: paused; }
+  @keyframes spin { from { transform: translate(-50%,-50%) rotate(0); } to { transform: translate(-50%,-50%) rotate(360deg); } }
+
+  .o1 { width: 44%; height: 44%; animation-duration: 30s; animation-delay: -4s; }
+  .o2 { width: 58%; height: 58%; animation-duration: 42s; animation-delay: -18s; }
+  .o3 { width: 72%; height: 72%; animation-duration: 56s; animation-delay: -30s; }
+  .o4 { width: 86%; height: 86%; animation-duration: 70s; animation-delay: -50s; }
+  .o5 { width: 100%; height: 100%; animation-duration: 86s; animation-delay: -66s; }
+
+  .planet {
+    position: absolute; top: 0; left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    text-decoration: none; cursor: pointer;
+    animation: spin-rev linear infinite;
+    pointer-events: auto;
+  }
+  .o1 .planet { animation-duration: 30s; animation-delay: -4s; }
+  .o2 .planet { animation-duration: 42s; animation-delay: -18s; }
+  .o3 .planet { animation-duration: 56s; animation-delay: -30s; }
+  .o4 .planet { animation-duration: 70s; animation-delay: -50s; }
+  .o5 .planet { animation-duration: 86s; animation-delay: -66s; }
+  @keyframes spin-rev { from { transform: translate(-50%,-50%) rotate(0); } to { transform: translate(-50%,-50%) rotate(-360deg); } }
+
+  .planet-body {
+    width: clamp(40px, 7vw, 58px); height: clamp(40px, 7vw, 58px);
+    border-radius: 50%;
+    background: radial-gradient(circle at 32% 28%, var(--planet-edge), var(--planet) 70%);
+    border: 1px solid var(--planet-edge);
+    box-shadow: 0 6px 20px rgba(0,0,0,.25);
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .planet-label {
+    font-family: "JetBrains Mono", monospace; font-size: .72rem; white-space: nowrap;
+    color: var(--ink); background: color-mix(in srgb, var(--sky-2) 75%, transparent);
+    padding: 3px 9px; border-radius: 999px; border: 1px solid var(--border);
+    opacity: .55; transition: opacity .25s ease, transform .25s ease;
+  }
+  .pl-earth   { background: radial-gradient(circle at 32% 28%, var(--earth-hi), var(--earth) 72%); border-color: var(--earth-hi); }
+  .pl-mars    { background: radial-gradient(circle at 32% 28%, var(--mars-hi),  var(--mars) 72%);  border-color: var(--mars-hi); }
+  .pl-jupiter { background: radial-gradient(circle at 32% 28%, var(--jup-hi),   var(--jup) 72%);   border-color: var(--jup-hi); }
+  .pl-neptune { background: radial-gradient(circle at 32% 28%, var(--nep-hi),   var(--nep) 72%);   border-color: var(--nep-hi); }
+  .pl-venus   { background: radial-gradient(circle at 32% 28%, var(--ven-hi),   var(--ven) 72%);   border-color: var(--ven-hi); }
+  .planet:hover .planet-body, .planet:focus-visible .planet-body {    transform: scale(1.28);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 30%, transparent), 0 8px 28px rgba(0,0,0,.4);
+  }
+  .planet:hover .planet-label, .planet:focus-visible .planet-label {
+    opacity: 1; transform: translateY(2px);
+    border-color: var(--accent); color: var(--accent);
+  }
+
+  /* ---------- Sun (CV) ---------- */
+  .sun {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    z-index: 6;
+    width: clamp(90px, 17vw, 118px); height: clamp(90px, 17vw, 118px);
+    border-radius: 50%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+    text-decoration: none; text-align: center;
+    color: var(--accent-ink); font-weight: 700;
+    background: radial-gradient(circle at 38% 32%, #ffe2a1, var(--accent) 62%, #d98b1e 100%);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent), 0 10px 40px rgba(244,178,62,.35);
+    animation: sun-pulse 3.6s ease-in-out infinite;
+    transition: transform .2s ease;
+  }
+  .sun:hover { transform: translate(-50%,-50%) scale(1.05); }
+  .sun-label { font-family: "Bricolage Grotesque", sans-serif; font-size: clamp(.8rem, 2.1vw, .95rem); line-height: 1.05; }
+  .sun-sub { font-family: "JetBrains Mono", monospace; font-size: .62rem; opacity: .8; font-weight: 500; }
+  @keyframes sun-pulse {
+    0%,100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 50%, transparent), 0 10px 40px rgba(244,178,62,.3); }
+    50%     { box-shadow: 0 0 0 14px color-mix(in srgb, var(--accent) 0%, transparent), 0 10px 46px rgba(244,178,62,.45); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .orbit, .planet, .sun { animation: none !important; }
+  }
+
+  /* ---------- Mobile: lista em vez de órbitas ---------- */
+  .stack-nav { display: none; }
+  @media (max-width: 720px) {
+    .solar { display: none; }
+    .stack-nav {
+      display: flex; flex-direction: column; gap: 12px;
+      max-width: 440px; margin: 26px auto 0; padding: 0 22px;
+      position: relative; z-index: 5;
+    }
+    .sun-card {
+      display: flex; flex-direction: column; align-items: center; gap: 2px;
+      padding: 22px; border-radius: 20px; text-decoration: none; text-align: center;
+      color: var(--accent-ink); font-weight: 700;
+      background: radial-gradient(circle at 30% 20%, #ffe2a1, var(--accent) 70%);
+      box-shadow: 0 8px 30px rgba(244,178,62,.3);
+    }
+    .sun-card .sun-label { font-family: "Bricolage Grotesque", sans-serif; font-size: 1.15rem; }
+    .sun-card .sun-sub { font-family: "JetBrains Mono", monospace; font-size: .66rem; opacity: .85; }
+    .moon-card {
+      display: flex; align-items: center; gap: 14px;
+      padding: 16px 18px; border-radius: 16px; text-decoration: none;
+      background: color-mix(in srgb, var(--ink) 5%, transparent);
+      border: 1px solid var(--border); color: var(--ink);
+      transition: border-color .2s, transform .1s;
+    }
+    .moon-card:active { transform: scale(.99); }
+    .moon-card .dot { width: 30px; height: 30px; border-radius: 50%; flex: none; }
+    .moon-card .mlabel { font-family: "JetBrains Mono", monospace; font-size: .92rem; }
+    .moon-card .arr { margin-left: auto; color: var(--accent); }
+  }
+
+  footer { position: relative; z-index: 5; text-align: center; padding: 26px 16px 30px; }
+  footer, footer a { font-family: "JetBrains Mono", monospace; font-size: .78rem; color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--ink); }
+</style>
+</head>
+
+<body>
+<div class="stars" id="stars" aria-hidden="true"></div>
+
+<header>
+  <a class="brand" href="#">~/<span>lloyd</span></a>
+  <div class="controls">
+    <button class="toggle" id="langToggle" aria-label="Mudar idioma">EN</button>
+    <button class="toggle" id="themeToggle" aria-label="Mudar tema" data-i18n="theme.toLight">claro</button>
+  </div>
+</header>
+
+<section class="intro">
+  <p class="eyebrow" data-i18n="intro.eyebrow">// programador full-stack · Coimbra</p>
+  <h1 data-i18n="intro.h1">O universo de Lloyd Costa</h1>
+  <p data-i18n="intro.hint">Clica num planeta para explorar — ou no centro para o CV</p>
+</section>
+
+<!-- ============ SISTEMA SOLAR (desktop/tablet) ============ -->
+<div class="solar" role="navigation" aria-label="Secções do portefólio">
+
+  <a class="sun" href="cv.pdf" download>
+    <span class="sun-label" data-i18n="cv.label">Descarregar CV</span>
+    <span class="sun-sub">PDF</span>
+  </a>
+
+  <div class="orbit o1"><a class="planet" href="sobre.html"><span class="planet-body pl-earth"></span><span class="planet-label" data-i18n="p.about">Sobre mim</span></a></div>
+  <div class="orbit o2"><a class="planet" href="experiencia.html"><span class="planet-body pl-mars"></span><span class="planet-label" data-i18n="p.exp">Passado profissional</span></a></div>
+  <div class="orbit o3"><a class="planet" href="projetos-reais.html"><span class="planet-body pl-jupiter"></span><span class="planet-label" data-i18n="p.real">Projetos reais</span></a></div>
+  <div class="orbit o4"><a class="planet" href="projetos-academicos.html"><span class="planet-body pl-neptune"></span><span class="planet-label" data-i18n="p.acad">Projetos académicos</span></a></div>
+  <div class="orbit o5"><a class="planet" href="qualificacoes.html"><span class="planet-body pl-venus"></span><span class="planet-label" data-i18n="p.qual">Qualificações</span></a></div>
+
+</div>
+
+<!-- ============ Versão mobile (lista) ============ -->
+<nav class="stack-nav" aria-label="Secções do portefólio">
+  <a class="sun-card" href="cv.pdf" download>
+    <span class="sun-label" data-i18n="cv.label">Descarregar CV</span>
+    <span class="sun-sub">PDF</span>
+  </a>
+  <a class="moon-card" href="sobre.html"><span class="dot pl-earth"></span><span class="mlabel" data-i18n="p.about">Sobre mim</span><span class="arr">→</span></a>
+  <a class="moon-card" href="experiencia.html"><span class="dot pl-mars"></span><span class="mlabel" data-i18n="p.exp">Passado profissional</span><span class="arr">→</span></a>
+  <a class="moon-card" href="projetos-reais.html"><span class="dot pl-jupiter"></span><span class="mlabel" data-i18n="p.real">Projetos reais</span><span class="arr">→</span></a>
+  <a class="moon-card" href="projetos-academicos.html"><span class="dot pl-neptune"></span><span class="mlabel" data-i18n="p.acad">Projetos académicos</span><span class="arr">→</span></a>
+  <a class="moon-card" href="qualificacoes.html"><span class="dot pl-venus"></span><span class="mlabel" data-i18n="p.qual">Qualificações</span><span class="arr">→</span></a>
+</nav>
+
+<footer>
+  <span>© <span id="year"></span> Lloyd Costa · <a href="https://github.com/Geoffrey87" target="_blank" rel="noopener">GitHub</a> · <a href="https://linkedin.com/in/lloyd-costa-3355a0b1" target="_blank" rel="noopener">LinkedIn</a></span>
+</footer>
+
+<script>
+  // ---------- Estrelas ----------
+  (function makeStars() {
+    const layer = document.getElementById("stars");
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const n = Math.min(120, Math.round(window.innerWidth * window.innerHeight / 9000));
+    let html = "";
+    for (let i = 0; i < n; i++) {
+      const s = (Math.random() * 1.8 + 0.4).toFixed(2);
+      const x = (Math.random() * 100).toFixed(2);
+      const y = (Math.random() * 100).toFixed(2);
+      const dur = (Math.random() * 4 + 2.5).toFixed(2);
+      const del = (Math.random() * 5).toFixed(2);
+      const anim = reduce ? "" : `animation: twinkle ${dur}s ease-in-out ${del}s infinite;`;
+      html += `<span class="star" style="width:${s}px;height:${s}px;left:${x}%;top:${y}%;${anim}"></span>`;
+    }
+    layer.innerHTML = html;
+  })();
+
+  // ---------- Pausar a órbita ao passar/tocar no planeta ----------
+  document.querySelectorAll(".orbit").forEach((orbit) => {
+    const planet = orbit.querySelector(".planet");
+    const pause = () => orbit.classList.add("paused");
+    const play  = () => orbit.classList.remove("paused");
+    planet.addEventListener("mouseenter", pause);
+    planet.addEventListener("mouseleave", play);
+    planet.addEventListener("focus", pause);
+    planet.addEventListener("blur", play);
+  });
+
+  // ---------- Tema (memorizado entre páginas) ----------
+  const root = document.documentElement;
+  const themeBtn = document.getElementById("themeToggle");
+  function safeGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+  function safeSet(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
+
+  const savedTheme = safeGet("theme");
+  if (savedTheme) root.setAttribute("data-theme", savedTheme);
+
+  themeBtn.addEventListener("click", () => {
+    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    safeSet("theme", next);
+    applyLang(currentLang);
+  });
+
+  // ---------- Idioma (memorizado entre páginas) ----------
+  const langBtn = document.getElementById("langToggle");
+  const t = {
+    pt: {
+      "intro.eyebrow": "// programador full-stack · Coimbra",
+      "intro.h1": "O universo de Lloyd Costa",
+      "intro.hint": "Clica num planeta para explorar — ou no centro para o CV",
+      "cv.label": "Descarregar CV",
+      "p.about": "Sobre mim",
+      "p.exp": "Passado profissional",
+      "p.real": "Projetos reais",
+      "p.acad": "Projetos académicos",
+      "p.qual": "Qualificações",
+      "theme.toLight": "claro",
+      "theme.toDark": "escuro",
+    },
+    en: {
+      "intro.eyebrow": "// full-stack developer · Coimbra",
+      "intro.h1": "The universe of Lloyd Costa",
+      "intro.hint": "Click a planet to explore — or the centre for the CV",
+      "cv.label": "Download CV",
+      "p.about": "About me",
+      "p.exp": "Experience",
+      "p.real": "Live projects",
+      "p.acad": "Academic projects",
+      "p.qual": "Qualifications",
+      "theme.toLight": "light",
+      "theme.toDark": "dark",
+    }
+  };
+
+  let currentLang = safeGet("lang") || "pt";
+
+  function applyLang(lang) {
+    currentLang = lang;
+    root.lang = lang;
+    document.querySelectorAll("[data-i18n]").forEach((el) => {
+      const key = el.getAttribute("data-i18n");
+      if (t[lang][key] !== undefined) el.textContent = t[lang][key];
+    });
+    const isDark = root.getAttribute("data-theme") !== "light";
+    themeBtn.textContent = t[lang][isDark ? "theme.toLight" : "theme.toDark"];
+    langBtn.textContent = lang === "pt" ? "EN" : "PT";
+  }
+
+  langBtn.addEventListener("click", () => {
+    const next = currentLang === "pt" ? "en" : "pt";
+    safeSet("lang", next);
+    applyLang(next);
+  });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+  applyLang(currentLang);
+</script>
+</body>
+</html>
