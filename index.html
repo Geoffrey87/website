@@ -15,64 +15,60 @@
     --ink: #ecebe4;
     --muted: #828a96;
     --accent: #f4b23e;
-    --accent-ink: #15171c;
-    --border: #2a2e38;
-    --planet: #39414f;
-    --planet-edge: #525b6b;
-    --earth: #3a78c2;  --earth-hi: #7cb6ec;
-    --mars:  #c0512f;  --mars-hi:  #e8825a;
-    --jup:   #c89255;  --jup-hi:   #edc792;
-    --nep:   #3a55c0;  --nep-hi:   #7186ef;
-    --ven:   #d3a23f;  --ven-hi:   #f0d491;
-    --orbit-line: rgba(236, 235, 228, .10);
-    --star: rgba(255, 255, 255, .85);
-    --star-op: 1;
-    --sky-1: #0c0e13;
-    --sky-2: #14171f;
-    --sky-3: #1a1410;
+    --accent-ink: #1a1408;
+    --border: #243049;
+    --bg-1: #0a0d0c;
+    --bg-2: #0d1311;
+
+    /* PCB */
+    --board-1: #06291f;
+    --board-2: #0a3a2c;
+    --board-edge: #08543c;
+    --trace: #c79f47;
+    --trace-lit: #ffd877;
+    --pulse: #fff1bd;
+    --via: #d7af57;
+    --silk: #eef0e8;
+    --comp: #14130f;
+    --comp-edge: #2c2a22;
+    --pin: #d7af57;
   }
   [data-theme="light"] {
     --ink: #1a1c20;
     --muted: #6a6f78;
     --accent: #b5790e;
-    --accent-ink: #ffffff;
-    --border: #d7d8d0;
-    --planet: #d9dde4;
-    --planet-edge: #b7bdc8;
-    --orbit-line: rgba(26, 28, 32, .12);
-    --star: rgba(120, 130, 150, .5);
-    --star-op: .35;
-    --sky-1: #eef2f7;
-    --sky-2: #f3f3ee;
-    --sky-3: #f7f1e6;
+    --accent-ink: #1a1408;
+    --border: #cdd2c9;
+    --bg-1: #eef1ec;
+    --bg-2: #e6ebe4;
+
+    --board-1: #18815f;
+    --board-2: #14734f;
+    --board-edge: #0f5c3f;
+    --trace: #a9761c;
+    --trace-lit: #d99a2e;
+    --pulse: #fff4cb;
+    --via: #9c6c18;
+    --silk: #f4f7f0;
+    --comp: #10100c;
+    --comp-edge: #34322a;
+    --pin: #c98e2e;
   }
 
   * { box-sizing: border-box; }
-  html, body { height: 100%; }
+  html, body { min-height: 100%; }
   body {
-    margin: 0;
-    color: var(--ink);
+    margin: 0; color: var(--ink);
     font-family: "Inter", system-ui, sans-serif;
-    background:
-      radial-gradient(120% 80% at 70% 12%, var(--sky-3) 0%, transparent 55%),
-      linear-gradient(160deg, var(--sky-1), var(--sky-2));
+    background: linear-gradient(160deg, var(--bg-1), var(--bg-2));
     background-attachment: fixed;
-    overflow-x: hidden;
+    overflow-x: hidden; -webkit-font-smoothing: antialiased;
     transition: color .3s ease;
-    -webkit-font-smoothing: antialiased;
   }
   a { color: inherit; }
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 6px; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 
-  /* ---------- Estrelas ---------- */
-  .stars { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: var(--star-op); transition: opacity .3s ease; }
-  .star { position: absolute; border-radius: 50%; background: var(--star); }
-  @keyframes twinkle { 0%,100% { opacity: .25; } 50% { opacity: 1; } }
-  @media (prefers-reduced-motion: reduce) { .star { animation: none !important; } }
-
-  /* ---------- Top bar ---------- */
   header {
-    position: relative; z-index: 10;
     display: flex; align-items: center; justify-content: space-between;
     padding: 20px 26px;
   }
@@ -88,141 +84,99 @@
   .toggle:hover { border-color: var(--accent); }
   .toggle:active { transform: scale(.96); }
 
-  /* ---------- Intro ---------- */
-  .intro { position: relative; z-index: 5; text-align: center; padding: 6px 24px 0; }
+  .intro { text-align: center; padding: 4px 24px 0; }
   .intro .eyebrow { font-family: "JetBrains Mono", monospace; font-size: .76rem; letter-spacing: .05em; color: var(--accent); text-transform: uppercase; margin: 0 0 8px; }
   .intro h1 { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: clamp(1.7rem, 5vw, 2.6rem); letter-spacing: -.02em; margin: 0 0 6px; }
   .intro p { color: var(--muted); margin: 0; font-size: .95rem; }
 
-  /* ---------- Solar system ---------- */
-  .solar {
-    position: relative; z-index: 5;
-    width: min(86vw, 66vh, 680px);
-    aspect-ratio: 1 / 1;
-    margin: 8px auto 0;
-  }
-  .orbit {
-    position: absolute; top: 50%; left: 50%;
-    border: 1px solid var(--orbit-line); border-radius: 50%;
-    transform: translate(-50%, -50%);
-    animation: spin linear infinite;
-    pointer-events: none;
-  }
-  .orbit.paused, .orbit.paused .planet { animation-play-state: paused; }
-  @keyframes spin { from { transform: translate(-50%,-50%) rotate(0); } to { transform: translate(-50%,-50%) rotate(360deg); } }
+  /* ---------- Board ---------- */
+  .board-wrap { max-width: 1000px; margin: 14px auto 0; padding: 0 18px; }
+  .board { width: 100%; height: auto; display: block; }
 
-  .o1 { width: 44%; height: 44%; animation-duration: 30s; animation-delay: -4s; }
-  .o2 { width: 58%; height: 58%; animation-duration: 42s; animation-delay: -18s; }
-  .o3 { width: 72%; height: 72%; animation-duration: 56s; animation-delay: -30s; }
-  .o4 { width: 86%; height: 86%; animation-duration: 70s; animation-delay: -50s; }
-  .o5 { width: 100%; height: 100%; animation-duration: 86s; animation-delay: -66s; }
+  .substrate { fill: url(#boardGrad); stroke: var(--board-edge); stroke-width: 3; }
+  #boardGrad .g1 { stop-color: var(--board-2); }
+  #boardGrad .g2 { stop-color: var(--board-1); }
+  .board-frame { fill: none; stroke: color-mix(in srgb, var(--via) 35%, transparent); stroke-width: 1.5; stroke-dasharray: 2 6; }
 
-  .planet {
-    position: absolute; top: 0; left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
-    text-decoration: none; cursor: pointer;
-    animation: spin-rev linear infinite;
-    pointer-events: auto;
-  }
-  .o1 .planet { animation-duration: 30s; animation-delay: -4s; }
-  .o2 .planet { animation-duration: 42s; animation-delay: -18s; }
-  .o3 .planet { animation-duration: 56s; animation-delay: -30s; }
-  .o4 .planet { animation-duration: 70s; animation-delay: -50s; }
-  .o5 .planet { animation-duration: 86s; animation-delay: -66s; }
-  @keyframes spin-rev { from { transform: translate(-50%,-50%) rotate(0); } to { transform: translate(-50%,-50%) rotate(-360deg); } }
+  .trace { fill: none; stroke: var(--trace); stroke-width: 4; stroke-linejoin: round; stroke-linecap: round; transition: stroke .2s ease; }
+  .pulse { fill: none; stroke: var(--pulse); stroke-width: 3.4; stroke-linecap: round;
+           stroke-dasharray: 16 460; filter: drop-shadow(0 0 4px var(--pulse)); }
+  .via   { fill: var(--board-2); stroke: var(--via); stroke-width: 3; }
+  .pad   { fill: var(--via); opacity: .85; }
+  .deco-r { fill: var(--comp); stroke: var(--pin); stroke-width: 2; }
+  .deco-c { fill: var(--comp); stroke: var(--pin); stroke-width: 2; }
 
-  .planet-body {
-    width: clamp(40px, 7vw, 58px); height: clamp(40px, 7vw, 58px);
-    border-radius: 50%;
-    background: radial-gradient(circle at 32% 28%, var(--planet-edge), var(--planet) 70%);
-    border: 1px solid var(--planet-edge);
-    box-shadow: 0 6px 20px rgba(0,0,0,.25);
-    transition: transform .25s ease, box-shadow .25s ease;
-  }
-  .planet-label {
-    font-family: "JetBrains Mono", monospace; font-size: .72rem; white-space: nowrap;
-    color: var(--ink); background: color-mix(in srgb, var(--sky-2) 75%, transparent);
-    padding: 3px 9px; border-radius: 999px; border: 1px solid var(--border);
-    opacity: .55; transition: opacity .25s ease, transform .25s ease;
-  }
-  .pl-earth   { background: radial-gradient(circle at 32% 28%, var(--earth-hi), var(--earth) 72%); border-color: var(--earth-hi); }
-  .pl-mars    { background: radial-gradient(circle at 32% 28%, var(--mars-hi),  var(--mars) 72%);  border-color: var(--mars-hi); }
-  .pl-jupiter { background: radial-gradient(circle at 32% 28%, var(--jup-hi),   var(--jup) 72%);   border-color: var(--jup-hi); }
-  .pl-neptune { background: radial-gradient(circle at 32% 28%, var(--nep-hi),   var(--nep) 72%);   border-color: var(--nep-hi); }
-  .pl-venus   { background: radial-gradient(circle at 32% 28%, var(--ven-hi),   var(--ven) 72%);   border-color: var(--ven-hi); }
-  .planet:hover .planet-body, .planet:focus-visible .planet-body {    transform: scale(1.28);
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 30%, transparent), 0 8px 28px rgba(0,0,0,.4);
-  }
-  .planet:hover .planet-label, .planet:focus-visible .planet-label {
-    opacity: 1; transform: translateY(2px);
-    border-color: var(--accent); color: var(--accent);
-  }
+  .comp-body { fill: var(--comp); stroke: var(--comp-edge); stroke-width: 2; transition: filter .2s ease; }
+  .comp-line { stroke: var(--pin); stroke-width: 2; opacity: .8; }
+  .comp-chip { fill: #0c0b08; stroke: var(--pin); stroke-width: 1.5; }
+  .pin { fill: var(--pin); }
+  .silk  { font-family: "JetBrains Mono", monospace; font-size: 15px; fill: var(--silk); text-anchor: middle; letter-spacing: .02em; transition: fill .2s ease; }
+  .desig { font-family: "JetBrains Mono", monospace; font-size: 11px; fill: var(--via); text-anchor: middle; }
 
-  /* ---------- Sun (CV) ---------- */
-  .sun {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    z-index: 6;
-    width: clamp(90px, 17vw, 118px); height: clamp(90px, 17vw, 118px);
-    border-radius: 50%;
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
-    text-decoration: none; text-align: center;
-    color: var(--accent-ink); font-weight: 700;
-    background: radial-gradient(circle at 38% 32%, #ffe2a1, var(--accent) 62%, #d98b1e 100%);
-    box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent), 0 10px 40px rgba(244,178,62,.35);
-    animation: sun-pulse 3.6s ease-in-out infinite;
-    transition: transform .2s ease;
-  }
-  .sun:hover { transform: translate(-50%,-50%) scale(1.05); }
-  .sun-label { font-family: "Bricolage Grotesque", sans-serif; font-size: clamp(.8rem, 2.1vw, .95rem); line-height: 1.05; }
-  .sun-sub { font-family: "JetBrains Mono", monospace; font-size: .62rem; opacity: .8; font-weight: 500; }
-  @keyframes sun-pulse {
-    0%,100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 50%, transparent), 0 10px 40px rgba(244,178,62,.3); }
-    50%     { box-shadow: 0 0 0 14px color-mix(in srgb, var(--accent) 0%, transparent), 0 10px 46px rgba(244,178,62,.45); }
-  }
+  /* chip central (CV) */
+  .chip-body { fill: url(#chipGrad); stroke: #9a6e1e; stroke-width: 2; }
+  .chip-notch { fill: #8a5f18; }
+  .chip-label { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 34px; fill: var(--accent-ink); text-anchor: middle; }
+  .chip-sub { font-family: "JetBrains Mono", monospace; font-size: 11px; fill: var(--accent-ink); opacity: .75; text-anchor: middle; }
+  .chip-glow { fill: none; stroke: var(--accent); stroke-width: 2; opacity: .0; }
+
+  /* branches (clickable) */
+  .branch { cursor: pointer; }
+  .branch:hover .trace, .branch:focus-visible .trace { stroke: var(--trace-lit); }
+  .branch:hover .pulse, .branch:focus-visible .pulse { stroke-width: 4.4; }
+  .branch:hover .comp-body, .branch:focus-visible .comp-body { filter: drop-shadow(0 0 9px var(--accent)); }
+  .branch:hover .silk, .branch:focus-visible .silk { fill: var(--accent); }
+
+  @keyframes flow { from { stroke-dashoffset: 476; } to { stroke-dashoffset: 0; } }
+  .p1 { animation: flow 2.7s linear infinite; }
+  .p2 { animation: flow 3.2s linear infinite; }
+  .p3 { animation: flow 2.3s linear infinite; }
+  .p4 { animation: flow 2.9s linear infinite; }
+  .p5 { animation: flow 3.5s linear infinite; }
+  .branch:hover .pulse { animation-duration: 1.1s; }
+  @keyframes chip-pulse { 0%,100% { opacity: 0; r: 92; } 50% { opacity: .5; r: 104; } }
+  .chip-glow { animation: chip-pulse 3.4s ease-in-out infinite; }
   @media (prefers-reduced-motion: reduce) {
-    .orbit, .planet, .sun { animation: none !important; }
+    .pulse { animation: none !important; opacity: .55; }
+    .chip-glow { animation: none !important; }
   }
 
-  /* ---------- Mobile: lista em vez de órbitas ---------- */
+  /* ---------- Mobile list ---------- */
   .stack-nav { display: none; }
   @media (max-width: 720px) {
-    .solar { display: none; }
-    .stack-nav {
-      display: flex; flex-direction: column; gap: 12px;
-      max-width: 440px; margin: 26px auto 0; padding: 0 22px;
-      position: relative; z-index: 5;
-    }
-    .sun-card {
+    .board-wrap { display: none; }
+    .stack-nav { display: flex; flex-direction: column; gap: 12px; max-width: 440px; margin: 24px auto 0; padding: 0 22px; }
+    .chip-card {
       display: flex; flex-direction: column; align-items: center; gap: 2px;
-      padding: 22px; border-radius: 20px; text-decoration: none; text-align: center;
+      padding: 22px; border-radius: 18px; text-decoration: none; text-align: center;
       color: var(--accent-ink); font-weight: 700;
-      background: radial-gradient(circle at 30% 20%, #ffe2a1, var(--accent) 70%);
-      box-shadow: 0 8px 30px rgba(244,178,62,.3);
+      background: radial-gradient(circle at 30% 22%, #ffe2a1, var(--accent) 72%);
+      box-shadow: 0 8px 28px rgba(244,178,62,.28);
     }
-    .sun-card .sun-label { font-family: "Bricolage Grotesque", sans-serif; font-size: 1.15rem; }
-    .sun-card .sun-sub { font-family: "JetBrains Mono", monospace; font-size: .66rem; opacity: .85; }
-    .moon-card {
-      display: flex; align-items: center; gap: 14px;
-      padding: 16px 18px; border-radius: 16px; text-decoration: none;
-      background: color-mix(in srgb, var(--ink) 5%, transparent);
-      border: 1px solid var(--border); color: var(--ink);
+    .chip-card .cc-label { font-family: "Bricolage Grotesque", sans-serif; font-size: 1.15rem; }
+    .chip-card .cc-sub { font-family: "JetBrains Mono", monospace; font-size: .66rem; opacity: .85; }
+    .comp-card {
+      display: flex; align-items: center; gap: 14px; padding: 15px 18px; border-radius: 14px;
+      text-decoration: none; color: var(--ink);
+      background: color-mix(in srgb, var(--board-2) 30%, transparent);
+      border: 1px solid var(--board-edge);
       transition: border-color .2s, transform .1s;
     }
-    .moon-card:active { transform: scale(.99); }
-    .moon-card .dot { width: 30px; height: 30px; border-radius: 50%; flex: none; }
-    .moon-card .mlabel { font-family: "JetBrains Mono", monospace; font-size: .92rem; }
-    .moon-card .arr { margin-left: auto; color: var(--accent); }
+    .comp-card:active { transform: scale(.99); }
+    .comp-card .ic { width: 30px; height: 22px; border-radius: 3px; flex: none;
+      background: var(--comp); border: 1px solid var(--pin); box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--pin) 30%, transparent); }
+    .comp-card .ml { font-family: "JetBrains Mono", monospace; font-size: .92rem; }
+    .comp-card .dg { font-family: "JetBrains Mono", monospace; font-size: .72rem; color: var(--via); margin-left: 4px; }
+    .comp-card .arr { margin-left: auto; color: var(--accent); }
   }
 
-  footer { position: relative; z-index: 5; text-align: center; padding: 26px 16px 30px; }
+  footer { text-align: center; padding: 26px 16px 30px; }
   footer, footer a { font-family: "JetBrains Mono", monospace; font-size: .78rem; color: var(--muted); text-decoration: none; }
   footer a:hover { color: var(--ink); }
 </style>
 </head>
 
 <body>
-<div class="stars" id="stars" aria-hidden="true"></div>
 
 <header>
   <a class="brand" href="#">~/<span>lloyd</span></a>
@@ -234,37 +188,141 @@
 
 <section class="intro">
   <p class="eyebrow" data-i18n="intro.eyebrow">// programador full-stack · Coimbra</p>
-  <h1 data-i18n="intro.h1">O universo de Lloyd Costa</h1>
-  <p data-i18n="intro.hint">Clica num planeta para explorar — ou no centro para o CV</p>
+  <h1 data-i18n="intro.h1">A placa de Lloyd Costa</h1>
+  <p data-i18n="intro.hint">Passa o rato num componente · clica para abrir · o chip central é o CV</p>
 </section>
 
-<!-- ============ SISTEMA SOLAR (desktop/tablet) ============ -->
-<div class="solar" role="navigation" aria-label="Secções do portefólio">
+<!-- ============ PLACA (desktop/tablet) ============ -->
+<div class="board-wrap">
+  <svg class="board" viewBox="0 0 1000 720" role="navigation" aria-label="Secções do portefólio" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="boardGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop class="g1" offset="0"/>
+        <stop class="g2" offset="1"/>
+      </linearGradient>
+      <radialGradient id="chipGrad" cx="38%" cy="32%" r="75%">
+        <stop offset="0" stop-color="#ffe6a6"/>
+        <stop offset="55%" stop-color="var(--accent)"/>
+        <stop offset="100%" stop-color="#cf8a1f"/>
+      </radialGradient>
+    </defs>
 
-  <a class="sun" href="cv.pdf" download>
-    <span class="sun-label" data-i18n="cv.label">Descarregar CV</span>
-    <span class="sun-sub">PDF</span>
-  </a>
+    <!-- substrato -->
+    <rect class="substrate" x="6" y="6" width="988" height="708" rx="22"/>
+    <rect class="board-frame" x="24" y="24" width="952" height="672" rx="14"/>
 
-  <div class="orbit o1"><a class="planet" href="sobre.html"><span class="planet-body pl-earth"></span><span class="planet-label" data-i18n="p.about">Sobre mim</span></a></div>
-  <div class="orbit o2"><a class="planet" href="experiencia.html"><span class="planet-body pl-mars"></span><span class="planet-label" data-i18n="p.exp">Passado profissional</span></a></div>
-  <div class="orbit o3"><a class="planet" href="projetos-reais.html"><span class="planet-body pl-jupiter"></span><span class="planet-label" data-i18n="p.real">Projetos reais</span></a></div>
-  <div class="orbit o4"><a class="planet" href="projetos-academicos.html"><span class="planet-body pl-neptune"></span><span class="planet-label" data-i18n="p.acad">Projetos académicos</span></a></div>
-  <div class="orbit o5"><a class="planet" href="qualificacoes.html"><span class="planet-body pl-venus"></span><span class="planet-label" data-i18n="p.qual">Qualificações</span></a></div>
+    <!-- decoração gerada por JS (pads, resistências, condensadores) -->
+    <g id="deco"></g>
 
+    <!-- ===== Ramos (pista + componente + label) ===== -->
+
+    <!-- U2 · Sobre mim · RAM (esquerda) -->
+    <a class="branch" href="sobre.html">
+      <path class="trace" d="M425 360 H236"/>
+      <path class="pulse p1" d="M425 360 H236"/>
+      <circle class="via" cx="236" cy="360" r="5"/>
+      <g class="comp">
+        <rect class="comp-body" x="78" y="332" width="158" height="56" rx="5"/>
+        <rect class="comp-chip" x="96" y="346" width="26" height="20"/>
+        <rect class="comp-chip" x="132" y="346" width="26" height="20"/>
+        <rect class="comp-chip" x="168" y="346" width="26" height="20"/>
+        <line class="comp-line" x1="90" y1="388" x2="90" y2="396"/>
+        <line class="comp-line" x1="110" y1="388" x2="110" y2="396"/>
+        <line class="comp-line" x1="130" y1="388" x2="130" y2="396"/>
+        <line class="comp-line" x1="150" y1="388" x2="150" y2="396"/>
+        <line class="comp-line" x1="170" y1="388" x2="170" y2="396"/>
+        <line class="comp-line" x1="190" y1="388" x2="190" y2="396"/>
+        <line class="comp-line" x1="210" y1="388" x2="210" y2="396"/>
+      </g>
+      <text class="silk" x="157" y="320" data-i18n="p.about">Sobre mim</text>
+      <text class="desig" x="157" y="412">U2 · RAM</text>
+    </a>
+
+    <!-- U5 · Projetos académicos · DIP (cima-esquerda) -->
+    <a class="branch" href="projetos-academicos.html">
+      <path class="trace" d="M468 285 V152 H366"/>
+      <path class="pulse p2" d="M468 285 V152 H366"/>
+      <circle class="via" cx="468" cy="152" r="5"/>
+      <g class="comp">
+        <rect class="comp-body" x="216" y="120" width="150" height="64" rx="4"/>
+        <circle class="comp-chip" cx="232" cy="136" r="5"/>
+        <line class="comp-line" x1="216" y1="132" x2="206" y2="132"/>
+        <line class="comp-line" x1="216" y1="148" x2="206" y2="148"/>
+        <line class="comp-line" x1="216" y1="164" x2="206" y2="164"/>
+        <line class="comp-line" x1="366" y1="132" x2="376" y2="132"/>
+        <line class="comp-line" x1="366" y1="148" x2="376" y2="148"/>
+        <line class="comp-line" x1="366" y1="164" x2="376" y2="164"/>
+      </g>
+      <text class="silk" x="291" y="108" data-i18n="p.acad">Projetos académicos</text>
+      <text class="desig" x="291" y="204">U5 · IC</text>
+    </a>
+
+    <!-- U4 · Projetos produção · GPU (cima-direita) -->
+    <a class="branch" href="projetos-reais.html">
+      <path class="trace" d="M532 285 V152 H624"/>
+      <path class="pulse p3" d="M532 285 V152 H624"/>
+      <circle class="via" cx="532" cy="152" r="5"/>
+      <g class="comp">
+        <rect class="comp-body" x="624" y="111" width="172" height="80" rx="6"/>
+        <rect class="comp-chip" x="664" y="131" width="92" height="40" rx="3"/>
+        <line class="comp-line" x1="640" y1="120" x2="640" y2="182"/>
+        <line class="comp-line" x1="650" y1="120" x2="650" y2="182"/>
+      </g>
+      <text class="silk" x="710" y="100" data-i18n="p.real">Projetos produção</text>
+      <text class="desig" x="710" y="208">U4 · GPU</text>
+    </a>
+
+    <!-- Y1 · Qualificações · cristal (direita) -->
+    <a class="branch" href="qualificacoes.html">
+      <path class="trace" d="M575 360 H794"/>
+      <path class="pulse p4" d="M575 360 H794"/>
+      <circle class="via" cx="794" cy="360" r="5"/>
+      <g class="comp">
+        <rect class="comp-body" x="794" y="337" width="120" height="46" rx="22"/>
+        <rect class="comp-chip" x="810" y="349" width="88" height="22" rx="11"/>
+      </g>
+      <text class="silk" x="854" y="324" data-i18n="p.qual">Qualificações</text>
+      <text class="desig" x="854" y="404">Y1 · XTAL</text>
+    </a>
+
+    <!-- U3 · Passado profissional · SSD (baixo) -->
+    <a class="branch" href="experiencia.html">
+      <path class="trace" d="M500 435 V566"/>
+      <path class="pulse p5" d="M500 435 V566"/>
+      <circle class="via" cx="500" cy="566" r="5"/>
+      <g class="comp">
+        <rect class="comp-body" x="410" y="566" width="180" height="74" rx="6"/>
+        <rect class="comp-chip" x="430" y="584" width="60" height="38" rx="3"/>
+        <rect class="comp-chip" x="502" y="584" width="68" height="20" rx="2"/>
+        <line class="comp-line" x1="502" y1="612" x2="570" y2="612"/>
+      </g>
+      <text class="silk" x="500" y="556" data-i18n="p.exp">Passado profissional</text>
+      <text class="desig" x="500" y="660">U3 · SSD</text>
+    </a>
+
+    <!-- ===== Chip central (CV) ===== -->
+    <a href="cv.pdf" download>
+      <g id="chip-pins"></g>
+      <circle class="chip-glow" cx="500" cy="360" r="92"/>
+      <rect class="chip-body" x="425" y="285" width="150" height="150" rx="10"/>
+      <circle class="chip-notch" cx="441" cy="301" r="5"/>
+      <text class="chip-label" x="500" y="368">CV</text>
+      <text class="chip-sub" x="500" y="392">U1 · DESCARREGAR</text>
+    </a>
+  </svg>
 </div>
 
-<!-- ============ Versão mobile (lista) ============ -->
+<!-- ============ Mobile (lista) ============ -->
 <nav class="stack-nav" aria-label="Secções do portefólio">
-  <a class="sun-card" href="cv.pdf" download>
-    <span class="sun-label" data-i18n="cv.label">Descarregar CV</span>
-    <span class="sun-sub">PDF</span>
+  <a class="chip-card" href="cv.pdf" download>
+    <span class="cc-label" data-i18n="cv.label">Descarregar CV</span>
+    <span class="cc-sub">U1 · CHIP CENTRAL</span>
   </a>
-  <a class="moon-card" href="sobre.html"><span class="dot pl-earth"></span><span class="mlabel" data-i18n="p.about">Sobre mim</span><span class="arr">→</span></a>
-  <a class="moon-card" href="experiencia.html"><span class="dot pl-mars"></span><span class="mlabel" data-i18n="p.exp">Passado profissional</span><span class="arr">→</span></a>
-  <a class="moon-card" href="projetos-reais.html"><span class="dot pl-jupiter"></span><span class="mlabel" data-i18n="p.real">Projetos reais</span><span class="arr">→</span></a>
-  <a class="moon-card" href="projetos-academicos.html"><span class="dot pl-neptune"></span><span class="mlabel" data-i18n="p.acad">Projetos académicos</span><span class="arr">→</span></a>
-  <a class="moon-card" href="qualificacoes.html"><span class="dot pl-venus"></span><span class="mlabel" data-i18n="p.qual">Qualificações</span><span class="arr">→</span></a>
+  <a class="comp-card" href="sobre.html"><span class="ic"></span><span class="ml" data-i18n="p.about">Sobre mim</span><span class="dg">U2</span><span class="arr">→</span></a>
+  <a class="comp-card" href="experiencia.html"><span class="ic"></span><span class="ml" data-i18n="p.exp">Passado profissional</span><span class="dg">U3</span><span class="arr">→</span></a>
+  <a class="comp-card" href="projetos-reais.html"><span class="ic"></span><span class="ml" data-i18n="p.real">Projetos produção</span><span class="dg">U4</span><span class="arr">→</span></a>
+  <a class="comp-card" href="projetos-academicos.html"><span class="ic"></span><span class="ml" data-i18n="p.acad">Projetos académicos</span><span class="dg">U5</span><span class="arr">→</span></a>
+  <a class="comp-card" href="qualificacoes.html"><span class="ic"></span><span class="ml" data-i18n="p.qual">Qualificações</span><span class="dg">Y1</span><span class="arr">→</span></a>
 </nav>
 
 <footer>
@@ -272,87 +330,84 @@
 </footer>
 
 <script>
-  // ---------- Estrelas ----------
-  (function makeStars() {
-    const layer = document.getElementById("stars");
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const n = Math.min(120, Math.round(window.innerWidth * window.innerHeight / 9000));
-    let html = "";
-    for (let i = 0; i < n; i++) {
-      const s = (Math.random() * 1.8 + 0.4).toFixed(2);
-      const x = (Math.random() * 100).toFixed(2);
-      const y = (Math.random() * 100).toFixed(2);
-      const dur = (Math.random() * 4 + 2.5).toFixed(2);
-      const del = (Math.random() * 5).toFixed(2);
-      const anim = reduce ? "" : `animation: twinkle ${dur}s ease-in-out ${del}s infinite;`;
-      html += `<span class="star" style="width:${s}px;height:${s}px;left:${x}%;top:${y}%;${anim}"></span>`;
+  const SVGNS = "http://www.w3.org/2000/svg";
+
+  // ---------- Pinos do chip central ----------
+  (function chipPins() {
+    const g = document.getElementById("chip-pins");
+    const x0 = 425, y0 = 285, size = 150, n = 6, pinL = 9, pinW = 7, gap = size / (n + 1);
+    function pin(x, y, w, h) {
+      const r = document.createElementNS(SVGNS, "rect");
+      r.setAttribute("x", x); r.setAttribute("y", y);
+      r.setAttribute("width", w); r.setAttribute("height", h);
+      r.setAttribute("rx", "1.5"); r.setAttribute("class", "pin");
+      g.appendChild(r);
     }
-    layer.innerHTML = html;
+    for (let i = 1; i <= n; i++) {
+      const p = x0 + gap * i - pinW / 2;
+      pin(p, y0 - pinL, pinW, pinL);            // topo
+      pin(p, y0 + size, pinW, pinL);            // fundo
+      const q = y0 + gap * i - pinW / 2;
+      pin(x0 - pinL, q, pinL, pinW);            // esquerda
+      pin(x0 + size, q, pinL, pinW);            // direita
+    }
   })();
 
-  // ---------- Pausar a órbita ao passar/tocar no planeta ----------
-  document.querySelectorAll(".orbit").forEach((orbit) => {
-    const planet = orbit.querySelector(".planet");
-    const pause = () => orbit.classList.add("paused");
-    const play  = () => orbit.classList.remove("paused");
-    planet.addEventListener("mouseenter", pause);
-    planet.addEventListener("mouseleave", play);
-    planet.addEventListener("focus", pause);
-    planet.addEventListener("blur", play);
-  });
+  // ---------- Decoração (pads, resistências, condensadores) ----------
+  (function deco() {
+    const g = document.getElementById("deco");
+    const pads = [[70,70],[930,70],[70,650],[930,650],[300,640],[700,650],[120,500],[880,500],[160,210],[840,210]];
+    pads.forEach(([x,y]) => {
+      const c = document.createElementNS(SVGNS, "circle");
+      c.setAttribute("cx", x); c.setAttribute("cy", y); c.setAttribute("r", "6");
+      c.setAttribute("class", "pad"); g.appendChild(c);
+    });
+    const res = [[120,120,18,40],[860,120,18,40],[110,580,40,16],[860,580,40,16]];
+    res.forEach(([x,y,w,h]) => {
+      const r = document.createElementNS(SVGNS, "rect");
+      r.setAttribute("x", x); r.setAttribute("y", y);
+      r.setAttribute("width", w); r.setAttribute("height", h); r.setAttribute("rx", "2");
+      r.setAttribute("class", "deco-r"); g.appendChild(r);
+    });
+  })();
 
-  // ---------- Tema (memorizado entre páginas) ----------
+  // ---------- Tema ----------
   const root = document.documentElement;
   const themeBtn = document.getElementById("themeToggle");
   function safeGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
   function safeSet(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
-
   const savedTheme = safeGet("theme");
   if (savedTheme) root.setAttribute("data-theme", savedTheme);
-
   themeBtn.addEventListener("click", () => {
     const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-    root.setAttribute("data-theme", next);
-    safeSet("theme", next);
-    applyLang(currentLang);
+    root.setAttribute("data-theme", next); safeSet("theme", next); applyLang(currentLang);
   });
 
-  // ---------- Idioma (memorizado entre páginas) ----------
+  // ---------- Idioma ----------
   const langBtn = document.getElementById("langToggle");
   const t = {
     pt: {
       "intro.eyebrow": "// programador full-stack · Coimbra",
-      "intro.h1": "O universo de Lloyd Costa",
-      "intro.hint": "Clica num planeta para explorar — ou no centro para o CV",
+      "intro.h1": "A placa de Lloyd Costa",
+      "intro.hint": "Passa o rato num componente · clica para abrir · o chip central é o CV",
       "cv.label": "Descarregar CV",
-      "p.about": "Sobre mim",
-      "p.exp": "Passado profissional",
-      "p.real": "Projetos reais",
-      "p.acad": "Projetos académicos",
-      "p.qual": "Qualificações",
-      "theme.toLight": "claro",
-      "theme.toDark": "escuro",
+      "p.about": "Sobre mim", "p.exp": "Passado profissional",
+      "p.real": "Projetos produção", "p.acad": "Projetos académicos", "p.qual": "Qualificações",
+      "theme.toLight": "claro", "theme.toDark": "escuro",
     },
     en: {
       "intro.eyebrow": "// full-stack developer · Coimbra",
-      "intro.h1": "The universe of Lloyd Costa",
-      "intro.hint": "Click a planet to explore — or the centre for the CV",
+      "intro.h1": "Lloyd Costa's board",
+      "intro.hint": "Hover a component · click to open · the central chip is the CV",
       "cv.label": "Download CV",
-      "p.about": "About me",
-      "p.exp": "Experience",
-      "p.real": "Live projects",
-      "p.acad": "Academic projects",
-      "p.qual": "Qualifications",
-      "theme.toLight": "light",
-      "theme.toDark": "dark",
+      "p.about": "About me", "p.exp": "Experience",
+      "p.real": "Live projects", "p.acad": "Academic projects", "p.qual": "Qualifications",
+      "theme.toLight": "light", "theme.toDark": "dark",
     }
   };
-
   let currentLang = safeGet("lang") || "pt";
-
   function applyLang(lang) {
-    currentLang = lang;
-    root.lang = lang;
+    currentLang = lang; root.lang = lang;
     document.querySelectorAll("[data-i18n]").forEach((el) => {
       const key = el.getAttribute("data-i18n");
       if (t[lang][key] !== undefined) el.textContent = t[lang][key];
@@ -361,11 +416,8 @@
     themeBtn.textContent = t[lang][isDark ? "theme.toLight" : "theme.toDark"];
     langBtn.textContent = lang === "pt" ? "EN" : "PT";
   }
-
   langBtn.addEventListener("click", () => {
-    const next = currentLang === "pt" ? "en" : "pt";
-    safeSet("lang", next);
-    applyLang(next);
+    const next = currentLang === "pt" ? "en" : "pt"; safeSet("lang", next); applyLang(next);
   });
 
   document.getElementById("year").textContent = new Date().getFullYear();
