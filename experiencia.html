@@ -58,7 +58,9 @@
   .video-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 10px; font-family: "JetBrains Mono", monospace; font-size: .82rem; color: var(--accent); text-decoration: none; border: 1px solid var(--border); border-radius: 999px; padding: 7px 14px; transition: border-color .2s; }
   .video-link:hover { border-color: var(--accent); }
 
-  [data-lang] { display: none; }
+  [data-lang="en"] { display: none; }
+  html[lang="en"] [data-lang="pt"] { display: none; }
+  html[lang="en"] [data-lang="en"] { display: block; }
   footer { max-width: 720px; margin: 0 auto; padding: 30px 24px 40px; border-top: 1px solid var(--border); font-family: "JetBrains Mono", monospace; font-size: .78rem; color: var(--muted); }
   footer a { color: var(--muted); text-decoration: none; } footer a:hover { color: var(--ink); }
 </style>
@@ -161,7 +163,6 @@
   const savedTheme = safeGet("theme"); if (savedTheme) root.setAttribute("data-theme", savedTheme);
   function applyLang(l) {
     lang = l; root.lang = l;
-    document.querySelectorAll("[data-lang]").forEach(el => { el.style.display = el.getAttribute("data-lang") === l ? "" : "none"; });
     document.querySelectorAll("[data-i18n]").forEach(el => { const k = el.getAttribute("data-i18n"); if (ui[l][k] !== undefined) el.textContent = ui[l][k]; });
     const isDark = root.getAttribute("data-theme") !== "light";
     themeBtn.textContent = ui[l][isDark ? "theme.toLight" : "theme.toDark"];
