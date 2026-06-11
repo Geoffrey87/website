@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="pt" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Qualificações · Lloyd Costa</title>
+<meta name="description" content="Formação académica e contínua de Lloyd Costa: licenciatura, pós-graduação Switch Dev e formação em dados." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #ecebe4; --muted: #828a96; --accent: #f4b23e; --accent-ink: #1a1408;
+    --border: #243049; --bg-1: #0a0d0c; --bg-2: #0d1311; --via: #d7af57;
+    --copper: #c79f47; --node: #0a3a2c;
+  }
+  [data-theme="light"] {
+    --ink: #1a1c20; --muted: #6a6f78; --accent: #b5790e; --accent-ink: #1a1408;
+    --border: #cdd2c9; --bg-1: #eef1ec; --bg-2: #e6ebe4; --via: #9c6c18;
+    --copper: #a9761c; --node: #18815f;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; color: var(--ink); font-family: "Inter", system-ui, sans-serif; line-height: 1.65;
+    background: linear-gradient(160deg, var(--bg-1), var(--bg-2)); background-attachment: fixed;
+    min-height: 100vh; -webkit-font-smoothing: antialiased; transition: color .3s ease;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 24px; border-bottom: 1px solid var(--border);
+  }
+  .back { font-family: "JetBrains Mono", monospace; font-size: .9rem; text-decoration: none; display: inline-flex; gap: 6px; align-items: center; }
+  .back:hover { color: var(--accent); }
+  .controls { display: flex; gap: 10px; }
+  .toggle {
+    font-family: "JetBrains Mono", monospace; font-size: .8rem;
+    background: color-mix(in srgb, var(--ink) 7%, transparent); color: var(--ink);
+    border: 1px solid var(--border); border-radius: 999px; padding: 7px 13px; cursor: pointer;
+    transition: border-color .2s, transform .1s;
+  }
+  .toggle:hover { border-color: var(--accent); } .toggle:active { transform: scale(.96); }
+  main { max-width: 720px; margin: 0 auto; padding: 46px 24px 20px; }
+  .eyebrow { font-family: "JetBrains Mono", monospace; font-size: .76rem; letter-spacing: .04em; color: var(--accent); text-transform: uppercase; margin: 0 0 10px; }
+  .desig { color: var(--via); }
+  h1.page-title { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: clamp(2rem, 6vw, 3rem); letter-spacing: -.02em; margin: 0 0 12px; }
+  .lead { color: var(--muted); margin: 0 0 36px; font-size: 1rem; }
+
+  .block-title { font-family: "Bricolage Grotesque", sans-serif; font-weight: 700; font-size: 1.15rem; margin: 0 0 20px; }
+
+  .timeline { position: relative; padding-left: 30px; margin-bottom: 40px; }
+  .timeline::before { content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(var(--copper), color-mix(in srgb, var(--copper) 10%, transparent)); }
+  .qual { position: relative; padding: 0 0 30px; }
+  .qual:last-child { padding-bottom: 0; }
+  .qual::before { content: ""; position: absolute; left: -30px; top: 5px; width: 14px; height: 14px; border-radius: 50%; background: var(--node); border: 2px solid var(--via); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 16%, transparent); }
+  .qual .period { font-family: "JetBrains Mono", monospace; font-size: .82rem; color: var(--accent); }
+  .qual h3 { font-family: "Bricolage Grotesque", sans-serif; font-weight: 700; font-size: 1.15rem; margin: 4px 0 2px; }
+  .qual .inst { font-family: "JetBrains Mono", monospace; font-size: .78rem; color: var(--via); margin: 0 0 12px; }
+  .qual ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+  .qual li { font-size: .92rem; color: var(--muted); display: flex; gap: 9px; align-items: baseline; }
+  .qual li::before { content: "·"; color: var(--copper); font-weight: 700; flex: none; }
+
+  .learn { margin-bottom: 20px; }
+  .learn > p { color: var(--muted); margin: 0 0 16px; font-size: .96rem; }
+  .learn-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+  .learn-list li { font-size: .93rem; color: var(--muted); display: flex; gap: 10px; align-items: baseline; }
+  .learn-list li::before { content: "→"; font-family: "JetBrains Mono", monospace; font-size: .78rem; color: var(--copper); flex: none; }
+  .learn-list strong { color: var(--ink); font-weight: 600; }
+  .src { font-family: "JetBrains Mono", monospace; font-size: .72rem; color: var(--via); margin-top: 14px; }
+
+  [data-lang="en"] { display: none; }
+  html[lang="en"] [data-lang="pt"] { display: none; }
+  html[lang="en"] [data-lang="en"] { display: block; }
+  footer { max-width: 720px; margin: 0 auto; padding: 30px 24px 40px; border-top: 1px solid var(--border); font-family: "JetBrains Mono", monospace; font-size: .78rem; color: var(--muted); }
+  footer a { color: var(--muted); text-decoration: none; } footer a:hover { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="back" href="index.html">← <span data-i18n="nav.board">placa</span></a>
+  <div class="controls">
+    <button class="toggle" id="langToggle" aria-label="Mudar idioma">EN</button>
+    <button class="toggle" id="themeToggle" aria-label="Mudar tema" data-i18n="theme.toLight">claro</button>
+  </div>
+</header>
+
+<main>
+  <!-- ===== PT ===== -->
+  <div data-lang="pt">
+    <p class="eyebrow">// qualificações · <span class="desig">Y1 · XTAL</span></p>
+    <h1 class="page-title">Qualificações</h1>
+    <p class="lead">A base académica e a formação que sustentam a minha passagem para o software.</p>
+
+    <p class="block-title">Formação</p>
+    <div class="timeline">
+      <div class="qual">
+        <div class="period">2026</div>
+        <h3>Data Science e Inteligência Analítica</h3>
+        <p class="inst">IEFP · Coimbra</p>
+        <ul>
+          <li>Análise, preparação e processamento de datasets.</li>
+          <li>Limpeza, transformação e modelação de dados com Power BI e Power Query.</li>
+          <li>Storytelling com dados e apresentação de insights de negócio.</li>
+          <li>Criação de dashboards interativos e relatórios visuais em Power BI.</li>
+          <li>Projeto de analytics ponta a ponta com fontes de dados reais.</li>
+        </ul>
+      </div>
+      <div class="qual">
+        <div class="period">2024</div>
+        <h3>Pós-graduação Switch Dev</h3>
+        <p class="inst">ISEP · Porto</p>
+        <ul>
+          <li>Programação Java: OOA, OOD, OOP, DDD, ORM e Spring Boot, com aplicação de SOLID, GRASP e arquitetura Onion.</li>
+          <li>QA: TDD, JUnit e Mockito.</li>
+          <li>Bases de dados: modelo relacional e SQL.</li>
+          <li>Sistemas e redes: Linux, máquinas virtuais e programação de sockets.</li>
+          <li>DevOps: controlo de versões com Git (GitHub), build tools (Maven, Gradle), Vagrant, Docker e Jenkins.</li>
+          <li>Frontend: HTML, CSS, JavaScript e React.</li>
+          <li>Projeto SmartHome em equipa (10 pessoas), com Product Backlog e sprints de 2 a 4 semanas em metodologia scrum.</li>
+        </ul>
+      </div>
+      <div class="qual">
+        <div class="period">2007 &ndash; 2011</div>
+        <h3>Licenciatura em Engenharia Civil</h3>
+        <p class="inst">IPC · Coimbra</p>
+      </div>
+    </div>
+
+    <p class="block-title">Aprendizagem contínua</p>
+    <div class="learn">
+      <p>Para além da formação académica, mantenho uma aprendizagem constante por conta própria:</p>
+      <ul class="learn-list">
+        <li><strong>OutSystems 11</strong>: desenvolvimento de aplicações reativas.</li>
+        <li><strong>C# / .NET</strong>: do básico ao avançado, aplicado a projetos web.</li>
+        <li><strong>TypeScript</strong>: do básico ao avançado, aplicado a projetos web.</li>
+        <li><strong>Angular</strong>: do básico ao avançado, aplicado a projetos web.</li>
+        <li><strong>Python</strong>: fundamentos aplicados a projetos web.</li>
+      </ul>
+      <p class="src">via Udemy e YouTube</p>
+    </div>
+  </div>
+
+  <!-- ===== EN ===== -->
+  <div data-lang="en">
+    <p class="eyebrow">// qualifications · <span class="desig">Y1 · XTAL</span></p>
+    <h1 class="page-title">Qualifications</h1>
+    <p class="lead">The academic foundation and training behind my move into software.</p>
+
+    <p class="block-title">Education</p>
+    <div class="timeline">
+      <div class="qual">
+        <div class="period">2026</div>
+        <h3>Data Science and Analytical Intelligence</h3>
+        <p class="inst">IEFP · Coimbra</p>
+        <ul>
+          <li>Dataset analysis, preparation and processing.</li>
+          <li>Data cleaning, transformation and modelling with Power BI and Power Query.</li>
+          <li>Storytelling through data and business insights presentation.</li>
+          <li>Creation of interactive dashboards and visual reports in Power BI.</li>
+          <li>End-to-end analytics project based on real-world data sources.</li>
+        </ul>
+      </div>
+      <div class="qual">
+        <div class="period">2024</div>
+        <h3>Postgraduate, Switch Dev</h3>
+        <p class="inst">ISEP · Porto</p>
+        <ul>
+          <li>Java programming: OOA, OOD, OOP, DDD, ORM and Spring Boot, applying SOLID, GRASP and Onion architecture.</li>
+          <li>QA: TDD, JUnit and Mockito.</li>
+          <li>Databases: relational model and SQL.</li>
+          <li>Systems and networks: Linux, virtual machines and socket programming.</li>
+          <li>DevOps: version control with Git (GitHub), build tools (Maven, Gradle), Vagrant, Docker and Jenkins.</li>
+          <li>Frontend: HTML, CSS, JavaScript and React.</li>
+          <li>SmartHome project in a team of 10, with a Product Backlog and 2 to 4 week sprints using scrum.</li>
+        </ul>
+      </div>
+      <div class="qual">
+        <div class="period">2007 &ndash; 2011</div>
+        <h3>Bachelor's Degree in Civil Engineering</h3>
+        <p class="inst">IPC · Coimbra</p>
+      </div>
+    </div>
+
+    <p class="block-title">Continuous learning</p>
+    <div class="learn">
+      <p>Beyond my academic training, I keep learning constantly on my own:</p>
+      <ul class="learn-list">
+        <li><strong>OutSystems 11</strong>: reactive application development.</li>
+        <li><strong>C# / .NET</strong>: basics to advanced, applied to web projects.</li>
+        <li><strong>TypeScript</strong>: basics to advanced, applied to web projects.</li>
+        <li><strong>Angular</strong>: basics to advanced, applied to web projects.</li>
+        <li><strong>Python</strong>: fundamentals applied to web projects.</li>
+      </ul>
+      <p class="src">via Udemy and YouTube</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <span>© <span id="year"></span> Lloyd Costa · <a href="index.html" data-i18n="nav.backBoard">← voltar à placa</a></span>
+</footer>
+
+<script>
+  const root = document.documentElement;
+  function safeGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+  function safeSet(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
+  const themeBtn = document.getElementById("themeToggle");
+  const langBtn  = document.getElementById("langToggle");
+  const ui = {
+    pt: { "theme.toLight": "claro", "theme.toDark": "escuro", "nav.board": "placa", "nav.backBoard": "← voltar à placa" },
+    en: { "theme.toLight": "light", "theme.toDark": "dark", "nav.board": "board", "nav.backBoard": "← back to board" }
+  };
+  let lang = safeGet("lang") || "pt";
+  const savedTheme = safeGet("theme"); if (savedTheme) root.setAttribute("data-theme", savedTheme);
+  function applyLang(l) {
+    lang = l; root.lang = l;
+    document.querySelectorAll("[data-i18n]").forEach(el => { const k = el.getAttribute("data-i18n"); if (ui[l][k] !== undefined) el.textContent = ui[l][k]; });
+    const isDark = root.getAttribute("data-theme") !== "light";
+    themeBtn.textContent = ui[l][isDark ? "theme.toLight" : "theme.toDark"];
+    langBtn.textContent = l === "pt" ? "EN" : "PT";
+  }
+  themeBtn.addEventListener("click", () => { const n = root.getAttribute("data-theme") === "light" ? "dark" : "light"; root.setAttribute("data-theme", n); safeSet("theme", n); applyLang(lang); });
+  langBtn.addEventListener("click", () => { const n = lang === "pt" ? "en" : "pt"; safeSet("lang", n); applyLang(n); });
+  document.getElementById("year").textContent = new Date().getFullYear();
+  applyLang(lang);
+</script>
+</body>
+</html>
