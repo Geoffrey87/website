@@ -1,427 +1,783 @@
 <!doctype html>
 <html lang="pt" data-theme="dark">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Lloyd Costa — Programador Full-Stack</title>
-<meta name="description" content="Portefólio de Lloyd Costa, programador full-stack. Projetos, experiência e contactos." />
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lloyd Costa — Programador Full-Stack</title>
+    <meta
+      name="description"
+      content="Portefólio de Lloyd Costa, programador full-stack. Projetos, experiência e contactos." />
 
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet" />
 
-<style>
-  :root {
-    --ink: #ecebe4;
-    --muted: #828a96;
-    --accent: #f4b23e;
-    --accent-ink: #1a1408;
-    --border: #243049;
-    --bg-1: #0a0d0c;
-    --bg-2: #0d1311;
+    <style>
+      :root {
+        --ink: #ecebe4;
+        --muted: #828a96;
+        --accent: #f4b23e;
+        --accent-ink: #1a1408;
+        --border: #243049;
+        --bg-1: #0a0d0c;
+        --bg-2: #0d1311;
 
-    /* PCB */
-    --board-1: #06291f;
-    --board-2: #0a3a2c;
-    --board-edge: #08543c;
-    --trace: #c79f47;
-    --trace-lit: #ffd877;
-    --pulse: #fff1bd;
-    --via: #d7af57;
-    --silk: #eef0e8;
-    --comp: #14130f;
-    --comp-edge: #2c2a22;
-    --pin: #d7af57;
-  }
-  [data-theme="light"] {
-    --ink: #1a1c20;
-    --muted: #6a6f78;
-    --accent: #b5790e;
-    --accent-ink: #1a1408;
-    --border: #cdd2c9;
-    --bg-1: #eef1ec;
-    --bg-2: #e6ebe4;
+        /* PCB */
+        --board-1: #06291f;
+        --board-2: #0a3a2c;
+        --board-edge: #08543c;
+        --trace: #c79f47;
+        --trace-lit: #ffd877;
+        --pulse: #fff1bd;
+        --via: #d7af57;
+        --silk: #eef0e8;
+        --comp: #14130f;
+        --comp-edge: #2c2a22;
+        --pin: #d7af57;
+      }
+      [data-theme="light"] {
+        --ink: #1a1c20;
+        --muted: #6a6f78;
+        --accent: #b5790e;
+        --accent-ink: #1a1408;
+        --border: #cdd2c9;
+        --bg-1: #eef1ec;
+        --bg-2: #e6ebe4;
 
-    --board-1: #18815f;
-    --board-2: #14734f;
-    --board-edge: #0f5c3f;
-    --trace: #a9761c;
-    --trace-lit: #d99a2e;
-    --pulse: #fff4cb;
-    --via: #9c6c18;
-    --silk: #f4f7f0;
-    --comp: #10100c;
-    --comp-edge: #34322a;
-    --pin: #c98e2e;
-  }
+        --board-1: #18815f;
+        --board-2: #14734f;
+        --board-edge: #0f5c3f;
+        --trace: #a9761c;
+        --trace-lit: #d99a2e;
+        --pulse: #fff4cb;
+        --via: #9c6c18;
+        --silk: #f4f7f0;
+        --comp: #10100c;
+        --comp-edge: #34322a;
+        --pin: #c98e2e;
+      }
 
-  * { box-sizing: border-box; }
-  html, body { min-height: 100%; }
-  body {
-    margin: 0; color: var(--ink);
-    font-family: "Inter", system-ui, sans-serif;
-    background: linear-gradient(160deg, var(--bg-1), var(--bg-2));
-    background-attachment: fixed;
-    overflow-x: hidden; -webkit-font-smoothing: antialiased;
-    transition: color .3s ease;
-  }
-  a { color: inherit; }
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        min-height: 100%;
+      }
+      body {
+        margin: 0;
+        color: var(--ink);
+        font-family: "Inter", system-ui, sans-serif;
+        background: linear-gradient(160deg, var(--bg-1), var(--bg-2));
+        background-attachment: fixed;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        transition: color 0.3s ease;
+      }
+      a {
+        color: inherit;
+      }
+      :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: 4px;
+      }
 
-  header {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 20px 26px;
-  }
-  .brand { font-family: "JetBrains Mono", monospace; font-weight: 600; font-size: .95rem; text-decoration: none; }
-  .brand span { color: var(--accent); }
-  .controls { display: flex; gap: 10px; }
-  .toggle {
-    font-family: "JetBrains Mono", monospace; font-size: .8rem;
-    background: color-mix(in srgb, var(--ink) 7%, transparent); color: var(--ink);
-    border: 1px solid var(--border); border-radius: 999px;
-    padding: 7px 13px; cursor: pointer; transition: border-color .2s, transform .1s;
-  }
-  .toggle:hover { border-color: var(--accent); }
-  .toggle:active { transform: scale(.96); }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 26px;
+      }
+      .brand {
+        font-family: "JetBrains Mono", monospace;
+        font-weight: 600;
+        font-size: 0.95rem;
+        text-decoration: none;
+      }
+      .brand span {
+        color: var(--accent);
+      }
+      .controls {
+        display: flex;
+        gap: 10px;
+      }
+      .toggle {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.8rem;
+        background: color-mix(in srgb, var(--ink) 7%, transparent);
+        color: var(--ink);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 7px 13px;
+        cursor: pointer;
+        transition:
+          border-color 0.2s,
+          transform 0.1s;
+      }
+      .toggle:hover {
+        border-color: var(--accent);
+      }
+      .toggle:active {
+        transform: scale(0.96);
+      }
 
-  .intro { text-align: center; padding: 4px 24px 0; }
-  .intro .eyebrow { font-family: "JetBrains Mono", monospace; font-size: .76rem; letter-spacing: .05em; color: var(--accent); text-transform: uppercase; margin: 0 0 8px; }
-  .intro h1 { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: clamp(1.7rem, 5vw, 2.6rem); letter-spacing: -.02em; margin: 0 0 6px; }
-  .intro p { color: var(--muted); margin: 0; font-size: .95rem; }
+      .intro {
+        text-align: center;
+        padding: 4px 24px 0;
+      }
+      .intro .eyebrow {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.76rem;
+        letter-spacing: 0.05em;
+        color: var(--accent);
+        text-transform: uppercase;
+        margin: 0 0 8px;
+      }
+      .intro h1 {
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-weight: 800;
+        font-size: clamp(1.7rem, 5vw, 2.6rem);
+        letter-spacing: -0.02em;
+        margin: 0 0 6px;
+      }
+      .intro p {
+        color: var(--muted);
+        margin: 0;
+        font-size: 0.95rem;
+      }
 
-  /* ---------- Board ---------- */
-  .board-wrap { max-width: 1000px; margin: 14px auto 0; padding: 0 18px; }
-  .board { width: 100%; height: auto; display: block; }
+      /* ---------- Board ---------- */
+      .board-wrap {
+        max-width: 1000px;
+        margin: 14px auto 0;
+        padding: 0 18px;
+      }
+      .board {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
 
-  .substrate { fill: url(#boardGrad); stroke: var(--board-edge); stroke-width: 3; }
-  #boardGrad .g1 { stop-color: var(--board-2); }
-  #boardGrad .g2 { stop-color: var(--board-1); }
-  .board-frame { fill: none; stroke: color-mix(in srgb, var(--via) 35%, transparent); stroke-width: 1.5; stroke-dasharray: 2 6; }
+      .substrate {
+        fill: url(#boardGrad);
+        stroke: var(--board-edge);
+        stroke-width: 3;
+      }
+      #boardGrad .g1 {
+        stop-color: var(--board-2);
+      }
+      #boardGrad .g2 {
+        stop-color: var(--board-1);
+      }
+      .board-frame {
+        fill: none;
+        stroke: color-mix(in srgb, var(--via) 35%, transparent);
+        stroke-width: 1.5;
+        stroke-dasharray: 2 6;
+      }
 
-  .trace { fill: none; stroke: var(--trace); stroke-width: 4; stroke-linejoin: round; stroke-linecap: round; transition: stroke .2s ease; }
-  .pulse { fill: none; stroke: var(--pulse); stroke-width: 3.4; stroke-linecap: round;
-           stroke-dasharray: 16 460; filter: drop-shadow(0 0 4px var(--pulse)); }
-  .via   { fill: var(--board-2); stroke: var(--via); stroke-width: 3; }
-  .pad   { fill: var(--via); opacity: .85; }
-  .deco-r { fill: var(--comp); stroke: var(--pin); stroke-width: 2; }
-  .deco-c { fill: var(--comp); stroke: var(--pin); stroke-width: 2; }
+      .trace {
+        fill: none;
+        stroke: var(--trace);
+        stroke-width: 4;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+        transition: stroke 0.2s ease;
+      }
+      .pulse {
+        fill: none;
+        stroke: var(--pulse);
+        stroke-width: 3.4;
+        stroke-linecap: round;
+        stroke-dasharray: 16 460;
+        filter: drop-shadow(0 0 4px var(--pulse));
+      }
+      .via {
+        fill: var(--board-2);
+        stroke: var(--via);
+        stroke-width: 3;
+      }
+      .pad {
+        fill: var(--via);
+        opacity: 0.85;
+      }
+      .deco-r {
+        fill: var(--comp);
+        stroke: var(--pin);
+        stroke-width: 2;
+      }
+      .deco-c {
+        fill: var(--comp);
+        stroke: var(--pin);
+        stroke-width: 2;
+      }
 
-  .comp-body { fill: var(--comp); stroke: var(--comp-edge); stroke-width: 2; transition: filter .2s ease; }
-  .comp-line { stroke: var(--pin); stroke-width: 2; opacity: .8; }
-  .comp-chip { fill: #0c0b08; stroke: var(--pin); stroke-width: 1.5; }
-  .pin { fill: var(--pin); }
-  .silk  { font-family: "JetBrains Mono", monospace; font-size: 15px; fill: var(--silk); text-anchor: middle; letter-spacing: .02em; transition: fill .2s ease; }
-  .desig { font-family: "JetBrains Mono", monospace; font-size: 11px; fill: var(--via); text-anchor: middle; }
+      .comp-body {
+        fill: var(--comp);
+        stroke: var(--comp-edge);
+        stroke-width: 2;
+        transition: filter 0.2s ease;
+      }
+      .comp-line {
+        stroke: var(--pin);
+        stroke-width: 2;
+        opacity: 0.8;
+      }
+      .comp-chip {
+        fill: #0c0b08;
+        stroke: var(--pin);
+        stroke-width: 1.5;
+      }
+      .pin {
+        fill: var(--pin);
+      }
+      .silk {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 15px;
+        fill: var(--silk);
+        text-anchor: middle;
+        letter-spacing: 0.02em;
+        transition: fill 0.2s ease;
+      }
+      .desig {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        fill: var(--via);
+        text-anchor: middle;
+      }
 
-  /* chip central (CV) */
-  .chip-body { fill: url(#chipGrad); stroke: #9a6e1e; stroke-width: 2; }
-  .chip-notch { fill: #8a5f18; }
-  .chip-label { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 34px; fill: var(--accent-ink); text-anchor: middle; }
-  .chip-sub { font-family: "JetBrains Mono", monospace; font-size: 11px; fill: var(--accent-ink); opacity: .75; text-anchor: middle; }
-  .chip-glow { fill: none; stroke: var(--accent); stroke-width: 2; opacity: .0; }
+      /* chip central (CV) */
+      .chip-body {
+        fill: url(#chipGrad);
+        stroke: #9a6e1e;
+        stroke-width: 2;
+      }
+      .chip-notch {
+        fill: #8a5f18;
+      }
+      .chip-label {
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-weight: 800;
+        font-size: 34px;
+        fill: var(--accent-ink);
+        text-anchor: middle;
+      }
+      .chip-sub {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        fill: var(--accent-ink);
+        opacity: 0.75;
+        text-anchor: middle;
+      }
+      .chip-glow {
+        fill: none;
+        stroke: var(--accent);
+        stroke-width: 2;
+        opacity: 0;
+      }
 
-  /* branches (clickable) */
-  .branch { cursor: pointer; }
-  .branch:hover .trace, .branch:focus-visible .trace { stroke: var(--trace-lit); }
-  .branch:hover .pulse, .branch:focus-visible .pulse { stroke-width: 4.4; }
-  .branch:hover .comp-body, .branch:focus-visible .comp-body { filter: drop-shadow(0 0 9px var(--accent)); }
-  .branch:hover .silk, .branch:focus-visible .silk { fill: var(--accent); }
+      /* branches (clickable) */
+      .branch {
+        cursor: pointer;
+      }
+      .branch:hover .trace,
+      .branch:focus-visible .trace {
+        stroke: var(--trace-lit);
+      }
+      .branch:hover .pulse,
+      .branch:focus-visible .pulse {
+        stroke-width: 4.4;
+      }
+      .branch:hover .comp-body,
+      .branch:focus-visible .comp-body {
+        filter: drop-shadow(0 0 9px var(--accent));
+      }
+      .branch:hover .silk,
+      .branch:focus-visible .silk {
+        fill: var(--accent);
+      }
 
-  @keyframes flow { from { stroke-dashoffset: 476; } to { stroke-dashoffset: 0; } }
-  .p1 { animation: flow 2.7s linear infinite; }
-  .p2 { animation: flow 3.2s linear infinite; }
-  .p3 { animation: flow 2.3s linear infinite; }
-  .p4 { animation: flow 2.9s linear infinite; }
-  .p5 { animation: flow 3.5s linear infinite; }
-  .branch:hover .pulse { animation-duration: 1.1s; }
-  @keyframes chip-pulse { 0%,100% { opacity: 0; r: 92; } 50% { opacity: .5; r: 104; } }
-  .chip-glow { animation: chip-pulse 3.4s ease-in-out infinite; }
-  @media (prefers-reduced-motion: reduce) {
-    .pulse { animation: none !important; opacity: .55; }
-    .chip-glow { animation: none !important; }
-  }
+      @keyframes flow {
+        from {
+          stroke-dashoffset: 476;
+        }
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+      .p1 {
+        animation: flow 2.7s linear infinite;
+      }
+      .p2 {
+        animation: flow 3.2s linear infinite;
+      }
+      .p3 {
+        animation: flow 2.3s linear infinite;
+      }
+      .p4 {
+        animation: flow 2.9s linear infinite;
+      }
+      .p5 {
+        animation: flow 3.5s linear infinite;
+      }
+      .branch:hover .pulse {
+        animation-duration: 1.1s;
+      }
+      @keyframes chip-pulse {
+        0%,
+        100% {
+          opacity: 0;
+          r: 92;
+        }
+        50% {
+          opacity: 0.5;
+          r: 104;
+        }
+      }
+      .chip-glow {
+        animation: chip-pulse 3.4s ease-in-out infinite;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .pulse {
+          animation: none !important;
+          opacity: 0.55;
+        }
+        .chip-glow {
+          animation: none !important;
+        }
+      }
 
-  /* ---------- Mobile list ---------- */
-  .stack-nav { display: none; }
-  @media (max-width: 720px) {
-    .board-wrap { display: none; }
-    .stack-nav { display: flex; flex-direction: column; gap: 12px; max-width: 440px; margin: 24px auto 0; padding: 0 22px; }
-    .chip-card {
-      display: flex; flex-direction: column; align-items: center; gap: 2px;
-      padding: 22px; border-radius: 18px; text-decoration: none; text-align: center;
-      color: var(--accent-ink); font-weight: 700;
-      background: radial-gradient(circle at 30% 22%, #ffe2a1, var(--accent) 72%);
-      box-shadow: 0 8px 28px rgba(244,178,62,.28);
-    }
-    .chip-card .cc-label { font-family: "Bricolage Grotesque", sans-serif; font-size: 1.15rem; }
-    .chip-card .cc-sub { font-family: "JetBrains Mono", monospace; font-size: .66rem; opacity: .85; }
-    .comp-card {
-      display: flex; align-items: center; gap: 14px; padding: 15px 18px; border-radius: 14px;
-      text-decoration: none; color: var(--ink);
-      background: color-mix(in srgb, var(--board-2) 30%, transparent);
-      border: 1px solid var(--board-edge);
-      transition: border-color .2s, transform .1s;
-    }
-    .comp-card:active { transform: scale(.99); }
-    .comp-card .ic { width: 30px; height: 22px; border-radius: 3px; flex: none;
-      background: var(--comp); border: 1px solid var(--pin); box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--pin) 30%, transparent); }
-    .comp-card .ml { font-family: "JetBrains Mono", monospace; font-size: .92rem; }
-    .comp-card .dg { font-family: "JetBrains Mono", monospace; font-size: .72rem; color: var(--via); margin-left: 4px; }
-    .comp-card .arr { margin-left: auto; color: var(--accent); }
-  }
+      /* ---------- Mobile list ---------- */
+      .stack-nav {
+        display: none;
+      }
+      @media (max-width: 720px) {
+        .board-wrap {
+          display: none;
+        }
+        .stack-nav {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          max-width: 440px;
+          margin: 24px auto 0;
+          padding: 0 22px;
+        }
+        .chip-card {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 2px;
+          padding: 22px;
+          border-radius: 18px;
+          text-decoration: none;
+          text-align: center;
+          color: var(--accent-ink);
+          font-weight: 700;
+          background: radial-gradient(circle at 30% 22%, #ffe2a1, var(--accent) 72%);
+          box-shadow: 0 8px 28px rgba(244, 178, 62, 0.28);
+        }
+        .chip-card .cc-label {
+          font-family: "Bricolage Grotesque", sans-serif;
+          font-size: 1.15rem;
+        }
+        .chip-card .cc-sub {
+          font-family: "JetBrains Mono", monospace;
+          font-size: 0.66rem;
+          opacity: 0.85;
+        }
+        .comp-card {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          padding: 15px 18px;
+          border-radius: 14px;
+          text-decoration: none;
+          color: var(--ink);
+          background: color-mix(in srgb, var(--board-2) 30%, transparent);
+          border: 1px solid var(--board-edge);
+          transition:
+            border-color 0.2s,
+            transform 0.1s;
+        }
+        .comp-card:active {
+          transform: scale(0.99);
+        }
+        .comp-card .ic {
+          width: 30px;
+          height: 22px;
+          border-radius: 3px;
+          flex: none;
+          background: var(--comp);
+          border: 1px solid var(--pin);
+          box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--pin) 30%, transparent);
+        }
+        .comp-card .ml {
+          font-family: "JetBrains Mono", monospace;
+          font-size: 0.92rem;
+        }
+        .comp-card .dg {
+          font-family: "JetBrains Mono", monospace;
+          font-size: 0.72rem;
+          color: var(--via);
+          margin-left: 4px;
+        }
+        .comp-card .arr {
+          margin-left: auto;
+          color: var(--accent);
+        }
+      }
 
-  footer { text-align: center; padding: 26px 16px 30px; }
-  footer, footer a { font-family: "JetBrains Mono", monospace; font-size: .78rem; color: var(--muted); text-decoration: none; }
-  footer a:hover { color: var(--ink); }
-</style>
-</head>
+      footer {
+        text-align: center;
+        padding: 26px 16px 30px;
+      }
+      footer,
+      footer a {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.78rem;
+        color: var(--muted);
+        text-decoration: none;
+      }
+      footer a:hover {
+        color: var(--ink);
+      }
+    </style>
+  </head>
 
-<body>
+  <body>
+    <header>
+      <a class="brand" href="#">~/<span>lloyd</span></a>
+      <div class="controls">
+        <button class="toggle" id="langToggle" aria-label="Mudar idioma">EN</button>
+        <button class="toggle" id="themeToggle" aria-label="Mudar tema" data-i18n="theme.toLight">
+          claro
+        </button>
+      </div>
+    </header>
 
-<header>
-  <a class="brand" href="#">~/<span>lloyd</span></a>
-  <div class="controls">
-    <button class="toggle" id="langToggle" aria-label="Mudar idioma">EN</button>
-    <button class="toggle" id="themeToggle" aria-label="Mudar tema" data-i18n="theme.toLight">claro</button>
-  </div>
-</header>
+    <section class="intro">
+      <p class="eyebrow" data-i18n="intro.eyebrow">// programador full-stack · Coimbra</p>
+      <h1 data-i18n="intro.h1">A placa de Lloyd Costa</h1>
+      <p data-i18n="intro.hint">
+        Passa o rato num componente · clica para abrir · o chip central é o CV
+      </p>
+    </section>
 
-<section class="intro">
-  <p class="eyebrow" data-i18n="intro.eyebrow">// programador full-stack · Coimbra</p>
-  <h1 data-i18n="intro.h1">A placa de Lloyd Costa</h1>
-  <p data-i18n="intro.hint">Passa o rato num componente · clica para abrir · o chip central é o CV</p>
-</section>
+    <!-- ============ PLACA (desktop/tablet) ============ -->
+    <div class="board-wrap">
+      <svg
+        class="board"
+        viewBox="0 0 1000 720"
+        role="navigation"
+        aria-label="Secções do portefólio"
+        xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="boardGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop class="g1" offset="0" />
+            <stop class="g2" offset="1" />
+          </linearGradient>
+          <radialGradient id="chipGrad" cx="38%" cy="32%" r="75%">
+            <stop offset="0" stop-color="#ffe6a6" />
+            <stop offset="55%" stop-color="var(--accent)" />
+            <stop offset="100%" stop-color="#cf8a1f" />
+          </radialGradient>
+        </defs>
 
-<!-- ============ PLACA (desktop/tablet) ============ -->
-<div class="board-wrap">
-  <svg class="board" viewBox="0 0 1000 720" role="navigation" aria-label="Secções do portefólio" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="boardGrad" x1="0" y1="0" x2="1" y2="1">
-        <stop class="g1" offset="0"/>
-        <stop class="g2" offset="1"/>
-      </linearGradient>
-      <radialGradient id="chipGrad" cx="38%" cy="32%" r="75%">
-        <stop offset="0" stop-color="#ffe6a6"/>
-        <stop offset="55%" stop-color="var(--accent)"/>
-        <stop offset="100%" stop-color="#cf8a1f"/>
-      </radialGradient>
-    </defs>
+        <!-- substrato -->
+        <rect class="substrate" x="6" y="6" width="988" height="708" rx="22" />
+        <rect class="board-frame" x="24" y="24" width="952" height="672" rx="14" />
 
-    <!-- substrato -->
-    <rect class="substrate" x="6" y="6" width="988" height="708" rx="22"/>
-    <rect class="board-frame" x="24" y="24" width="952" height="672" rx="14"/>
+        <!-- decoração gerada por JS (pads, resistências, condensadores) -->
+        <g id="deco"></g>
 
-    <!-- decoração gerada por JS (pads, resistências, condensadores) -->
-    <g id="deco"></g>
+        <!-- ===== Ramos (pista + componente + label) ===== -->
 
-    <!-- ===== Ramos (pista + componente + label) ===== -->
+        <!-- U2 · Sobre mim · RAM (esquerda) -->
+        <a class="branch" href="sobre.html">
+          <path class="trace" d="M425 360 H236" />
+          <path class="pulse p1" d="M425 360 H236" />
+          <circle class="via" cx="236" cy="360" r="5" />
+          <g class="comp">
+            <rect class="comp-body" x="78" y="332" width="158" height="56" rx="5" />
+            <rect class="comp-chip" x="96" y="346" width="26" height="20" />
+            <rect class="comp-chip" x="132" y="346" width="26" height="20" />
+            <rect class="comp-chip" x="168" y="346" width="26" height="20" />
+            <line class="comp-line" x1="90" y1="388" x2="90" y2="396" />
+            <line class="comp-line" x1="110" y1="388" x2="110" y2="396" />
+            <line class="comp-line" x1="130" y1="388" x2="130" y2="396" />
+            <line class="comp-line" x1="150" y1="388" x2="150" y2="396" />
+            <line class="comp-line" x1="170" y1="388" x2="170" y2="396" />
+            <line class="comp-line" x1="190" y1="388" x2="190" y2="396" />
+            <line class="comp-line" x1="210" y1="388" x2="210" y2="396" />
+          </g>
+          <text class="silk" x="157" y="320" data-i18n="p.about">Sobre mim</text>
+          <text class="desig" x="157" y="412">U2 · RAM</text>
+        </a>
 
-    <!-- U2 · Sobre mim · RAM (esquerda) -->
-    <a class="branch" href="sobre.html">
-      <path class="trace" d="M425 360 H236"/>
-      <path class="pulse p1" d="M425 360 H236"/>
-      <circle class="via" cx="236" cy="360" r="5"/>
-      <g class="comp">
-        <rect class="comp-body" x="78" y="332" width="158" height="56" rx="5"/>
-        <rect class="comp-chip" x="96" y="346" width="26" height="20"/>
-        <rect class="comp-chip" x="132" y="346" width="26" height="20"/>
-        <rect class="comp-chip" x="168" y="346" width="26" height="20"/>
-        <line class="comp-line" x1="90" y1="388" x2="90" y2="396"/>
-        <line class="comp-line" x1="110" y1="388" x2="110" y2="396"/>
-        <line class="comp-line" x1="130" y1="388" x2="130" y2="396"/>
-        <line class="comp-line" x1="150" y1="388" x2="150" y2="396"/>
-        <line class="comp-line" x1="170" y1="388" x2="170" y2="396"/>
-        <line class="comp-line" x1="190" y1="388" x2="190" y2="396"/>
-        <line class="comp-line" x1="210" y1="388" x2="210" y2="396"/>
-      </g>
-      <text class="silk" x="157" y="320" data-i18n="p.about">Sobre mim</text>
-      <text class="desig" x="157" y="412">U2 · RAM</text>
-    </a>
+        <!-- U5 · Projetos académicos · DIP (cima-esquerda) -->
+        <a class="branch" href="projetos-academicos.html">
+          <path class="trace" d="M468 285 V152 H366" />
+          <path class="pulse p2" d="M468 285 V152 H366" />
+          <circle class="via" cx="468" cy="152" r="5" />
+          <g class="comp">
+            <rect class="comp-body" x="216" y="120" width="150" height="64" rx="4" />
+            <circle class="comp-chip" cx="232" cy="136" r="5" />
+            <line class="comp-line" x1="216" y1="132" x2="206" y2="132" />
+            <line class="comp-line" x1="216" y1="148" x2="206" y2="148" />
+            <line class="comp-line" x1="216" y1="164" x2="206" y2="164" />
+            <line class="comp-line" x1="366" y1="132" x2="376" y2="132" />
+            <line class="comp-line" x1="366" y1="148" x2="376" y2="148" />
+            <line class="comp-line" x1="366" y1="164" x2="376" y2="164" />
+          </g>
+          <text class="silk" x="291" y="108" data-i18n="p.acad">Projetos académicos</text>
+          <text class="desig" x="291" y="204">U5 · IC</text>
+        </a>
 
-    <!-- U5 · Projetos académicos · DIP (cima-esquerda) -->
-    <a class="branch" href="projetos-academicos.html">
-      <path class="trace" d="M468 285 V152 H366"/>
-      <path class="pulse p2" d="M468 285 V152 H366"/>
-      <circle class="via" cx="468" cy="152" r="5"/>
-      <g class="comp">
-        <rect class="comp-body" x="216" y="120" width="150" height="64" rx="4"/>
-        <circle class="comp-chip" cx="232" cy="136" r="5"/>
-        <line class="comp-line" x1="216" y1="132" x2="206" y2="132"/>
-        <line class="comp-line" x1="216" y1="148" x2="206" y2="148"/>
-        <line class="comp-line" x1="216" y1="164" x2="206" y2="164"/>
-        <line class="comp-line" x1="366" y1="132" x2="376" y2="132"/>
-        <line class="comp-line" x1="366" y1="148" x2="376" y2="148"/>
-        <line class="comp-line" x1="366" y1="164" x2="376" y2="164"/>
-      </g>
-      <text class="silk" x="291" y="108" data-i18n="p.acad">Projetos académicos</text>
-      <text class="desig" x="291" y="204">U5 · IC</text>
-    </a>
+        <!-- U4 · Projetos produção · GPU (cima-direita) -->
+        <a class="branch" href="projeto-prod.html">
+          <path class="trace" d="M532 285 V152 H624" />
+          <path class="pulse p3" d="M532 285 V152 H624" />
+          <circle class="via" cx="532" cy="152" r="5" />
+          <g class="comp">
+            <rect class="comp-body" x="624" y="111" width="172" height="80" rx="6" />
+            <rect class="comp-chip" x="664" y="131" width="92" height="40" rx="3" />
+            <line class="comp-line" x1="640" y1="120" x2="640" y2="182" />
+            <line class="comp-line" x1="650" y1="120" x2="650" y2="182" />
+          </g>
+          <text class="silk" x="710" y="100" data-i18n="p.real">Projetos produção</text>
+          <text class="desig" x="710" y="208">U4 · GPU</text>
+        </a>
 
-    <!-- U4 · Projetos produção · GPU (cima-direita) -->
-    <a class="branch" href="projetos-reais.html">
-      <path class="trace" d="M532 285 V152 H624"/>
-      <path class="pulse p3" d="M532 285 V152 H624"/>
-      <circle class="via" cx="532" cy="152" r="5"/>
-      <g class="comp">
-        <rect class="comp-body" x="624" y="111" width="172" height="80" rx="6"/>
-        <rect class="comp-chip" x="664" y="131" width="92" height="40" rx="3"/>
-        <line class="comp-line" x1="640" y1="120" x2="640" y2="182"/>
-        <line class="comp-line" x1="650" y1="120" x2="650" y2="182"/>
-      </g>
-      <text class="silk" x="710" y="100" data-i18n="p.real">Projetos produção</text>
-      <text class="desig" x="710" y="208">U4 · GPU</text>
-    </a>
+        <!-- Y1 · Qualificações · cristal (direita) -->
+        <a class="branch" href="qualificacoes.html">
+          <path class="trace" d="M575 360 H794" />
+          <path class="pulse p4" d="M575 360 H794" />
+          <circle class="via" cx="794" cy="360" r="5" />
+          <g class="comp">
+            <rect class="comp-body" x="794" y="337" width="120" height="46" rx="22" />
+            <rect class="comp-chip" x="810" y="349" width="88" height="22" rx="11" />
+          </g>
+          <text class="silk" x="854" y="324" data-i18n="p.qual">Qualificações</text>
+          <text class="desig" x="854" y="404">Y1 · XTAL</text>
+        </a>
 
-    <!-- Y1 · Qualificações · cristal (direita) -->
-    <a class="branch" href="qualificacoes.html">
-      <path class="trace" d="M575 360 H794"/>
-      <path class="pulse p4" d="M575 360 H794"/>
-      <circle class="via" cx="794" cy="360" r="5"/>
-      <g class="comp">
-        <rect class="comp-body" x="794" y="337" width="120" height="46" rx="22"/>
-        <rect class="comp-chip" x="810" y="349" width="88" height="22" rx="11"/>
-      </g>
-      <text class="silk" x="854" y="324" data-i18n="p.qual">Qualificações</text>
-      <text class="desig" x="854" y="404">Y1 · XTAL</text>
-    </a>
+        <!-- U3 · Passado profissional · SSD (baixo) -->
+        <a class="branch" href="experiencia.html">
+          <path class="trace" d="M500 435 V566" />
+          <path class="pulse p5" d="M500 435 V566" />
+          <circle class="via" cx="500" cy="566" r="5" />
+          <g class="comp">
+            <rect class="comp-body" x="410" y="566" width="180" height="74" rx="6" />
+            <rect class="comp-chip" x="430" y="584" width="60" height="38" rx="3" />
+            <rect class="comp-chip" x="502" y="584" width="68" height="20" rx="2" />
+            <line class="comp-line" x1="502" y1="612" x2="570" y2="612" />
+          </g>
+          <text class="silk" x="500" y="556" data-i18n="p.exp">Passado profissional</text>
+          <text class="desig" x="500" y="660">U3 · SSD</text>
+        </a>
 
-    <!-- U3 · Passado profissional · SSD (baixo) -->
-    <a class="branch" href="experiencia.html">
-      <path class="trace" d="M500 435 V566"/>
-      <path class="pulse p5" d="M500 435 V566"/>
-      <circle class="via" cx="500" cy="566" r="5"/>
-      <g class="comp">
-        <rect class="comp-body" x="410" y="566" width="180" height="74" rx="6"/>
-        <rect class="comp-chip" x="430" y="584" width="60" height="38" rx="3"/>
-        <rect class="comp-chip" x="502" y="584" width="68" height="20" rx="2"/>
-        <line class="comp-line" x1="502" y1="612" x2="570" y2="612"/>
-      </g>
-      <text class="silk" x="500" y="556" data-i18n="p.exp">Passado profissional</text>
-      <text class="desig" x="500" y="660">U3 · SSD</text>
-    </a>
+        <!-- ===== Chip central (CV) ===== -->
+        <a href="cv.pdf" download>
+          <g id="chip-pins"></g>
+          <circle class="chip-glow" cx="500" cy="360" r="92" />
+          <rect class="chip-body" x="425" y="285" width="150" height="150" rx="10" />
+          <circle class="chip-notch" cx="441" cy="301" r="5" />
+          <text class="chip-label" x="500" y="368">CV</text>
+          <text class="chip-sub" x="500" y="392">U1 · DESCARREGAR</text>
+        </a>
+      </svg>
+    </div>
 
-    <!-- ===== Chip central (CV) ===== -->
-    <a href="cv.pdf" download>
-      <g id="chip-pins"></g>
-      <circle class="chip-glow" cx="500" cy="360" r="92"/>
-      <rect class="chip-body" x="425" y="285" width="150" height="150" rx="10"/>
-      <circle class="chip-notch" cx="441" cy="301" r="5"/>
-      <text class="chip-label" x="500" y="368">CV</text>
-      <text class="chip-sub" x="500" y="392">U1 · DESCARREGAR</text>
-    </a>
-  </svg>
-</div>
+    <!-- ============ Mobile (lista) ============ -->
+    <nav class="stack-nav" aria-label="Secções do portefólio">
+      <a class="chip-card" href="cv.pdf" download>
+        <span class="cc-label" data-i18n="cv.label">Descarregar CV</span>
+        <span class="cc-sub">U1 · CHIP CENTRAL</span>
+      </a>
+      <a class="comp-card" href="sobre.html"
+        ><span class="ic"></span><span class="ml" data-i18n="p.about">Sobre mim</span
+        ><span class="dg">U2</span><span class="arr">→</span></a
+      >
+      <a class="comp-card" href="experiencia.html"
+        ><span class="ic"></span><span class="ml" data-i18n="p.exp">Passado profissional</span
+        ><span class="dg">U3</span><span class="arr">→</span></a
+      >
+      <a class="comp-card" href="projeto-prod.html"
+        ><span class="ic"></span><span class="ml" data-i18n="p.real">Projetos produção</span
+        ><span class="dg">U4</span><span class="arr">→</span></a
+      >
+      <a class="comp-card" href="projetos-academicos.html"
+        ><span class="ic"></span><span class="ml" data-i18n="p.acad">Projetos académicos</span
+        ><span class="dg">U5</span><span class="arr">→</span></a
+      >
+      <a class="comp-card" href="qualificacoes.html"
+        ><span class="ic"></span><span class="ml" data-i18n="p.qual">Qualificações</span
+        ><span class="dg">Y1</span><span class="arr">→</span></a
+      >
+    </nav>
 
-<!-- ============ Mobile (lista) ============ -->
-<nav class="stack-nav" aria-label="Secções do portefólio">
-  <a class="chip-card" href="cv.pdf" download>
-    <span class="cc-label" data-i18n="cv.label">Descarregar CV</span>
-    <span class="cc-sub">U1 · CHIP CENTRAL</span>
-  </a>
-  <a class="comp-card" href="sobre.html"><span class="ic"></span><span class="ml" data-i18n="p.about">Sobre mim</span><span class="dg">U2</span><span class="arr">→</span></a>
-  <a class="comp-card" href="experiencia.html"><span class="ic"></span><span class="ml" data-i18n="p.exp">Passado profissional</span><span class="dg">U3</span><span class="arr">→</span></a>
-  <a class="comp-card" href="projetos-reais.html"><span class="ic"></span><span class="ml" data-i18n="p.real">Projetos produção</span><span class="dg">U4</span><span class="arr">→</span></a>
-  <a class="comp-card" href="projetos-academicos.html"><span class="ic"></span><span class="ml" data-i18n="p.acad">Projetos académicos</span><span class="dg">U5</span><span class="arr">→</span></a>
-  <a class="comp-card" href="qualificacoes.html"><span class="ic"></span><span class="ml" data-i18n="p.qual">Qualificações</span><span class="dg">Y1</span><span class="arr">→</span></a>
-</nav>
+    <footer>
+      <span
+        >© <span id="year"></span> Lloyd Costa ·
+        <a href="https://github.com/Geoffrey87" target="_blank" rel="noopener">GitHub</a> ·
+        <a href="https://linkedin.com/in/lloyd-costa-3355a0b1" target="_blank" rel="noopener"
+          >LinkedIn</a
+        ></span
+      >
+    </footer>
 
-<footer>
-  <span>© <span id="year"></span> Lloyd Costa · <a href="https://github.com/Geoffrey87" target="_blank" rel="noopener">GitHub</a> · <a href="https://linkedin.com/in/lloyd-costa-3355a0b1" target="_blank" rel="noopener">LinkedIn</a></span>
-</footer>
+    <script>
+      const SVGNS = "http://www.w3.org/2000/svg";
 
-<script>
-  const SVGNS = "http://www.w3.org/2000/svg";
+      // ---------- Pinos do chip central ----------
+      (function chipPins() {
+        const g = document.getElementById("chip-pins");
+        const x0 = 425,
+          y0 = 285,
+          size = 150,
+          n = 6,
+          pinL = 9,
+          pinW = 7,
+          gap = size / (n + 1);
+        function pin(x, y, w, h) {
+          const r = document.createElementNS(SVGNS, "rect");
+          r.setAttribute("x", x);
+          r.setAttribute("y", y);
+          r.setAttribute("width", w);
+          r.setAttribute("height", h);
+          r.setAttribute("rx", "1.5");
+          r.setAttribute("class", "pin");
+          g.appendChild(r);
+        }
+        for (let i = 1; i <= n; i++) {
+          const p = x0 + gap * i - pinW / 2;
+          pin(p, y0 - pinL, pinW, pinL); // topo
+          pin(p, y0 + size, pinW, pinL); // fundo
+          const q = y0 + gap * i - pinW / 2;
+          pin(x0 - pinL, q, pinL, pinW); // esquerda
+          pin(x0 + size, q, pinL, pinW); // direita
+        }
+      })();
 
-  // ---------- Pinos do chip central ----------
-  (function chipPins() {
-    const g = document.getElementById("chip-pins");
-    const x0 = 425, y0 = 285, size = 150, n = 6, pinL = 9, pinW = 7, gap = size / (n + 1);
-    function pin(x, y, w, h) {
-      const r = document.createElementNS(SVGNS, "rect");
-      r.setAttribute("x", x); r.setAttribute("y", y);
-      r.setAttribute("width", w); r.setAttribute("height", h);
-      r.setAttribute("rx", "1.5"); r.setAttribute("class", "pin");
-      g.appendChild(r);
-    }
-    for (let i = 1; i <= n; i++) {
-      const p = x0 + gap * i - pinW / 2;
-      pin(p, y0 - pinL, pinW, pinL);            // topo
-      pin(p, y0 + size, pinW, pinL);            // fundo
-      const q = y0 + gap * i - pinW / 2;
-      pin(x0 - pinL, q, pinL, pinW);            // esquerda
-      pin(x0 + size, q, pinL, pinW);            // direita
-    }
-  })();
+      // ---------- Decoração (pads, resistências, condensadores) ----------
+      (function deco() {
+        const g = document.getElementById("deco");
+        const pads = [
+          [70, 70],
+          [930, 70],
+          [70, 650],
+          [930, 650],
+          [300, 640],
+          [700, 650],
+          [120, 500],
+          [880, 500],
+          [160, 210],
+          [840, 210],
+        ];
+        pads.forEach(([x, y]) => {
+          const c = document.createElementNS(SVGNS, "circle");
+          c.setAttribute("cx", x);
+          c.setAttribute("cy", y);
+          c.setAttribute("r", "6");
+          c.setAttribute("class", "pad");
+          g.appendChild(c);
+        });
+        const res = [
+          [120, 120, 18, 40],
+          [860, 120, 18, 40],
+          [110, 580, 40, 16],
+          [860, 580, 40, 16],
+        ];
+        res.forEach(([x, y, w, h]) => {
+          const r = document.createElementNS(SVGNS, "rect");
+          r.setAttribute("x", x);
+          r.setAttribute("y", y);
+          r.setAttribute("width", w);
+          r.setAttribute("height", h);
+          r.setAttribute("rx", "2");
+          r.setAttribute("class", "deco-r");
+          g.appendChild(r);
+        });
+      })();
 
-  // ---------- Decoração (pads, resistências, condensadores) ----------
-  (function deco() {
-    const g = document.getElementById("deco");
-    const pads = [[70,70],[930,70],[70,650],[930,650],[300,640],[700,650],[120,500],[880,500],[160,210],[840,210]];
-    pads.forEach(([x,y]) => {
-      const c = document.createElementNS(SVGNS, "circle");
-      c.setAttribute("cx", x); c.setAttribute("cy", y); c.setAttribute("r", "6");
-      c.setAttribute("class", "pad"); g.appendChild(c);
-    });
-    const res = [[120,120,18,40],[860,120,18,40],[110,580,40,16],[860,580,40,16]];
-    res.forEach(([x,y,w,h]) => {
-      const r = document.createElementNS(SVGNS, "rect");
-      r.setAttribute("x", x); r.setAttribute("y", y);
-      r.setAttribute("width", w); r.setAttribute("height", h); r.setAttribute("rx", "2");
-      r.setAttribute("class", "deco-r"); g.appendChild(r);
-    });
-  })();
+      // ---------- Tema ----------
+      const root = document.documentElement;
+      const themeBtn = document.getElementById("themeToggle");
+      function safeGet(k) {
+        try {
+          return localStorage.getItem(k);
+        } catch (e) {
+          return null;
+        }
+      }
+      function safeSet(k, v) {
+        try {
+          localStorage.setItem(k, v);
+        } catch (e) {}
+      }
+      const savedTheme = safeGet("theme");
+      if (savedTheme) root.setAttribute("data-theme", savedTheme);
+      themeBtn.addEventListener("click", () => {
+        const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        root.setAttribute("data-theme", next);
+        safeSet("theme", next);
+        applyLang(currentLang);
+      });
 
-  // ---------- Tema ----------
-  const root = document.documentElement;
-  const themeBtn = document.getElementById("themeToggle");
-  function safeGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
-  function safeSet(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
-  const savedTheme = safeGet("theme");
-  if (savedTheme) root.setAttribute("data-theme", savedTheme);
-  themeBtn.addEventListener("click", () => {
-    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-    root.setAttribute("data-theme", next); safeSet("theme", next); applyLang(currentLang);
-  });
+      // ---------- Idioma ----------
+      const langBtn = document.getElementById("langToggle");
+      const t = {
+        pt: {
+          "intro.eyebrow": "// programador full-stack · Coimbra",
+          "intro.h1": "A placa de Lloyd Costa",
+          "intro.hint": "Passa o rato num componente · clica para abrir · o chip central é o CV",
+          "cv.label": "Descarregar CV",
+          "p.about": "Sobre mim",
+          "p.exp": "Passado profissional",
+          "p.real": "Projetos produção",
+          "p.acad": "Projetos académicos",
+          "p.qual": "Qualificações",
+          "theme.toLight": "claro",
+          "theme.toDark": "escuro",
+        },
+        en: {
+          "intro.eyebrow": "// full-stack developer · Coimbra",
+          "intro.h1": "Lloyd Costa's board",
+          "intro.hint": "Hover a component · click to open · the central chip is the CV",
+          "cv.label": "Download CV",
+          "p.about": "About me",
+          "p.exp": "Experience",
+          "p.real": "Live projects",
+          "p.acad": "Academic projects",
+          "p.qual": "Qualifications",
+          "theme.toLight": "light",
+          "theme.toDark": "dark",
+        },
+      };
+      let currentLang = safeGet("lang") || "pt";
+      function applyLang(lang) {
+        currentLang = lang;
+        root.lang = lang;
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          if (t[lang][key] !== undefined) el.textContent = t[lang][key];
+        });
+        const isDark = root.getAttribute("data-theme") !== "light";
+        themeBtn.textContent = t[lang][isDark ? "theme.toLight" : "theme.toDark"];
+        langBtn.textContent = lang === "pt" ? "EN" : "PT";
+      }
+      langBtn.addEventListener("click", () => {
+        const next = currentLang === "pt" ? "en" : "pt";
+        safeSet("lang", next);
+        applyLang(next);
+      });
 
-  // ---------- Idioma ----------
-  const langBtn = document.getElementById("langToggle");
-  const t = {
-    pt: {
-      "intro.eyebrow": "// programador full-stack · Coimbra",
-      "intro.h1": "A placa de Lloyd Costa",
-      "intro.hint": "Passa o rato num componente · clica para abrir · o chip central é o CV",
-      "cv.label": "Descarregar CV",
-      "p.about": "Sobre mim", "p.exp": "Passado profissional",
-      "p.real": "Projetos produção", "p.acad": "Projetos académicos", "p.qual": "Qualificações",
-      "theme.toLight": "claro", "theme.toDark": "escuro",
-    },
-    en: {
-      "intro.eyebrow": "// full-stack developer · Coimbra",
-      "intro.h1": "Lloyd Costa's board",
-      "intro.hint": "Hover a component · click to open · the central chip is the CV",
-      "cv.label": "Download CV",
-      "p.about": "About me", "p.exp": "Experience",
-      "p.real": "Live projects", "p.acad": "Academic projects", "p.qual": "Qualifications",
-      "theme.toLight": "light", "theme.toDark": "dark",
-    }
-  };
-  let currentLang = safeGet("lang") || "pt";
-  function applyLang(lang) {
-    currentLang = lang; root.lang = lang;
-    document.querySelectorAll("[data-i18n]").forEach((el) => {
-      const key = el.getAttribute("data-i18n");
-      if (t[lang][key] !== undefined) el.textContent = t[lang][key];
-    });
-    const isDark = root.getAttribute("data-theme") !== "light";
-    themeBtn.textContent = t[lang][isDark ? "theme.toLight" : "theme.toDark"];
-    langBtn.textContent = lang === "pt" ? "EN" : "PT";
-  }
-  langBtn.addEventListener("click", () => {
-    const next = currentLang === "pt" ? "en" : "pt"; safeSet("lang", next); applyLang(next);
-  });
-
-  document.getElementById("year").textContent = new Date().getFullYear();
-  applyLang(currentLang);
-</script>
-</body>
+      document.getElementById("year").textContent = new Date().getFullYear();
+      applyLang(currentLang);
+    </script>
+  </body>
 </html>
