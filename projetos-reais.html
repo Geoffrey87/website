@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="pt" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Projetos produção — Lloyd Costa</title>
+<meta name="description" content="Projetos em produção de Lloyd Costa: MyNook, plataforma social full-stack." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #ecebe4; --muted: #828a96; --accent: #f4b23e; --accent-ink: #1a1408;
+    --border: #243049; --bg-1: #0a0d0c; --bg-2: #0d1311; --via: #d7af57;
+    --copper: #c79f47; --node: #0a3a2c;
+  }
+  [data-theme="light"] {
+    --ink: #1a1c20; --muted: #6a6f78; --accent: #b5790e; --accent-ink: #1a1408;
+    --border: #cdd2c9; --bg-1: #eef1ec; --bg-2: #e6ebe4; --via: #9c6c18;
+    --copper: #a9761c; --node: #18815f;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; color: var(--ink); font-family: "Inter", system-ui, sans-serif; line-height: 1.65;
+    background: linear-gradient(160deg, var(--bg-1), var(--bg-2)); background-attachment: fixed;
+    min-height: 100vh; -webkit-font-smoothing: antialiased; transition: color .3s ease;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 24px; border-bottom: 1px solid var(--border);
+  }
+  .back { font-family: "JetBrains Mono", monospace; font-size: .9rem; text-decoration: none; display: inline-flex; gap: 6px; align-items: center; }
+  .back:hover { color: var(--accent); }
+  .controls { display: flex; gap: 10px; }
+  .toggle {
+    font-family: "JetBrains Mono", monospace; font-size: .8rem;
+    background: color-mix(in srgb, var(--ink) 7%, transparent); color: var(--ink);
+    border: 1px solid var(--border); border-radius: 999px; padding: 7px 13px; cursor: pointer;
+    transition: border-color .2s, transform .1s;
+  }
+  .toggle:hover { border-color: var(--accent); } .toggle:active { transform: scale(.96); }
+  main { max-width: 720px; margin: 0 auto; padding: 46px 24px 20px; }
+  .eyebrow { font-family: "JetBrains Mono", monospace; font-size: .76rem; letter-spacing: .04em; color: var(--accent); text-transform: uppercase; margin: 0 0 10px; }
+  .desig { color: var(--via); }
+  h1.page-title { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: clamp(2rem, 6vw, 3rem); letter-spacing: -.02em; margin: 0 0 34px; }
+
+  .project-card {
+    border: 1px solid var(--border); border-radius: 14px;
+    padding: 28px 28px 24px;
+    background: color-mix(in srgb, var(--node) 25%, transparent);
+    margin-bottom: 32px;
+  }
+  .project-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
+  .project-name { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 1.45rem; letter-spacing: -.01em; margin: 0; }
+  .badge {
+    font-family: "JetBrains Mono", monospace; font-size: .72rem; letter-spacing: .04em;
+    padding: 4px 11px; border-radius: 999px; white-space: nowrap; flex: none;
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+    color: var(--accent);
+  }
+  .project-sub { font-family: "JetBrains Mono", monospace; font-size: .8rem; color: var(--via); margin: 0 0 16px; }
+  .project-desc { margin: 0 0 20px; font-size: 1rem; color: var(--muted); }
+  .project-desc strong { color: var(--ink); font-weight: 600; }
+  .project-desc a { color: var(--accent); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); }
+  .project-desc a:hover { border-color: var(--accent); }
+  .feature-list { list-style: none; margin: 0 0 22px; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+  .feature-list li { font-size: .95rem; display: flex; gap: 10px; align-items: baseline; }
+  .feature-list li::before { content: "→"; font-family: "JetBrains Mono", monospace; font-size: .8rem; color: var(--copper); flex: none; }
+  .stack { display: flex; flex-wrap: wrap; gap: 7px; }
+  .pill {
+    font-family: "JetBrains Mono", monospace; font-size: .74rem;
+    padding: 3px 10px; border-radius: 999px;
+    background: color-mix(in srgb, var(--border) 60%, transparent);
+    border: 1px solid var(--border); color: var(--muted);
+  }
+  .section-label { font-family: "JetBrains Mono", monospace; font-size: .72rem; color: var(--via); text-transform: uppercase; letter-spacing: .05em; margin: 0 0 10px; }
+
+  [data-lang="en"] { display: none; }
+  html[lang="en"] [data-lang="pt"] { display: none; }
+  html[lang="en"] [data-lang="en"] { display: block; }
+  footer { max-width: 720px; margin: 0 auto; padding: 30px 24px 40px; border-top: 1px solid var(--border); font-family: "JetBrains Mono", monospace; font-size: .78rem; color: var(--muted); }
+  footer a { color: var(--muted); text-decoration: none; } footer a:hover { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="back" href="index.html">← <span data-i18n="nav.board">placa</span></a>
+  <div class="controls">
+    <button class="toggle" id="langToggle" aria-label="Mudar idioma">EN</button>
+    <button class="toggle" id="themeToggle" aria-label="Mudar tema" data-i18n="theme.toLight">claro</button>
+  </div>
+</header>
+
+<main>
+  <!-- ===== PT ===== -->
+  <div data-lang="pt">
+    <p class="eyebrow">// projetos produção · <span class="desig">U4 · GPU</span></p>
+    <h1 class="page-title">Projetos produção</h1>
+
+    <div class="project-card">
+      <div class="project-header">
+        <h2 class="project-name">MyNook</h2>
+        <span class="badge">Em desenvolvimento</span>
+      </div>
+      <p class="project-sub">Plataforma social full-stack · 2026</p>
+      <p class="project-desc">
+        Uma rede social construída de raiz, com foco em <strong>privacidade, segurança e experiência de utilizador</strong>. Os utilizadores podem publicar, partilhar fotos, gerir amizades por categorias (amigos, família) e personalizar o seu perfil com temas únicos.
+      </p>
+      <p class="section-label">Funcionalidades principais</p>
+      <ul class="feature-list">
+        <li>Feed de posts com fotos (até 4 por publicação) e visibilidade configurável por categoria de amizade</li>
+        <li>Sistema de notificações em tempo real via SignalR (WebSocket)</li>
+        <li>Autenticação JWT com refresh token rotation e 2FA TOTP (Google Authenticator)</li>
+        <li>Perfis personalizáveis: temas de fundo, fontes, bordas e elementos animados</li>
+        <li>Painel de administração com moderação de conteúdo e gestão de denúncias</li>
+        <li>Conformidade RGPD: exportação de dados e eliminação de conta com anonimização faseada</li>
+        <li>Interface disponível em PT, EN, ES e FR</li>
+      </ul>
+      <p class="section-label">Stack</p>
+      <div class="stack">
+        <span class="pill">ASP.NET Core 10</span>
+        <span class="pill">C# 13</span>
+        <span class="pill">Next.js 16</span>
+        <span class="pill">React 19</span>
+        <span class="pill">TypeScript</span>
+        <span class="pill">PostgreSQL</span>
+        <span class="pill">Entity Framework Core</span>
+        <span class="pill">SignalR</span>
+        <span class="pill">Tailwind CSS</span>
+        <span class="pill">Docker</span>
+        <span class="pill">Cloudinary</span>
+        <span class="pill">Resend</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== EN ===== -->
+  <div data-lang="en">
+    <p class="eyebrow">// live projects · <span class="desig">U4 · GPU</span></p>
+    <h1 class="page-title">Live projects</h1>
+
+    <div class="project-card">
+      <div class="project-header">
+        <h2 class="project-name">MyNook</h2>
+        <span class="badge">In development</span>
+      </div>
+      <p class="project-sub">Full-stack social platform · 2026</p>
+      <p class="project-desc">
+        A social network built from scratch, focused on <strong>privacy, security and user experience</strong>. Users can post, share photos, manage friendships by category (friends, family) and personalise their profile with unique themes.
+      </p>
+      <p class="section-label">Key features</p>
+      <ul class="feature-list">
+        <li>Post feed with photos (up to 4 per post) and visibility configurable by friendship category</li>
+        <li>Real-time notification system via SignalR (WebSocket)</li>
+        <li>JWT authentication with refresh token rotation and TOTP 2FA (Google Authenticator)</li>
+        <li>Customisable profiles: background themes, fonts, borders and animated floating elements</li>
+        <li>Admin panel with content moderation and report management</li>
+        <li>GDPR compliance: data export and account deletion with phased anonymisation</li>
+        <li>Interface available in PT, EN, ES and FR</li>
+      </ul>
+      <p class="section-label">Stack</p>
+      <div class="stack">
+        <span class="pill">ASP.NET Core 10</span>
+        <span class="pill">C# 13</span>
+        <span class="pill">Next.js 16</span>
+        <span class="pill">React 19</span>
+        <span class="pill">TypeScript</span>
+        <span class="pill">PostgreSQL</span>
+        <span class="pill">Entity Framework Core</span>
+        <span class="pill">SignalR</span>
+        <span class="pill">Tailwind CSS</span>
+        <span class="pill">Docker</span>
+        <span class="pill">Cloudinary</span>
+        <span class="pill">Resend</span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <span>© <span id="year"></span> Lloyd Costa · <a href="index.html" data-i18n="nav.backBoard">← voltar à placa</a></span>
+</footer>
+
+<script>
+  const root = document.documentElement;
+  function safeGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+  function safeSet(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
+  const themeBtn = document.getElementById("themeToggle");
+  const langBtn  = document.getElementById("langToggle");
+  const ui = {
+    pt: { "theme.toLight": "claro", "theme.toDark": "escuro", "nav.board": "placa", "nav.backBoard": "← voltar à placa" },
+    en: { "theme.toLight": "light", "theme.toDark": "dark", "nav.board": "board", "nav.backBoard": "← back to board" }
+  };
+  let lang = safeGet("lang") || "pt";
+  const savedTheme = safeGet("theme"); if (savedTheme) root.setAttribute("data-theme", savedTheme);
+  function applyLang(l) {
+    lang = l; root.lang = l;
+    document.querySelectorAll("[data-i18n]").forEach(el => { const k = el.getAttribute("data-i18n"); if (ui[l][k] !== undefined) el.textContent = ui[l][k]; });
+    const isDark = root.getAttribute("data-theme") !== "light";
+    themeBtn.textContent = ui[l][isDark ? "theme.toLight" : "theme.toDark"];
+    langBtn.textContent = l === "pt" ? "EN" : "PT";
+  }
+  themeBtn.addEventListener("click", () => { const n = root.getAttribute("data-theme") === "light" ? "dark" : "light"; root.setAttribute("data-theme", n); safeSet("theme", n); applyLang(lang); });
+  langBtn.addEventListener("click", () => { const n = lang === "pt" ? "en" : "pt"; safeSet("lang", n); applyLang(n); });
+  document.getElementById("year").textContent = new Date().getFullYear();
+  applyLang(lang);
+</script>
+</body>
+</html>
