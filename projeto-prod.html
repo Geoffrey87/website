@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Projeto em produção — Lloyd Costa</title>
+    <title>Projeto em produção · Lloyd Costa</title>
     <meta
       name="description"
-      content="MyNook — a rede social full-stack em produção, projeto principal de Lloyd Costa." />
+      content="MyNook, a rede social full-stack em produção, projeto principal de Lloyd Costa." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -299,13 +299,34 @@
         margin: 0 0 10px;
       }
 
-      /* secções expansíveis */
+      /* sub-cabeçalhos e narrativa */
       .tech-title {
         font-family: "Bricolage Grotesque", sans-serif;
         font-weight: 700;
         font-size: 1.05rem;
-        margin: 4px 0 14px;
+        margin: 6px 0 14px;
       }
+      .story {
+        margin: 0 0 26px;
+      }
+      .story p {
+        font-size: 0.96rem;
+        color: var(--muted);
+        margin: 0 0 14px;
+      }
+      .story p:last-child {
+        margin-bottom: 0;
+      }
+      .story strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .story em {
+        color: var(--ink);
+        font-style: italic;
+      }
+
+      /* secções expansíveis */
       .tech {
         border: 1px solid var(--border);
         border-radius: 10px;
@@ -468,9 +489,9 @@
         <p class="eyebrow">// projeto em produção · <span class="desig">U4 · GPU</span></p>
         <h1 class="page-title">Projeto em produção</h1>
         <p class="lead">
-          O meu <strong>projeto principal</strong> — uma rede social construída de raiz, de ponta a
-          ponta, e o lugar onde mais cresci como programador. Está em produção e em evolução
-          contínua.
+          O MyNook nasceu de uma convicção simples: as redes sociais perderam o rumo. Quis construir
+          uma alternativa onde a privacidade não é uma definição escondida, mas o ponto de partida,
+          e onde és tu a decidir quem vê cada coisa.
         </p>
 
         <div class="project-card">
@@ -491,7 +512,7 @@
             <div class="shot">
               <img
                 src="screenshots/mynook-1.png"
-                alt="MyNook — captura 1"
+                alt="MyNook, captura 1"
                 onerror="this.closest('.shot').classList.add('ph')" /><span class="ph-label"
                 >screenshots/mynook-1.png</span
               >
@@ -499,7 +520,7 @@
             <div class="shot">
               <img
                 src="screenshots/mynook-2.png"
-                alt="MyNook — captura 2"
+                alt="MyNook, captura 2"
                 onerror="this.closest('.shot').classList.add('ph')" /><span class="ph-label"
                 >screenshots/mynook-2.png</span
               >
@@ -507,7 +528,7 @@
             <div class="shot">
               <img
                 src="screenshots/mynook-3.png"
-                alt="MyNook — captura 3"
+                alt="MyNook, captura 3"
                 onerror="this.closest('.shot').classList.add('ph')" /><span class="ph-label"
                 >screenshots/mynook-3.png</span
               >
@@ -546,6 +567,29 @@
             <span class="pill">Resend + React Email</span>
           </div>
 
+          <p class="tech-title">A ideia por trás</p>
+          <div class="story">
+            <p>
+              Quando me perguntei o que é que mudava hoje, a primeira resposta foi imediata: as
+              redes sociais. Começaram por ser boas, mas tornaram-se cada vez mais manipuladoras,
+              até virarem um ninho de desinformação e ódio. Depois de ver o documentário
+              <em>The Great Hack</em>, que reflete bastante o que penso, deixei de publicar fotos em
+              2019.
+            </p>
+            <p>
+              Foi daí que veio o mynook.social (Meu Recanto): uma rede social com a privacidade no
+              centro. Os perfis públicos mostram apenas o nome e a foto de perfil; um perfil privado
+              fica completamente oculto, nem aparece na barra de pesquisa.
+            </p>
+            <p>
+              A maior diferença está nas amizades. Ao adicionar alguém, classificamo-lo como
+              família, amigo ou ambos, e é isso que define quem vê cada publicação. Em vez de
+              privatizar foto a foto, a restrição vive na própria relação. Todos temos fotos que
+              preferíamos que a família não visse, e outras que só faz sentido partilhar com ela. No
+              MyNook, isso resolve-se à partida.
+            </p>
+          </div>
+
           <p class="tech-title">Por dentro do MyNook</p>
 
           <details class="tech">
@@ -556,10 +600,6 @@
                 <strong>diagramas de domínio</strong> para mapear as entidades necessárias e as
                 relações entre elas. Só depois de ter o modelo completo é que parti para a
                 implementação.
-              </p>
-              <p>
-                Naturalmente, ao longo do desenvolvimento revi várias decisões iniciais — e, como
-                costuma acontecer, o diagrama acabou por ficar desatualizado face ao produto final.
               </p>
             </div>
           </details>
@@ -573,13 +613,13 @@
               </p>
               <ul>
                 <li>
-                  <strong>Controllers</strong> finos — recebem o pedido HTTP, validam e delegam; sem
-                  lógica de negócio.
+                  <strong>Controllers</strong> finos, que recebem o pedido HTTP, validam e delegam,
+                  sem lógica de negócio.
                 </li>
-                <li><strong>Service layer</strong> — concentra toda a lógica de negócio.</li>
-                <li><strong>Factories</strong> — responsáveis pela criação das entidades.</li>
+                <li><strong>Service layer</strong> que concentra toda a lógica de negócio.</li>
+                <li><strong>Factories</strong> responsáveis pela criação das entidades.</li>
                 <li>
-                  <strong>Global Exception Handler</strong> — trata todas as exceções num único
+                  <strong>Global Exception Handler</strong> que trata todas as exceções num único
                   ponto, devolvendo sempre o mesmo formato de resposta.
                 </li>
               </ul>
@@ -603,10 +643,10 @@
               <p>A segurança foi uma prioridade desde o início:</p>
               <ul>
                 <li>
-                  JWT (HS256): access token de 15 min + refresh token rotation (7 dias, tokens
+                  JWT (HS256): access token de 15 min, com refresh token rotation (7 dias, tokens
                   opacos de 64 bytes).
                 </li>
-                <li>2FA TOTP via Otp.NET — compatível com Google Authenticator e Authy.</li>
+                <li>2FA TOTP via Otp.NET, compatível com Google Authenticator e Authy.</li>
                 <li>Passwords protegidas com bcrypt (BCrypt.Net-Next).</li>
                 <li>Bloqueio de conta após 5 tentativas falhadas (15 min).</li>
                 <li>
@@ -620,8 +660,8 @@
                 <li>Security headers em todas as respostas (CSP, HSTS, X-Frame-Options, etc.).</li>
                 <li>Audit log de todas as ações relevantes, com retenção configurável.</li>
                 <li>
-                  Background service diário que limpa tokens expirados e logs antigos, e
-                  anonimiza/elimina contas agendadas para remoção.
+                  Background service diário que limpa tokens expirados e logs antigos, e anonimiza
+                  ou elimina contas agendadas para remoção.
                 </li>
               </ul>
             </div>
@@ -632,7 +672,7 @@
             <div class="tech-body">
               <ul>
                 <li>
-                  Sessão gerida inteiramente no servidor — os tokens nunca chegam ao JavaScript do
+                  Sessão gerida inteiramente no servidor: os tokens nunca chegam ao JavaScript do
                   browser.
                 </li>
                 <li>
@@ -652,8 +692,8 @@
                   limit (429) e injeção do Bearer token.
                 </li>
                 <li>
-                  Painel de administração com proteção dupla: middleware + verificação server-side
-                  no layout.
+                  Painel de administração com proteção dupla: middleware mais verificação
+                  server-side no layout.
                 </li>
                 <li>
                   Fluxo de 2FA com cookie temporário (pending_2fa_token, 5 min) entre o login e a
@@ -668,12 +708,9 @@
             <summary>Infraestrutura &amp; deploy</summary>
             <div class="tech-body">
               <ul>
+                <li>Alojado num servidor cloud Hetzner (2 vCPU, 4 GB RAM, 40 GB).</li>
                 <li>
-                  Alojado num servidor cloud Hetzner (2 vCPU, 4 GB RAM, 40 GB), por cerca de 5
-                  €/mês.
-                </li>
-                <li>
-                  Imagens guardadas na Cloudinary (limite de 10 MB por ficheiro; sem vídeos), com
+                  Imagens guardadas na Cloudinary (limite de 10 MB por ficheiro, sem vídeos), com
                   folga até 25 GB.
                 </li>
                 <li>
@@ -693,7 +730,7 @@
               <p>
                 Implementei a conformidade com o RGPD de forma deliberada. Os únicos dados pessoais
                 a que tenho acesso são os <strong>emails</strong> e as <strong>fotos</strong> dos
-                utilizadores — estas mantidas de forma privada na Cloudinary. A aplicação inclui
+                utilizadores, estas mantidas de forma privada na Cloudinary. A aplicação inclui
                 exportação de dados e eliminação de conta com anonimização faseada.
               </p>
             </div>
@@ -728,8 +765,9 @@
         <p class="eyebrow">// live project · <span class="desig">U4 · GPU</span></p>
         <h1 class="page-title">Live project</h1>
         <p class="lead">
-          My <strong>main project</strong> — a social network built from scratch, end to end, and
-          the place where I've grown the most as a developer. It's live and continuously evolving.
+          MyNook was born from a simple conviction: social media has lost its way. I wanted to build
+          an alternative where privacy isn't a hidden setting but the starting point, and where you
+          decide who sees what.
         </p>
 
         <div class="project-card">
@@ -749,7 +787,7 @@
             <div class="shot">
               <img
                 src="screenshots/mynook-1.png"
-                alt="MyNook — screenshot 1"
+                alt="MyNook, screenshot 1"
                 onerror="this.closest('.shot').classList.add('ph')" /><span class="ph-label"
                 >screenshots/mynook-1.png</span
               >
@@ -757,7 +795,7 @@
             <div class="shot">
               <img
                 src="screenshots/mynook-2.png"
-                alt="MyNook — screenshot 2"
+                alt="MyNook, screenshot 2"
                 onerror="this.closest('.shot').classList.add('ph')" /><span class="ph-label"
                 >screenshots/mynook-2.png</span
               >
@@ -765,7 +803,7 @@
             <div class="shot">
               <img
                 src="screenshots/mynook-3.png"
-                alt="MyNook — screenshot 3"
+                alt="MyNook, screenshot 3"
                 onerror="this.closest('.shot').classList.add('ph')" /><span class="ph-label"
                 >screenshots/mynook-3.png</span
               >
@@ -804,6 +842,29 @@
             <span class="pill">Resend + React Email</span>
           </div>
 
+          <p class="tech-title">The idea behind it</p>
+          <div class="story">
+            <p>
+              When I asked myself what I would change today, the answer was immediate: social media.
+              It started out good, but became increasingly manipulative, to the point of turning
+              into a breeding ground for misinformation and hate. After watching the documentary
+              <em>The Great Hack</em>, which closely reflects what I think, I stopped posting photos
+              in 2019.
+            </p>
+            <p>
+              That's where mynook.social (My Nook) came from: a social network with privacy at its
+              core. Public profiles show only the name and profile picture; a private profile stays
+              completely hidden, not even appearing in search.
+            </p>
+            <p>
+              The biggest difference is in friendships. When you add someone, you classify them as
+              family, friend, or both, and that's what decides who sees each post. Instead of
+              privatising photo by photo, the restriction lives in the relationship itself. We all
+              have photos we'd rather family didn't see, and others that only make sense to share
+              with them. On MyNook, that's handled from the start.
+            </p>
+          </div>
+
           <p class="tech-title">Under the hood</p>
 
           <details class="tech">
@@ -814,10 +875,6 @@
                 <strong>domain diagrams</strong> to map out the entities I'd need and the
                 relationships between them. Only once the model was complete did I move on to
                 implementation.
-              </p>
-              <p>
-                Naturally, throughout development I revisited several early decisions — and, as
-                usually happens, the diagram ended up out of date compared to the final product.
               </p>
             </div>
           </details>
@@ -831,14 +888,14 @@
               </p>
               <ul>
                 <li>
-                  <strong>Thin controllers</strong> — receive the HTTP request, validate and
-                  delegate; no business logic.
+                  <strong>Thin controllers</strong> that receive the HTTP request, validate and
+                  delegate, with no business logic.
                 </li>
-                <li><strong>Service layer</strong> — holds all the business logic.</li>
-                <li><strong>Factories</strong> — responsible for creating entities.</li>
+                <li><strong>Service layer</strong> that holds all the business logic.</li>
+                <li><strong>Factories</strong> responsible for creating entities.</li>
                 <li>
-                  <strong>Global Exception Handler</strong> — handles all exceptions in one place,
-                  always returning the same response format.
+                  <strong>Global Exception Handler</strong> that handles all exceptions in one
+                  place, always returning the same response format.
                 </li>
               </ul>
               <p>
@@ -861,10 +918,10 @@
               <p>Security was a priority from the start:</p>
               <ul>
                 <li>
-                  JWT (HS256): 15-min access token + refresh token rotation (7 days, opaque 64-byte
-                  tokens).
+                  JWT (HS256): 15-min access token, with refresh token rotation (7 days, opaque
+                  64-byte tokens).
                 </li>
-                <li>TOTP 2FA via Otp.NET — compatible with Google Authenticator and Authy.</li>
+                <li>TOTP 2FA via Otp.NET, compatible with Google Authenticator and Authy.</li>
                 <li>Passwords protected with bcrypt (BCrypt.Net-Next).</li>
                 <li>Account lockout after 5 failed attempts (15 min).</li>
                 <li>Email verification with MX record validation (filters invalid domains).</li>
@@ -876,8 +933,8 @@
                 <li>Security headers on every response (CSP, HSTS, X-Frame-Options, etc.).</li>
                 <li>Audit log of all relevant actions, with configurable retention.</li>
                 <li>
-                  Daily background service that clears expired tokens and old logs, and
-                  anonymises/deletes accounts scheduled for removal.
+                  Daily background service that clears expired tokens and old logs, and anonymises
+                  or deletes accounts scheduled for removal.
                 </li>
               </ul>
             </div>
@@ -888,8 +945,7 @@
             <div class="tech-body">
               <ul>
                 <li>
-                  Session managed entirely server-side — tokens never reach the browser's
-                  JavaScript.
+                  Session managed entirely server-side: tokens never reach the browser's JavaScript.
                 </li>
                 <li>
                   httpOnly cookies for access token, refresh token and session data (never
@@ -908,7 +964,8 @@
                   limiting (429) and Bearer token injection.
                 </li>
                 <li>
-                  Admin panel with double protection: middleware + server-side check in the layout.
+                  Admin panel with double protection: middleware plus a server-side check in the
+                  layout.
                 </li>
                 <li>
                   2FA flow using a temporary cookie (pending_2fa_token, 5 min) between login and
@@ -923,11 +980,9 @@
             <summary>Infrastructure &amp; deploy</summary>
             <div class="tech-body">
               <ul>
+                <li>Hosted on a Hetzner cloud server (2 vCPU, 4 GB RAM, 40 GB).</li>
                 <li>
-                  Hosted on a Hetzner cloud server (2 vCPU, 4 GB RAM, 40 GB), for around €5/month.
-                </li>
-                <li>
-                  Images stored on Cloudinary (10 MB per-file limit; no videos), with headroom up to
+                  Images stored on Cloudinary (10 MB per-file limit, no videos), with headroom up to
                   25 GB.
                 </li>
                 <li>
@@ -946,7 +1001,7 @@
             <div class="tech-body">
               <p>
                 I implemented GDPR compliance deliberately. The only personal data I have access to
-                are users' <strong>emails</strong> and <strong>photos</strong> — the latter kept
+                are users' <strong>emails</strong> and <strong>photos</strong>, the latter kept
                 privately on Cloudinary. The app includes data export and account deletion with
                 phased anonymisation.
               </p>
@@ -971,8 +1026,7 @@
             </svg>
             <p>
               The source code is kept <strong style="color: var(--ink)">private</strong>, as this is
-              a project in production. Available to walk through privately — for example, during an
-              interview.
+              a project in production. Available to present in a private setting.
             </p>
           </div>
         </div>

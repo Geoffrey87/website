@@ -269,6 +269,20 @@
       .proj-links a:hover {
         color: var(--accent);
       }
+      .offline-note {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.75rem;
+        color: var(--muted);
+        margin: 10px 0 0;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .offline-note::before {
+        content: "//";
+        color: var(--via);
+        flex: none;
+      }
 
       [data-lang="en"] {
         display: none;
@@ -398,6 +412,7 @@
               >Código →</a
             >
           </div>
+          <p class="offline-note">Deployado em free tier — infelizmente já não está disponível.</p>
         </div>
 
         <!-- Payments Alert -->
@@ -435,6 +450,7 @@
               >Código →</a
             >
           </div>
+          <p class="offline-note">Deployado em free tier — infelizmente já não está disponível.</p>
         </div>
       </div>
 
@@ -526,6 +542,7 @@
               >Code →</a
             >
           </div>
+          <p class="offline-note">Deployed on a free tier — unfortunately no longer available.</p>
         </div>
 
         <!-- Payments Alert -->
@@ -563,6 +580,7 @@
               >Code →</a
             >
           </div>
+          <p class="offline-note">Deployed on a free tier — unfortunately no longer available.</p>
         </div>
       </div>
     </main>
