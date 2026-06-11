@@ -1,0 +1,1048 @@
+<!doctype html>
+<html lang="pt" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Projeto em produção — Lloyd Costa</title>
+    <meta
+      name="description"
+      content="MyNook — a rede social full-stack em produção, projeto principal de Lloyd Costa." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet" />
+    <style>
+      :root {
+        --ink: #ecebe4;
+        --muted: #828a96;
+        --accent: #f4b23e;
+        --accent-ink: #1a1408;
+        --border: #243049;
+        --bg-1: #0a0d0c;
+        --bg-2: #0d1311;
+        --via: #d7af57;
+        --copper: #c79f47;
+        --node: #0a3a2c;
+      }
+      [data-theme="light"] {
+        --ink: #1a1c20;
+        --muted: #6a6f78;
+        --accent: #b5790e;
+        --accent-ink: #1a1408;
+        --border: #cdd2c9;
+        --bg-1: #eef1ec;
+        --bg-2: #e6ebe4;
+        --via: #9c6c18;
+        --copper: #a9761c;
+        --node: #18815f;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        color: var(--ink);
+        font-family: "Inter", system-ui, sans-serif;
+        line-height: 1.65;
+        background: linear-gradient(160deg, var(--bg-1), var(--bg-2));
+        background-attachment: fixed;
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        transition: color 0.3s ease;
+      }
+      a {
+        color: inherit;
+      }
+      :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: 4px;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 24px;
+        border-bottom: 1px solid var(--border);
+      }
+      .back {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.9rem;
+        text-decoration: none;
+        display: inline-flex;
+        gap: 6px;
+        align-items: center;
+      }
+      .back:hover {
+        color: var(--accent);
+      }
+      .controls {
+        display: flex;
+        gap: 10px;
+      }
+      .toggle {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.8rem;
+        background: color-mix(in srgb, var(--ink) 7%, transparent);
+        color: var(--ink);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 7px 13px;
+        cursor: pointer;
+        transition:
+          border-color 0.2s,
+          transform 0.1s;
+      }
+      .toggle:hover {
+        border-color: var(--accent);
+      }
+      .toggle:active {
+        transform: scale(0.96);
+      }
+      main {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 46px 24px 20px;
+      }
+      .eyebrow {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.76rem;
+        letter-spacing: 0.04em;
+        color: var(--accent);
+        text-transform: uppercase;
+        margin: 0 0 10px;
+      }
+      .desig {
+        color: var(--via);
+      }
+      h1.page-title {
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-weight: 800;
+        font-size: clamp(2rem, 6vw, 3rem);
+        letter-spacing: -0.02em;
+        margin: 0 0 12px;
+      }
+      .lead {
+        color: var(--muted);
+        margin: 0 0 34px;
+        font-size: 1.02rem;
+      }
+      .lead strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      .project-card {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 28px 28px 24px;
+        background: color-mix(in srgb, var(--node) 25%, transparent);
+        margin-bottom: 32px;
+      }
+      .project-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 6px;
+      }
+      .project-name {
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-weight: 800;
+        font-size: 1.45rem;
+        letter-spacing: -0.01em;
+        margin: 0;
+      }
+      .badge {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+        padding: 4px 11px;
+        border-radius: 999px;
+        white-space: nowrap;
+        flex: none;
+        display: inline-flex;
+        align-items: center;
+        background: color-mix(in srgb, var(--accent) 14%, transparent);
+        border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+        color: var(--accent);
+      }
+      .live-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--accent);
+        margin-right: 7px;
+        box-shadow: 0 0 0 0 var(--accent);
+        animation: livepulse 2s infinite;
+      }
+      @keyframes livepulse {
+        0% {
+          box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 60%, transparent);
+        }
+        70% {
+          box-shadow: 0 0 0 6px transparent;
+        }
+        100% {
+          box-shadow: 0 0 0 0 transparent;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .live-dot {
+          animation: none;
+        }
+      }
+      .project-sub {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.8rem;
+        color: var(--via);
+        margin: 0 0 16px;
+      }
+      .project-desc {
+        margin: 0 0 20px;
+        font-size: 1rem;
+        color: var(--muted);
+      }
+      .project-desc strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      /* galeria de screenshots */
+      .shots {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+        gap: 12px;
+        margin: 0 0 24px;
+      }
+      .shot {
+        aspect-ratio: 16 / 10;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        background: color-mix(in srgb, var(--ink) 5%, transparent);
+        position: relative;
+      }
+      .shot img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .shot .ph-label {
+        display: none;
+        position: absolute;
+        inset: 0;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 12px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        color: var(--via);
+      }
+      .shot.ph {
+        border-style: dashed;
+      }
+      .shot.ph img {
+        display: none;
+      }
+      .shot.ph .ph-label {
+        display: flex;
+      }
+
+      .feature-list {
+        list-style: none;
+        margin: 0 0 22px;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+      }
+      .feature-list li {
+        font-size: 0.95rem;
+        color: var(--muted);
+        display: flex;
+        gap: 10px;
+        align-items: baseline;
+      }
+      .feature-list li::before {
+        content: "→";
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.8rem;
+        color: var(--copper);
+        flex: none;
+      }
+      .stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin-bottom: 24px;
+      }
+      .pill {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.74rem;
+        padding: 3px 10px;
+        border-radius: 999px;
+        background: color-mix(in srgb, var(--border) 60%, transparent);
+        border: 1px solid var(--border);
+        color: var(--muted);
+      }
+      .section-label {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem;
+        color: var(--via);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin: 0 0 10px;
+      }
+
+      /* secções expansíveis */
+      .tech-title {
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-weight: 700;
+        font-size: 1.05rem;
+        margin: 4px 0 14px;
+      }
+      .tech {
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        margin-bottom: 10px;
+        background: color-mix(in srgb, var(--ink) 3%, transparent);
+      }
+      .tech summary {
+        cursor: pointer;
+        padding: 14px 16px;
+        list-style: none;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.88rem;
+        color: var(--ink);
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        transition: color 0.2s;
+      }
+      .tech summary::-webkit-details-marker {
+        display: none;
+      }
+      .tech summary::before {
+        content: "+";
+        color: var(--accent);
+        font-weight: 600;
+        width: 12px;
+        display: inline-block;
+      }
+      .tech[open] summary::before {
+        content: "–";
+      }
+      .tech summary:hover {
+        color: var(--accent);
+      }
+      .tech-body {
+        padding: 0 16px 18px 39px;
+      }
+      .tech-body p {
+        font-size: 0.92rem;
+        color: var(--muted);
+        margin: 0 0 12px;
+      }
+      .tech-body p:last-child {
+        margin-bottom: 0;
+      }
+      .tech-body strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .tech-body ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+      }
+      .tech-body li {
+        font-size: 0.9rem;
+        color: var(--muted);
+        display: flex;
+        gap: 9px;
+        align-items: baseline;
+      }
+      .tech-body li::before {
+        content: "·";
+        color: var(--copper);
+        font-weight: 700;
+        flex: none;
+      }
+
+      .proj-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        align-items: center;
+        margin-top: 26px;
+        padding-top: 18px;
+        border-top: 1px solid var(--border);
+      }
+      .btn-demo {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.86rem;
+        font-weight: 500;
+        text-decoration: none;
+        padding: 9px 18px;
+        border-radius: 999px;
+        background: var(--accent);
+        color: var(--accent-ink);
+        transition: transform 0.12s;
+      }
+      .btn-demo:active {
+        transform: translateY(1px);
+      }
+      .code-note {
+        display: flex;
+        gap: 11px;
+        align-items: flex-start;
+        margin-top: 16px;
+        padding: 13px 16px;
+        border-radius: 12px;
+        border: 1px dashed color-mix(in srgb, var(--via) 45%, transparent);
+        background: color-mix(in srgb, var(--via) 7%, transparent);
+      }
+      .code-note svg {
+        flex: none;
+        color: var(--via);
+        margin-top: 2px;
+      }
+      .code-note p {
+        margin: 0;
+        font-size: 0.86rem;
+        color: var(--muted);
+      }
+
+      [data-lang="en"] {
+        display: none;
+      }
+      html[lang="en"] [data-lang="pt"] {
+        display: none;
+      }
+      html[lang="en"] [data-lang="en"] {
+        display: block;
+      }
+      footer {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 30px 24px 40px;
+        border-top: 1px solid var(--border);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.78rem;
+        color: var(--muted);
+      }
+      footer a {
+        color: var(--muted);
+        text-decoration: none;
+      }
+      footer a:hover {
+        color: var(--ink);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a class="back" href="index.html">← <span data-i18n="nav.board">placa</span></a>
+      <div class="controls">
+        <button class="toggle" id="langToggle" aria-label="Mudar idioma">EN</button>
+        <button class="toggle" id="themeToggle" aria-label="Mudar tema" data-i18n="theme.toLight">
+          claro
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <!-- ===== PT ===== -->
+      <div data-lang="pt">
+        <p class="eyebrow">// projeto em produção · <span class="desig">U4 · GPU</span></p>
+        <h1 class="page-title">Projeto em produção</h1>
+        <p class="lead">
+          O meu <strong>projeto principal</strong> — uma rede social construída de raiz, de ponta a
+          ponta, e o lugar onde mais cresci como programador. Está em produção e em evolução
+          contínua.
+        </p>
+
+        <div class="project-card">
+          <div class="project-header">
+            <h2 class="project-name">MyNook</h2>
+            <span class="badge"><span class="live-dot"></span>Em produção</span>
+          </div>
+          <p class="project-sub">Plataforma social full-stack · mynook.social</p>
+          <p class="project-desc">
+            Uma rede social construída de raiz, com foco em
+            <strong>privacidade, segurança e experiência de utilizador</strong>. Os utilizadores
+            podem publicar, partilhar fotos, gerir amizades por categorias (amigos, família) e
+            personalizar o seu perfil com temas únicos.
+          </p>
+
+          <!-- GALERIA: cria uma pasta "screenshots" no repo e coloca lá mynook-1.png, mynook-2.png, mynook-3.png -->
+          <div class="shots">
+            <div class="shot">
+              <img
+                src="screenshots/mynook-1.png"
+                alt="MyNook — captura 1"
+                onerror="this.closest('.shot').classList.add('ph')" /><span class="ph-label"
+                >screenshots/mynook-1.png</span
+              >
+            </div>
+            <div class="shot">
+              <img
+                src="screenshots/mynook-2.png"
+                alt="MyNook — captura 2"
+                onerror="this.closest('.shot').classList.add('ph')" /><span class="ph-label"
+                >screenshots/mynook-2.png</span
+              >
+            </div>
+            <div class="shot">
+              <img
+                src="screenshots/mynook-3.png"
+                alt="MyNook — captura 3"
+                onerror="this.closest('.shot').classList.add('ph')" /><span class="ph-label"
+                >screenshots/mynook-3.png</span
+              >
+            </div>
+          </div>
+
+          <p class="section-label">Funcionalidades principais</p>
+          <ul class="feature-list">
+            <li>
+              Feed de posts com fotos (até 4 por publicação) e visibilidade configurável por
+              categoria de amizade
+            </li>
+            <li>Notificações em tempo real via SignalR (WebSocket)</li>
+            <li>Autenticação JWT com refresh token rotation e 2FA TOTP (Google Authenticator)</li>
+            <li>Perfis personalizáveis: temas de fundo, fontes, bordas e elementos animados</li>
+            <li>Painel de administração com moderação de conteúdo e gestão de denúncias</li>
+            <li>
+              Conformidade RGPD: exportação de dados e eliminação de conta com anonimização faseada
+            </li>
+            <li>Interface disponível em PT, EN, ES e FR</li>
+          </ul>
+
+          <p class="section-label">Stack</p>
+          <div class="stack">
+            <span class="pill">ASP.NET Core 10</span>
+            <span class="pill">C# 13</span>
+            <span class="pill">Next.js 16</span>
+            <span class="pill">React 19</span>
+            <span class="pill">TypeScript</span>
+            <span class="pill">PostgreSQL</span>
+            <span class="pill">Entity Framework Core</span>
+            <span class="pill">SignalR</span>
+            <span class="pill">Tailwind CSS</span>
+            <span class="pill">Docker</span>
+            <span class="pill">Cloudinary</span>
+            <span class="pill">Resend + React Email</span>
+          </div>
+
+          <p class="tech-title">Por dentro do MyNook</p>
+
+          <details class="tech">
+            <summary>Processo &amp; design</summary>
+            <div class="tech-body">
+              <p>
+                Antes de escrever a primeira linha de código, comecei por desenhar
+                <strong>diagramas de domínio</strong> para mapear as entidades necessárias e as
+                relações entre elas. Só depois de ter o modelo completo é que parti para a
+                implementação.
+              </p>
+              <p>
+                Naturalmente, ao longo do desenvolvimento revi várias decisões iniciais — e, como
+                costuma acontecer, o diagrama acabou por ficar desatualizado face ao produto final.
+              </p>
+            </div>
+          </details>
+
+          <details class="tech">
+            <summary>Arquitetura &amp; backend</summary>
+            <div class="tech-body">
+              <p>
+                Sistema <strong>monolítico</strong>, com o backend organizado por camadas e
+                responsabilidades bem separadas:
+              </p>
+              <ul>
+                <li>
+                  <strong>Controllers</strong> finos — recebem o pedido HTTP, validam e delegam; sem
+                  lógica de negócio.
+                </li>
+                <li><strong>Service layer</strong> — concentra toda a lógica de negócio.</li>
+                <li><strong>Factories</strong> — responsáveis pela criação das entidades.</li>
+                <li>
+                  <strong>Global Exception Handler</strong> — trata todas as exceções num único
+                  ponto, devolvendo sempre o mesmo formato de resposta.
+                </li>
+              </ul>
+              <p>
+                Todas as camadas seguem o princípio da responsabilidade única (SRP), com injeção de
+                dependências por interface (DIP): os controllers dependem das interfaces dos
+                serviços, e estes das interfaces dos repositórios e factories. Apliquei OCP sempre
+                que fez sentido (evitando over-engineering em casos simples, como a conversão de
+                enums), e Liskov e ISP na medida do possível.
+              </p>
+              <p>
+                A camada de serviços está coberta por <strong>testes com mocks</strong>, garantindo
+                que a lógica de negócio se comporta como esperado de forma isolada.
+              </p>
+            </div>
+          </details>
+
+          <details class="tech">
+            <summary>Segurança</summary>
+            <div class="tech-body">
+              <p>A segurança foi uma prioridade desde o início:</p>
+              <ul>
+                <li>
+                  JWT (HS256): access token de 15 min + refresh token rotation (7 dias, tokens
+                  opacos de 64 bytes).
+                </li>
+                <li>2FA TOTP via Otp.NET — compatível com Google Authenticator e Authy.</li>
+                <li>Passwords protegidas com bcrypt (BCrypt.Net-Next).</li>
+                <li>Bloqueio de conta após 5 tentativas falhadas (15 min).</li>
+                <li>
+                  Verificação de email com validação de registos MX (filtra domínios inválidos).
+                </li>
+                <li>RBAC com roles User e Admin.</li>
+                <li>
+                  Rate limiting por política: 5 req/min no login, 3 req/5 min no forgot-password,
+                  100 req/min global.
+                </li>
+                <li>Security headers em todas as respostas (CSP, HSTS, X-Frame-Options, etc.).</li>
+                <li>Audit log de todas as ações relevantes, com retenção configurável.</li>
+                <li>
+                  Background service diário que limpa tokens expirados e logs antigos, e
+                  anonimiza/elimina contas agendadas para remoção.
+                </li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="tech">
+            <summary>Frontend</summary>
+            <div class="tech-body">
+              <ul>
+                <li>
+                  Sessão gerida inteiramente no servidor — os tokens nunca chegam ao JavaScript do
+                  browser.
+                </li>
+                <li>
+                  Cookies httpOnly para access token, refresh token e dados de sessão (nunca
+                  localStorage).
+                </li>
+                <li>
+                  Todas as mutações passam por Server Actions (Next.js), com o padrão useActionState
+                  do React 19.
+                </li>
+                <li>
+                  Middleware de proteção de rotas que verifica sessão e role antes de renderizar
+                  qualquer página.
+                </li>
+                <li>
+                  Camada de API separada por domínio, com um HTTP client base que trata erros, rate
+                  limit (429) e injeção do Bearer token.
+                </li>
+                <li>
+                  Painel de administração com proteção dupla: middleware + verificação server-side
+                  no layout.
+                </li>
+                <li>
+                  Fluxo de 2FA com cookie temporário (pending_2fa_token, 5 min) entre o login e a
+                  verificação TOTP, evitando expor o token intermédio ao cliente.
+                </li>
+                <li>Internacionalização (i18n) em três línguas.</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="tech">
+            <summary>Infraestrutura &amp; deploy</summary>
+            <div class="tech-body">
+              <ul>
+                <li>
+                  Alojado num servidor cloud Hetzner (2 vCPU, 4 GB RAM, 40 GB), por cerca de 5
+                  €/mês.
+                </li>
+                <li>
+                  Imagens guardadas na Cloudinary (limite de 10 MB por ficheiro; sem vídeos), com
+                  folga até 25 GB.
+                </li>
+                <li>
+                  Dockerfile para o backend e para o frontend, orquestrados por docker-compose.
+                </li>
+                <li>
+                  Painel de administração para moderação: visualização de fotos denunciadas, com
+                  possibilidade de remover uma foto ou bloquear uma conta.
+                </li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="tech">
+            <summary>Privacidade &amp; RGPD</summary>
+            <div class="tech-body">
+              <p>
+                Implementei a conformidade com o RGPD de forma deliberada. Os únicos dados pessoais
+                a que tenho acesso são os <strong>emails</strong> e as <strong>fotos</strong> dos
+                utilizadores — estas mantidas de forma privada na Cloudinary. A aplicação inclui
+                exportação de dados e eliminação de conta com anonimização faseada.
+              </p>
+            </div>
+          </details>
+
+          <div class="proj-links">
+            <a class="btn-demo" href="https://mynook.social" target="_blank" rel="noopener"
+              >Ver em produção →</a
+            >
+          </div>
+          <div class="code-note">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2">
+              <rect x="5" y="11" width="14" height="9" rx="2" />
+              <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+            </svg>
+            <p>
+              O código-fonte é mantido <strong style="color: var(--ink)">privado</strong>, por se
+              tratar de um projeto em produção. Disponível para apresentação em contexto privado.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== EN ===== -->
+      <div data-lang="en">
+        <p class="eyebrow">// live project · <span class="desig">U4 · GPU</span></p>
+        <h1 class="page-title">Live project</h1>
+        <p class="lead">
+          My <strong>main project</strong> — a social network built from scratch, end to end, and
+          the place where I've grown the most as a developer. It's live and continuously evolving.
+        </p>
+
+        <div class="project-card">
+          <div class="project-header">
+            <h2 class="project-name">MyNook</h2>
+            <span class="badge"><span class="live-dot"></span>Live</span>
+          </div>
+          <p class="project-sub">Full-stack social platform · mynook.social</p>
+          <p class="project-desc">
+            A social network built from scratch, focused on
+            <strong>privacy, security and user experience</strong>. Users can post, share photos,
+            manage friendships by category (friends, family) and personalise their profile with
+            unique themes.
+          </p>
+
+          <div class="shots">
+            <div class="shot">
+              <img
+                src="screenshots/mynook-1.png"
+                alt="MyNook — screenshot 1"
+                onerror="this.closest('.shot').classList.add('ph')" /><span class="ph-label"
+                >screenshots/mynook-1.png</span
+              >
+            </div>
+            <div class="shot">
+              <img
+                src="screenshots/mynook-2.png"
+                alt="MyNook — screenshot 2"
+                onerror="this.closest('.shot').classList.add('ph')" /><span class="ph-label"
+                >screenshots/mynook-2.png</span
+              >
+            </div>
+            <div class="shot">
+              <img
+                src="screenshots/mynook-3.png"
+                alt="MyNook — screenshot 3"
+                onerror="this.closest('.shot').classList.add('ph')" /><span class="ph-label"
+                >screenshots/mynook-3.png</span
+              >
+            </div>
+          </div>
+
+          <p class="section-label">Key features</p>
+          <ul class="feature-list">
+            <li>
+              Post feed with photos (up to 4 per post) and visibility configurable by friendship
+              category
+            </li>
+            <li>Real-time notifications via SignalR (WebSocket)</li>
+            <li>
+              JWT authentication with refresh token rotation and TOTP 2FA (Google Authenticator)
+            </li>
+            <li>Customisable profiles: background themes, fonts, borders and animated elements</li>
+            <li>Admin panel with content moderation and report management</li>
+            <li>GDPR compliance: data export and account deletion with phased anonymisation</li>
+            <li>Interface available in PT, EN, ES and FR</li>
+          </ul>
+
+          <p class="section-label">Stack</p>
+          <div class="stack">
+            <span class="pill">ASP.NET Core 10</span>
+            <span class="pill">C# 13</span>
+            <span class="pill">Next.js 16</span>
+            <span class="pill">React 19</span>
+            <span class="pill">TypeScript</span>
+            <span class="pill">PostgreSQL</span>
+            <span class="pill">Entity Framework Core</span>
+            <span class="pill">SignalR</span>
+            <span class="pill">Tailwind CSS</span>
+            <span class="pill">Docker</span>
+            <span class="pill">Cloudinary</span>
+            <span class="pill">Resend + React Email</span>
+          </div>
+
+          <p class="tech-title">Under the hood</p>
+
+          <details class="tech">
+            <summary>Process &amp; design</summary>
+            <div class="tech-body">
+              <p>
+                Before writing a single line of code, I started by drawing
+                <strong>domain diagrams</strong> to map out the entities I'd need and the
+                relationships between them. Only once the model was complete did I move on to
+                implementation.
+              </p>
+              <p>
+                Naturally, throughout development I revisited several early decisions — and, as
+                usually happens, the diagram ended up out of date compared to the final product.
+              </p>
+            </div>
+          </details>
+
+          <details class="tech">
+            <summary>Architecture &amp; backend</summary>
+            <div class="tech-body">
+              <p>
+                A <strong>monolithic</strong> system, with the backend organised in layers with
+                clearly separated responsibilities:
+              </p>
+              <ul>
+                <li>
+                  <strong>Thin controllers</strong> — receive the HTTP request, validate and
+                  delegate; no business logic.
+                </li>
+                <li><strong>Service layer</strong> — holds all the business logic.</li>
+                <li><strong>Factories</strong> — responsible for creating entities.</li>
+                <li>
+                  <strong>Global Exception Handler</strong> — handles all exceptions in one place,
+                  always returning the same response format.
+                </li>
+              </ul>
+              <p>
+                Every layer follows the single-responsibility principle (SRP), with interface-based
+                dependency injection (DIP): controllers depend on service interfaces, and these on
+                repository and factory interfaces. I applied OCP wherever it made sense (avoiding
+                over-engineering in simple cases, like enum conversion), and Liskov and ISP as far
+                as practical.
+              </p>
+              <p>
+                The service layer is covered by <strong>tests with mocks</strong>, ensuring the
+                business logic behaves as expected in isolation.
+              </p>
+            </div>
+          </details>
+
+          <details class="tech">
+            <summary>Security</summary>
+            <div class="tech-body">
+              <p>Security was a priority from the start:</p>
+              <ul>
+                <li>
+                  JWT (HS256): 15-min access token + refresh token rotation (7 days, opaque 64-byte
+                  tokens).
+                </li>
+                <li>TOTP 2FA via Otp.NET — compatible with Google Authenticator and Authy.</li>
+                <li>Passwords protected with bcrypt (BCrypt.Net-Next).</li>
+                <li>Account lockout after 5 failed attempts (15 min).</li>
+                <li>Email verification with MX record validation (filters invalid domains).</li>
+                <li>RBAC with User and Admin roles.</li>
+                <li>
+                  Rate limiting per policy: 5 req/min on login, 3 req/5 min on forgot-password, 100
+                  req/min global.
+                </li>
+                <li>Security headers on every response (CSP, HSTS, X-Frame-Options, etc.).</li>
+                <li>Audit log of all relevant actions, with configurable retention.</li>
+                <li>
+                  Daily background service that clears expired tokens and old logs, and
+                  anonymises/deletes accounts scheduled for removal.
+                </li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="tech">
+            <summary>Frontend</summary>
+            <div class="tech-body">
+              <ul>
+                <li>
+                  Session managed entirely server-side — tokens never reach the browser's
+                  JavaScript.
+                </li>
+                <li>
+                  httpOnly cookies for access token, refresh token and session data (never
+                  localStorage).
+                </li>
+                <li>
+                  All mutations go through Server Actions (Next.js), using React 19's useActionState
+                  pattern.
+                </li>
+                <li>
+                  Route-protection middleware that checks session and role before rendering any
+                  page.
+                </li>
+                <li>
+                  Domain-separated API layer, with a base HTTP client that handles errors, rate
+                  limiting (429) and Bearer token injection.
+                </li>
+                <li>
+                  Admin panel with double protection: middleware + server-side check in the layout.
+                </li>
+                <li>
+                  2FA flow using a temporary cookie (pending_2fa_token, 5 min) between login and
+                  TOTP verification, so the intermediate token is never exposed to the client.
+                </li>
+                <li>Internationalisation (i18n) in three languages.</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="tech">
+            <summary>Infrastructure &amp; deploy</summary>
+            <div class="tech-body">
+              <ul>
+                <li>
+                  Hosted on a Hetzner cloud server (2 vCPU, 4 GB RAM, 40 GB), for around €5/month.
+                </li>
+                <li>
+                  Images stored on Cloudinary (10 MB per-file limit; no videos), with headroom up to
+                  25 GB.
+                </li>
+                <li>
+                  Dockerfile for the backend and the frontend, orchestrated with docker-compose.
+                </li>
+                <li>
+                  Admin panel for moderation: viewing reported photos, with the ability to remove a
+                  photo or block an account.
+                </li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="tech">
+            <summary>Privacy &amp; GDPR</summary>
+            <div class="tech-body">
+              <p>
+                I implemented GDPR compliance deliberately. The only personal data I have access to
+                are users' <strong>emails</strong> and <strong>photos</strong> — the latter kept
+                privately on Cloudinary. The app includes data export and account deletion with
+                phased anonymisation.
+              </p>
+            </div>
+          </details>
+
+          <div class="proj-links">
+            <a class="btn-demo" href="https://mynook.social" target="_blank" rel="noopener"
+              >View live →</a
+            >
+          </div>
+          <div class="code-note">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2">
+              <rect x="5" y="11" width="14" height="9" rx="2" />
+              <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+            </svg>
+            <p>
+              The source code is kept <strong style="color: var(--ink)">private</strong>, as this is
+              a project in production. Available to walk through privately — for example, during an
+              interview.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <span
+        >© <span id="year"></span> Lloyd Costa ·
+        <a href="index.html" data-i18n="nav.backBoard">← voltar à placa</a></span
+      >
+    </footer>
+
+    <script>
+      const root = document.documentElement;
+      function safeGet(k) {
+        try {
+          return localStorage.getItem(k);
+        } catch (e) {
+          return null;
+        }
+      }
+      function safeSet(k, v) {
+        try {
+          localStorage.setItem(k, v);
+        } catch (e) {}
+      }
+      const themeBtn = document.getElementById("themeToggle");
+      const langBtn = document.getElementById("langToggle");
+      const ui = {
+        pt: {
+          "theme.toLight": "claro",
+          "theme.toDark": "escuro",
+          "nav.board": "placa",
+          "nav.backBoard": "← voltar à placa",
+        },
+        en: {
+          "theme.toLight": "light",
+          "theme.toDark": "dark",
+          "nav.board": "board",
+          "nav.backBoard": "← back to board",
+        },
+      };
+      let lang = safeGet("lang") || "pt";
+      const savedTheme = safeGet("theme");
+      if (savedTheme) root.setAttribute("data-theme", savedTheme);
+      function applyLang(l) {
+        lang = l;
+        root.lang = l;
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const k = el.getAttribute("data-i18n");
+          if (ui[l][k] !== undefined) el.textContent = ui[l][k];
+        });
+        const isDark = root.getAttribute("data-theme") !== "light";
+        themeBtn.textContent = ui[l][isDark ? "theme.toLight" : "theme.toDark"];
+        langBtn.textContent = l === "pt" ? "EN" : "PT";
+      }
+      themeBtn.addEventListener("click", () => {
+        const n = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+        root.setAttribute("data-theme", n);
+        safeSet("theme", n);
+        applyLang(lang);
+      });
+      langBtn.addEventListener("click", () => {
+        const n = lang === "pt" ? "en" : "pt";
+        safeSet("lang", n);
+        applyLang(n);
+      });
+      document.getElementById("year").textContent = new Date().getFullYear();
+      applyLang(lang);
+    </script>
+  </body>
+</html>
