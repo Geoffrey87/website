@@ -224,6 +224,7 @@
         border: 1px solid var(--border);
         background: color-mix(in srgb, var(--ink) 5%, transparent);
         position: relative;
+        cursor: pointer;
       }
       .shot img {
         width: 100%;
@@ -231,7 +232,10 @@
         object-fit: cover;
         object-position: top;
         display: block;
-        background: color-mix(in srgb, var(--ink) 4%, transparent);
+        transition: transform 0.2s ease;
+      }
+      .shot:hover img {
+        transform: scale(1.04);
       }
       .shot .ph-label {
         display: none;
@@ -247,6 +251,7 @@
       }
       .shot.ph {
         border-style: dashed;
+        cursor: default;
       }
       .shot.ph img {
         display: none;
@@ -255,50 +260,67 @@
         display: flex;
       }
 
-      .feature-list {
-        list-style: none;
-        margin: 0 0 22px;
-        padding: 0;
+      /* lightbox */
+      .lb {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        background: rgba(0, 0, 0, 0.88);
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .lb.open {
         display: flex;
-        flex-direction: column;
-        gap: 7px;
       }
-      .feature-list li {
-        font-size: 0.95rem;
-        color: var(--muted);
-        display: flex;
-        gap: 10px;
-        align-items: baseline;
+      .lb img {
+        max-width: 100%;
+        max-height: 90vh;
+        border-radius: 10px;
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
       }
-      .feature-list li::before {
-        content: "→";
+      .lb-close {
+        position: fixed;
+        top: 18px;
+        right: 22px;
         font-family: "JetBrains Mono", monospace;
-        font-size: 0.8rem;
-        color: var(--copper);
-        flex: none;
+        font-size: 1.6rem;
+        color: #fff;
+        cursor: pointer;
+        line-height: 1;
+        background: none;
+        border: none;
+        opacity: 0.7;
+        transition: opacity 0.15s;
       }
-      .stack {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 7px;
-        margin-bottom: 24px;
+      .lb-close:hover {
+        opacity: 1;
       }
-      .pill {
+      .lb-prev,
+      .lb-next {
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
         font-family: "JetBrains Mono", monospace;
-        font-size: 0.74rem;
-        padding: 3px 10px;
-        border-radius: 999px;
-        background: color-mix(in srgb, var(--border) 60%, transparent);
-        border: 1px solid var(--border);
-        color: var(--muted);
+        font-size: 1.8rem;
+        color: #fff;
+        cursor: pointer;
+        background: none;
+        border: none;
+        opacity: 0.5;
+        transition: opacity 0.15s;
+        padding: 10px;
       }
-      .section-label {
-        font-family: "JetBrains Mono", monospace;
-        font-size: 0.72rem;
-        color: var(--via);
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin: 0 0 10px;
+      .lb-prev:hover,
+      .lb-next:hover {
+        opacity: 1;
+      }
+      .lb-prev {
+        left: 12px;
+      }
+      .lb-next {
+        right: 12px;
       }
 
       /* sub-cabeçalhos e narrativa */
@@ -1041,6 +1063,13 @@
         <a href="index.html" data-i18n="nav.backBoard">← voltar à placa</a></span
       >
     </footer>
+    <!-- Lightbox -->
+    <div class="lb" id="lb" role="dialog" aria-modal="true">
+      <button class="lb-close" id="lb-close" aria-label="Fechar">✕</button>
+      <button class="lb-prev" id="lb-prev" aria-label="Anterior">‹</button>
+      <img id="lb-img" src="" alt="" />
+      <button class="lb-next" id="lb-next" aria-label="Seguinte">›</button>
+    </div>
 
     <script>
       const root = document.documentElement;
@@ -1098,6 +1127,39 @@
         applyLang(n);
       });
       document.getElementById("year").textContent = new Date().getFullYear();
+      // Lightbox
+      const lb = document.getElementById("lb");
+      const lbImg = document.getElementById("lb-img");
+      const shots = [...document.querySelectorAll(".shot:not(.ph) img")];
+      let current = 0;
+      function openLb(i) {
+        current = i;
+        lbImg.src = shots[i].src;
+        lbImg.alt = shots[i].alt;
+        lb.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeLb() {
+        lb.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      shots.forEach((img, i) => img.closest(".shot").addEventListener("click", () => openLb(i)));
+      document.getElementById("lb-close").addEventListener("click", closeLb);
+      document
+        .getElementById("lb-prev")
+        .addEventListener("click", () => openLb((current - 1 + shots.length) % shots.length));
+      document
+        .getElementById("lb-next")
+        .addEventListener("click", () => openLb((current + 1) % shots.length));
+      lb.addEventListener("click", (e) => {
+        if (e.target === lb) closeLb();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (!lb.classList.contains("open")) return;
+        if (e.key === "Escape") closeLb();
+        if (e.key === "ArrowLeft") openLb((current - 1 + shots.length) % shots.length);
+        if (e.key === "ArrowRight") openLb((current + 1) % shots.length);
+      });
       applyLang(lang);
     </script>
   </body>
