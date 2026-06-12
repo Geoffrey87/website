@@ -1,130 +1,350 @@
 <!doctype html>
 <html lang="pt" data-theme="dark">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sobre mim — Lloyd Costa</title>
-<meta name="description" content="Sobre Lloyd Costa: de engenheiro civil a programador full-stack." />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<style>
-  :root {
-    --ink: #ecebe4; --muted: #828a96; --accent: #f4b23e; --accent-ink: #1a1408;
-    --border: #243049; --bg-1: #0a0d0c; --bg-2: #0d1311; --via: #d7af57;
-  }
-  [data-theme="light"] {
-    --ink: #1a1c20; --muted: #6a6f78; --accent: #b5790e; --accent-ink: #1a1408;
-    --border: #cdd2c9; --bg-1: #eef1ec; --bg-2: #e6ebe4; --via: #9c6c18;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; color: var(--ink); font-family: "Inter", system-ui, sans-serif; line-height: 1.65;
-    background: linear-gradient(160deg, var(--bg-1), var(--bg-2)); background-attachment: fixed;
-    min-height: 100vh; -webkit-font-smoothing: antialiased; transition: color .3s ease;
-  }
-  a { color: inherit; }
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
-  header {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 18px 24px; border-bottom: 1px solid var(--border);
-  }
-  .back { font-family: "JetBrains Mono", monospace; font-size: .9rem; text-decoration: none; display: inline-flex; gap: 6px; align-items: center; }
-  .back:hover { color: var(--accent); }
-  .controls { display: flex; gap: 10px; }
-  .toggle {
-    font-family: "JetBrains Mono", monospace; font-size: .8rem;
-    background: color-mix(in srgb, var(--ink) 7%, transparent); color: var(--ink);
-    border: 1px solid var(--border); border-radius: 999px; padding: 7px 13px; cursor: pointer;
-    transition: border-color .2s, transform .1s;
-  }
-  .toggle:hover { border-color: var(--accent); } .toggle:active { transform: scale(.96); }
-  main { max-width: 720px; margin: 0 auto; padding: 46px 24px 20px; }
-  .eyebrow { font-family: "JetBrains Mono", monospace; font-size: .76rem; letter-spacing: .04em; color: var(--accent); text-transform: uppercase; margin: 0 0 10px; }
-  .desig { color: var(--via); }
-  h1.page-title { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: clamp(2rem, 6vw, 3rem); letter-spacing: -.02em; margin: 0 0 30px; }
-  .about p { margin: 0 0 18px; font-size: 1.05rem; }
-  .about a.inline { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); }
-  .about a.inline strong { font-weight: 600; }
-  [data-lang="en"] { display: none; }
-  html[lang="en"] [data-lang="pt"] { display: none; }
-  html[lang="en"] [data-lang="en"] { display: block; }
-  .about-hero { display: flex; align-items: flex-start; gap: 32px; margin-bottom: 32px; }
-  .profile-photo { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 3px solid var(--border); flex-shrink: 0; }
-  @media (max-width: 480px) { .about-hero { flex-direction: column; align-items: center; } .profile-photo { width: 130px; height: 130px; } }
-  footer { max-width: 720px; margin: 0 auto; padding: 30px 24px 40px; border-top: 1px solid var(--border); font-family: "JetBrains Mono", monospace; font-size: .78rem; color: var(--muted); }
-  footer a { color: var(--muted); text-decoration: none; } footer a:hover { color: var(--ink); }
-</style>
-</head>
-<body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sobre mim — Lloyd Costa</title>
+    <meta
+      name="description"
+      content="Sobre Lloyd Costa: de engenheiro civil a programador full-stack." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet" />
+    <style>
+      :root {
+        --ink: #ecebe4;
+        --muted: #828a96;
+        --accent: #f4b23e;
+        --accent-ink: #1a1408;
+        --border: #243049;
+        --bg-1: #0a0d0c;
+        --bg-2: #0d1311;
+        --via: #d7af57;
+      }
+      [data-theme="light"] {
+        --ink: #1a1c20;
+        --muted: #6a6f78;
+        --accent: #b5790e;
+        --accent-ink: #1a1408;
+        --border: #cdd2c9;
+        --bg-1: #eef1ec;
+        --bg-2: #e6ebe4;
+        --via: #9c6c18;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        color: var(--ink);
+        font-family: "Inter", system-ui, sans-serif;
+        line-height: 1.65;
+        background: linear-gradient(160deg, var(--bg-1), var(--bg-2));
+        background-attachment: fixed;
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        transition: color 0.3s ease;
+      }
+      a {
+        color: inherit;
+      }
+      :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: 4px;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 24px;
+        border-bottom: 1px solid var(--border);
+      }
+      .back {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.9rem;
+        text-decoration: none;
+        display: inline-flex;
+        gap: 6px;
+        align-items: center;
+      }
+      .back:hover {
+        color: var(--accent);
+      }
+      .controls {
+        display: flex;
+        gap: 10px;
+      }
+      .toggle {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.8rem;
+        background: color-mix(in srgb, var(--ink) 7%, transparent);
+        color: var(--ink);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 7px 13px;
+        cursor: pointer;
+        transition:
+          border-color 0.2s,
+          transform 0.1s;
+      }
+      .toggle:hover {
+        border-color: var(--accent);
+      }
+      .toggle:active {
+        transform: scale(0.96);
+      }
+      main {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 46px 24px 20px;
+      }
+      .eyebrow {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.76rem;
+        letter-spacing: 0.04em;
+        color: var(--accent);
+        text-transform: uppercase;
+        margin: 0 0 10px;
+      }
+      .desig {
+        color: var(--via);
+      }
+      h1.page-title {
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-weight: 800;
+        font-size: clamp(2rem, 6vw, 3rem);
+        letter-spacing: -0.02em;
+        margin: 0 0 30px;
+      }
+      .about p {
+        margin: 0 0 18px;
+        font-size: 1.05rem;
+      }
+      .about a.inline {
+        color: var(--accent);
+        text-decoration: none;
+        border-bottom: 1px solid var(--accent);
+      }
+      .about a.inline strong {
+        font-weight: 600;
+      }
+      [data-lang="en"] {
+        display: none;
+      }
+      html[lang="en"] [data-lang="pt"] {
+        display: none;
+      }
+      html[lang="en"] [data-lang="en"] {
+        display: block;
+      }
+      .about-hero {
+        display: flex;
+        align-items: flex-start;
+        gap: 32px;
+        margin-bottom: 32px;
+      }
+      .profile-photo {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center 15%;
+        border: 3px solid var(--border);
+        flex-shrink: 0;
+        image-rendering: auto;
+        -webkit-backface-visibility: hidden;
+        transform: translateZ(0);
+      }
+      @media (max-width: 480px) {
+        .about-hero {
+          flex-direction: column;
+          align-items: center;
+        }
+        .profile-photo {
+          width: 130px;
+          height: 130px;
+        }
+      }
+      footer {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 30px 24px 40px;
+        border-top: 1px solid var(--border);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.78rem;
+        color: var(--muted);
+      }
+      footer a {
+        color: var(--muted);
+        text-decoration: none;
+      }
+      footer a:hover {
+        color: var(--ink);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a class="back" href="index.html">← <span data-i18n="nav.board">placa</span></a>
+      <div class="controls">
+        <button class="toggle" id="langToggle" aria-label="Mudar idioma">EN</button>
+        <button class="toggle" id="themeToggle" aria-label="Mudar tema" data-i18n="theme.toLight">
+          claro
+        </button>
+      </div>
+    </header>
 
-<header>
-  <a class="back" href="index.html">← <span data-i18n="nav.board">placa</span></a>
-  <div class="controls">
-    <button class="toggle" id="langToggle" aria-label="Mudar idioma">EN</button>
-    <button class="toggle" id="themeToggle" aria-label="Mudar tema" data-i18n="theme.toLight">claro</button>
-  </div>
-</header>
+    <main>
+      <!-- ===== PT ===== -->
+      <div data-lang="pt">
+        <p class="eyebrow">// sobre mim · <span class="desig">U2 · RAM</span></p>
+        <h1 class="page-title">Sobre mim</h1>
+        <div class="about-hero">
+          <img class="profile-photo" src="foto/foto.jpg" alt="Foto de Lloyd Costa" />
+          <div class="about">
+            <p>
+              Nasci em França, mas Portugal sempre foi a minha casa pois cheguei com apenas dois
+              anos e fiz aqui todo o meu percurso académico, até à licenciatura em Engenharia Civil.
+            </p>
+            <p>
+              Assim que terminei a licenciatura comecei a trabalhar num gabinete local sobretudo em
+              projeto. Mais tarde tive a oportunidade de ir para Angola onde durante dez anos
+              (2013–2023) trabalhei como engenheiro civil tanto em obra e como em projeto. Foi aí
+              que aprendi o que dificilmente se ensina numa sala de aula como gerir prazos reais,
+              resolver problemas sob pressão e ser responsável por trabalho que tem de funcionar à
+              primeira. Para além de crescer muito a nível profissional também cresci muito a nível
+              pessoal.
+              <em
+                >(podes ver esse percurso em detalhe no
+                <a class="inline" href="experiencia.html"><strong>Passado Profissional</strong></a>
+                →)</em
+              >
+            </p>
+            <p>
+              A par disso, a tecnologia foi sempre uma paixão que nunca me largou. No regresso a
+              Portugal, decidi finalmente segui-la a sério e assim tirei uma pós-graduação em
+              Desenvolvimento de Software. Nunca tinha escrito uma única linha de código e foi
+              precisamente esse salto, do betão para o software, que me mostrou que era isto que
+              queria fazer. Hoje trago para a programação a mesma disciplina e foco em resultados
+              que a engenharia me deu.
+            </p>
+            <p>
+              Fora do ecrã, gosto de uma boa caminhada, de viajar, de desporto e de passar tempo com
+              a família e os amigos. E, claro, de videojogos 😊.
+            </p>
+          </div>
+        </div>
+      </div>
 
-<main>
-  <!-- ===== PT ===== -->
-  <div data-lang="pt">
-    <p class="eyebrow">// sobre mim · <span class="desig">U2 · RAM</span></p>
-    <h1 class="page-title">Sobre mim</h1>
-    <div class="about-hero">
-      <img class="profile-photo" src="foto/foto.jpg" alt="Foto de Lloyd Costa" />
-      <div class="about">
-      <p>Nasci em França, mas Portugal sempre foi a minha casa pois cheguei com apenas dois anos e fiz aqui todo o meu percurso académico, até à licenciatura em Engenharia Civil.</p>
-      <p>Assim que terminei a licenciatura comecei a trabalhar num gabinete local sobretudo em projeto. Mais tarde tive a oportunidade de ir para Angola onde durante dez anos (2013–2023) trabalhei como engenheiro civil tanto em obra e como em projeto. Foi aí que aprendi o que dificilmente se ensina numa sala de aula como gerir prazos reais, resolver problemas sob pressão e ser responsável por trabalho que tem de funcionar à primeira. Para além de crescer muito a nível profissional também cresci muito a nível pessoal. <em>(podes ver esse percurso em detalhe no <a class="inline" href="experiencia.html"><strong>Passado Profissional</strong></a> →)</em></p>
-      <p>A par disso, a tecnologia foi sempre uma paixão que nunca me largou. No regresso a Portugal, decidi finalmente segui-la a sério e assim tirei uma pós-graduação em Desenvolvimento de Software. Nunca tinha escrito uma única linha de código e foi precisamente esse salto, do betão para o software, que me mostrou que era isto que queria fazer. Hoje trago para a programação a mesma disciplina e foco em resultados que a engenharia me deu.</p>
-      <p>Fora do ecrã, gosto de uma boa caminhada, de viajar, de desporto e de passar tempo com a família e os amigos. E, claro, de videojogos 😊.</p>
-    </div>
-    </div>
-  </div>
+      <!-- ===== EN (tradução — afina à vontade) ===== -->
+      <div data-lang="en">
+        <p class="eyebrow">// about me · <span class="desig">U2 · RAM</span></p>
+        <h1 class="page-title">About me</h1>
+        <div class="about-hero">
+          <img class="profile-photo" src="foto/foto.jpg" alt="Photo of Lloyd Costa" />
+          <div class="about">
+            <p>
+              I was born in France, but Portugal has always been home — I arrived when I was just
+              two years old and did my entire academic path here, up to my degree in Civil
+              Engineering.
+            </p>
+            <p>
+              As soon as I finished my degree I started working at a local engineering office,
+              mostly on design work. Later I had the chance to move to Angola, where for ten years
+              (2013–2023) I worked as a civil engineer, both on site and in project design. That's
+              where I learned what is hard to teach in a classroom: managing real deadlines, solving
+              problems under pressure, and being responsible for work that has to be right the first
+              time. Beyond growing a lot professionally, I also grew a great deal personally.
+              <em
+                >(you can see this path in detail under
+                <a class="inline" href="experiencia.html"><strong>Work Experience</strong></a>
+                →)</em
+              >
+            </p>
+            <p>
+              Alongside that, technology was always a passion that never left me. Back in Portugal,
+              I decided to finally pursue it seriously and took a postgraduate degree in Software
+              Development. I had never written a single line of code — and it was precisely that
+              leap, from concrete to software, that showed me this is what I want to do. Today I
+              bring to programming the same discipline and focus on results that engineering gave
+              me.
+            </p>
+            <p>
+              Off-screen, I enjoy a good hike, travelling, sport, and spending time with family and
+              friends. And, of course, video games 😊.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
 
-  <!-- ===== EN (tradução — afina à vontade) ===== -->
-  <div data-lang="en">
-    <p class="eyebrow">// about me · <span class="desig">U2 · RAM</span></p>
-    <h1 class="page-title">About me</h1>
-    <div class="about-hero">
-      <img class="profile-photo" src="foto/foto.jpg" alt="Photo of Lloyd Costa" />
-      <div class="about">
-      <p>I was born in France, but Portugal has always been home — I arrived when I was just two years old and did my entire academic path here, up to my degree in Civil Engineering.</p>
-      <p>As soon as I finished my degree I started working at a local engineering office, mostly on design work. Later I had the chance to move to Angola, where for ten years (2013–2023) I worked as a civil engineer, both on site and in project design. That's where I learned what is hard to teach in a classroom: managing real deadlines, solving problems under pressure, and being responsible for work that has to be right the first time. Beyond growing a lot professionally, I also grew a great deal personally. <em>(you can see this path in detail under <a class="inline" href="experiencia.html"><strong>Work Experience</strong></a> →)</em></p>
-      <p>Alongside that, technology was always a passion that never left me. Back in Portugal, I decided to finally pursue it seriously and took a postgraduate degree in Software Development. I had never written a single line of code — and it was precisely that leap, from concrete to software, that showed me this is what I want to do. Today I bring to programming the same discipline and focus on results that engineering gave me.</p>
-      <p>Off-screen, I enjoy a good hike, travelling, sport, and spending time with family and friends. And, of course, video games 😊.</p>
-    </div>
-    </div>
-  </div>
-</main>
+    <footer>
+      <span
+        >© <span id="year"></span> Lloyd Costa ·
+        <a href="index.html" data-i18n="nav.backBoard">← voltar à placa</a></span
+      >
+    </footer>
 
-<footer>
-  <span>© <span id="year"></span> Lloyd Costa · <a href="index.html" data-i18n="nav.backBoard">← voltar à placa</a></span>
-</footer>
-
-<script>
-  const root = document.documentElement;
-  function safeGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
-  function safeSet(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
-  const themeBtn = document.getElementById("themeToggle");
-  const langBtn  = document.getElementById("langToggle");
-  const ui = {
-    pt: { "theme.toLight": "claro", "theme.toDark": "escuro", "nav.board": "placa", "nav.backBoard": "← voltar à placa" },
-    en: { "theme.toLight": "light", "theme.toDark": "dark", "nav.board": "board", "nav.backBoard": "← back to board" }
-  };
-  let lang = safeGet("lang") || "pt";
-  const savedTheme = safeGet("theme"); if (savedTheme) root.setAttribute("data-theme", savedTheme);
-  function applyLang(l) {
-    lang = l; root.lang = l;
-    document.querySelectorAll("[data-i18n]").forEach(el => { const k = el.getAttribute("data-i18n"); if (ui[l][k] !== undefined) el.textContent = ui[l][k]; });
-    const isDark = root.getAttribute("data-theme") !== "light";
-    themeBtn.textContent = ui[l][isDark ? "theme.toLight" : "theme.toDark"];
-    langBtn.textContent = l === "pt" ? "EN" : "PT";
-  }
-  themeBtn.addEventListener("click", () => { const n = root.getAttribute("data-theme") === "light" ? "dark" : "light"; root.setAttribute("data-theme", n); safeSet("theme", n); applyLang(lang); });
-  langBtn.addEventListener("click", () => { const n = lang === "pt" ? "en" : "pt"; safeSet("lang", n); applyLang(n); });
-  document.getElementById("year").textContent = new Date().getFullYear();
-  applyLang(lang);
-</script>
-</body>
+    <script>
+      const root = document.documentElement;
+      function safeGet(k) {
+        try {
+          return localStorage.getItem(k);
+        } catch (e) {
+          return null;
+        }
+      }
+      function safeSet(k, v) {
+        try {
+          localStorage.setItem(k, v);
+        } catch (e) {}
+      }
+      const themeBtn = document.getElementById("themeToggle");
+      const langBtn = document.getElementById("langToggle");
+      const ui = {
+        pt: {
+          "theme.toLight": "claro",
+          "theme.toDark": "escuro",
+          "nav.board": "placa",
+          "nav.backBoard": "← voltar à placa",
+        },
+        en: {
+          "theme.toLight": "light",
+          "theme.toDark": "dark",
+          "nav.board": "board",
+          "nav.backBoard": "← back to board",
+        },
+      };
+      let lang = safeGet("lang") || "pt";
+      const savedTheme = safeGet("theme");
+      if (savedTheme) root.setAttribute("data-theme", savedTheme);
+      function applyLang(l) {
+        lang = l;
+        root.lang = l;
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const k = el.getAttribute("data-i18n");
+          if (ui[l][k] !== undefined) el.textContent = ui[l][k];
+        });
+        const isDark = root.getAttribute("data-theme") !== "light";
+        themeBtn.textContent = ui[l][isDark ? "theme.toLight" : "theme.toDark"];
+        langBtn.textContent = l === "pt" ? "EN" : "PT";
+      }
+      themeBtn.addEventListener("click", () => {
+        const n = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+        root.setAttribute("data-theme", n);
+        safeSet("theme", n);
+        applyLang(lang);
+      });
+      langBtn.addEventListener("click", () => {
+        const n = lang === "pt" ? "en" : "pt";
+        safeSet("lang", n);
+        applyLang(n);
+      });
+      document.getElementById("year").textContent = new Date().getFullYear();
+      applyLang(lang);
+    </script>
+  </body>
 </html>
