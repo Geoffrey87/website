@@ -382,8 +382,10 @@
           </div>
           <p class="project-sub">Simulador legislativo · deployado em AWS</p>
           <p class="project-desc">
-            Simulação do processo legislativo português: os utilizadores criam partidos políticos,
-            propõem leis e geram votações.
+            Simulação do processo legislativo português: os utilizadores criam
+            <strong>partidos políticos, propõem leis e geram votações</strong> com distribuição
+            probabilística realista (40% a favor / 35% contra / 25% abstenção). Uma lei aprovada
+            não pode ser editada — tal como na vida real.
           </p>
           <p class="section-label">Funcionalidades</p>
           <ul class="feature-list">
@@ -426,7 +428,7 @@
           <p class="section-label">Funcionalidades</p>
           <ul class="feature-list">
             <li>Criar, editar e eliminar pagamentos; marcar como pago/não pago</li>
-            <li>Geração automática de entradas futuras por recorrência</li>
+            <li>Geração automática de entradas futuras por tipo de recorrência</li>
             <li>Totais mensais e anuais por utilizador</li>
             <li>Autenticação JWT, Spring Security, BCrypt</li>
           </ul>
@@ -611,12 +613,16 @@
           "theme.toDark": "escuro",
           "nav.board": "voltar",
           "nav.backBoard": "← voltar",
+          "page.title": "Projetos académicos — Lloyd Costa",
+          "page.desc": "Projetos académicos de Lloyd Costa: BankingApp, LegisTrack e Payments Alert.",
         },
         en: {
           "theme.toLight": "light",
           "theme.toDark": "dark",
           "nav.board": "back",
           "nav.backBoard": "← back",
+          "page.title": "Academic projects — Lloyd Costa",
+          "page.desc": "Lloyd Costa's academic projects: BankingApp, LegisTrack and Payments Alert.",
         },
       };
       let lang = safeGet("lang") || "pt";
@@ -625,6 +631,8 @@
       function applyLang(l) {
         lang = l;
         root.lang = l;
+        document.title = ui[l]["page.title"];
+        document.querySelector('meta[name="description"]').setAttribute("content", ui[l]["page.desc"]);
         document.querySelectorAll("[data-i18n]").forEach((el) => {
           const k = el.getAttribute("data-i18n");
           if (ui[l][k] !== undefined) el.textContent = ui[l][k];

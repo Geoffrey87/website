@@ -741,6 +741,8 @@
           "p.qual": "Qualificações",
           "theme.toLight": "claro",
           "theme.toDark": "escuro",
+          "page.title": "Lloyd Costa — Programador Full-Stack",
+          "page.desc": "Portefólio de Lloyd Costa, programador full-stack. Projetos, experiência e contactos.",
         },
         en: {
           "intro.h1": "Lloyd Costa - Full-Stack Developer",
@@ -753,12 +755,16 @@
           "p.qual": "Qualifications",
           "theme.toLight": "light",
           "theme.toDark": "dark",
+          "page.title": "Lloyd Costa — Full-Stack Developer",
+          "page.desc": "Lloyd Costa's portfolio, full-stack developer. Projects, experience and contacts.",
         },
       };
       let currentLang = safeGet("lang") || "pt";
       function applyLang(lang) {
         currentLang = lang;
         root.lang = lang;
+        document.title = t[lang]["page.title"];
+        document.querySelector('meta[name="description"]').setAttribute("content", t[lang]["page.desc"]);
         document.querySelectorAll("[data-i18n]").forEach((el) => {
           const key = el.getAttribute("data-i18n");
           if (t[lang][key] !== undefined) el.textContent = t[lang][key];
